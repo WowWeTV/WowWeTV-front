@@ -1,7 +1,266 @@
+@import "./vars.module.scss";
+@import "./functions.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+select,
+option {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-style: normal;
+  color: _color(black);
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
 body {
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-    "Arial", sans-serif;
-  padding: 20px 20px 60px;
-  max-width: 680px;
-  margin: 0 auto;
+
+  font-size: _fs(normal);
+  font-weight: _fw(normal);
+  line-height: 1.5;
+}
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 18px;
+}
+h6 {
+  font-size: 16px;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+input,
+button,
+select,
+option {
+  border: none;
+  outline: none;
+  font-size: _fs(small);
+  border-radius: 2px;
+}
+input {
+  padding: 7px 10px;
+  border: 1px solid _color(gray, 4);
+  &:focus {
+    border-color: _color(point);
+  }
+}
+/*
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  display: inline-block;
+  position: relative;
+  height: 21px;
+  margin: 0;
+  vertical-align: top;
+  cursor: pointer;
+  border: 1px solid _color(gray, 4);
+  background: _color(white);
+  // transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  &:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+input[type="checkbox"] {
+  border-radius: 50%;
+  &:after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid _color(red);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 3px;
+    transform: rotate(40deg);
+  }
+  &:checked {
+    border: 1px solid _color(point);
+    &:after {
+      transform: rotate(40deg);
+      border: 1px solid _color(point);
+    }
+  }
+}
+input[type="radio"] {
+  border-radius: 50%;
+  &:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: _color(point);
+    opacity: 0;
+    transform: scale(var(--s, 0.7));
+  }
+  &:checked {
+    // background-color: _color(point);
+  }
+}
+*/
+select {
+  padding: 2px 20px 3px 7px;
+  border: 1px solid _color(gray, 4);
+  border-radius: 2px;
+  // background: url() no-repeat 95% 50%;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  // &::-ms-expand {
+  //   display: none;
+  // }
+}
+button {
+  padding: 6px 12px;
+  border: 1px solid _color(gray, 4);
+  background-color: _color(white);
+  color: _color(black);
+  &.primary {
+    border: 1px solid _color(point);
+    background-color: _color(point);
+    color: _color(white);
+    &:hover {
+      background-color: _color(blue);
+      color: _color(white);
+    }
+  }
+  &.circle {
+    border-radius: 5em;
+  }
+  &:hover {
+    border-color: _color(point);
+    color: _color(point);
+    cursor: pointer;
+  }
+
 }

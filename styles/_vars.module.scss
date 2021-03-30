@@ -1,0 +1,49 @@
+/*
+- color 설정: _color(point), _color(gray, 4)
+- font-size 설정: _fs(normal), _fs(medium)
+- font-weight 설정: _fw(normal), _fw(bold)
+- 둥근 button 설정: <button className="circle"></button>
+- 중요 button 설정: <button className="primary"></button>
+- box-shadow 설정: $shadow
+*/
+
+// Font Size
+$fs: (
+  small: 12px,
+  normal: 14px,
+  medium: 17px,
+  large: 20px,
+  xlarge: 23px,
+);
+
+// Font Weight
+$fw: (
+  lighter: 100,
+  light: 300,
+  normal: 400,
+  bold: 500,
+  bolder: 700,
+);
+
+// Palette
+$palette: (
+  point: #4c6ef5,
+  white: #ffffff,
+  black: #212529,
+  red: #ff6b6b,
+  blue: #4263eb,
+  gray: (
+    1: #f8f9fa,
+    2: #f1f3f5,
+    3: #e9ecef,
+    4: #dee2e6,
+    5: #ced4da,
+    6: #adb5bd,
+    7: #868e96,
+    8: #495057,
+    9: #343a40,
+  ),
+);
+
+// Box Shadow
+$shadow: 0 0 8px 0 rgba(0, 0, 0, 0.075);
