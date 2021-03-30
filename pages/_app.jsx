@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-
+import wrapper from "../store";
 import "../styles/globals.scss";
 
 const App = ({ Component }) => {
@@ -9,4 +9,4 @@ const App = ({ Component }) => {
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
-export default App;
+export default wrapper.withRedux(App);
