@@ -1,0 +1,23 @@
+/// Palette
+/// @param {string} $keys
+/// @return {string}
+
+@function _color($keys...) {
+  @return map-get($palette, $keys...);
+}
+
+/// Font size
+/// @param {string} $keys
+/// @return {string}
+
+@function _fs($keys...) {
+  @return map-get($fs, $keys...);
+}
+
+/// Font Weight
+/// @param {string} $keys
+/// @return {string}
+
+@function _fw($keys...) {
+  @return map-get($fw, $keys...);
+}
