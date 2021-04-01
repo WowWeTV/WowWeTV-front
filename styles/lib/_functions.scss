@@ -1,0 +1,14 @@
+// Palette
+@function _color($keys...) {
+  @return inspect(map-get($palette, $keys...));
+}
+
+// Font size
+@function _fs($keys...) {
+  @return inspect(map-get($fs, $keys...));
+}
+
+// Font Weight
+@function _fw($keys...) {
+  @return inspect(map-get($fw, $keys...));
+}

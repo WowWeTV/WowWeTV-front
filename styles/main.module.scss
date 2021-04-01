@@ -1,6 +1,19 @@
-@import "./vars.module.scss";
-@import "./functions.module.scss";
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
+@import "./lib/breakpoints.scss";
 
 .main {
-  border: 1px solid _color(red);
+  color: _color(gray, 4);
   margin: 10px;
+}
+
+@include respond-to(small) {
+  .main {
+    border: 1px solid _color(blue);
+  }
+}
+@include respond-to(large) {
+  .main {
+    border: 1px solid _color(black);
+  }
+}

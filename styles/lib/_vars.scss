@@ -1,4 +1,6 @@
 /*
+vars.scss 사용 시 functions.scss도 import해야 합니다.
+
 - color 설정: _color(point), _color(gray, 4)
 - font-size 설정: _fs(normal), _fs(medium)
 - font-weight 설정: _fw(normal), _fw(bold)

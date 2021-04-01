@@ -1,0 +1,25 @@
+/*
+breakpoints 설정 방법
+- 모바일: @include respond-to(small) { css }
+- 태블릿: @include respond-to(medium) { css }
+- 데스크탑: @include respond-to(large) { css }
+- 고해상도 데스크탑: @include respond-to(xlarge) { css }
+*/
+
+$breakpoints: (
+  "small": 320px,
+  "medium": 768px,
+  "large": 1024px,
+  "xlarge": 1440px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{inspect(map-get($breakpoints, $breakpoint))}) {
+      @content;
+    }
+  } @else {
+    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`.' +
+    'Available breakpoints are: #{map-keys($breakpoints)}.';
+  }
+}
