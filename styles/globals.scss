@@ -1,5 +1,5 @@
-@import "./vars.module.scss";
-@import "./functions.module.scss";
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
 
 html,
@@ -108,7 +108,6 @@ section {
   display: block;
 }
 body {
-
   font-size: _fs(normal);
   font-weight: _fw(normal);
   line-height: 1.5;
@@ -158,16 +157,15 @@ option {
   border: none;
   outline: none;
   font-size: _fs(small);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 input {
   padding: 7px 10px;
-  border: 1px solid _color(gray, 4);
+  border: 1px solid _color(gray, 5);
   &:focus {
     border-color: _color(point);
   }
 }
-/*
 input[type="checkbox"],
 input[type="radio"] {
   -webkit-appearance: none;
@@ -175,13 +173,14 @@ input[type="radio"] {
   outline: none;
   display: inline-block;
   position: relative;
-  height: 21px;
+  width: 23px;
+  height: 23px;
   margin: 0;
   vertical-align: top;
   cursor: pointer;
-  border: 1px solid _color(gray, 4);
-  background: _color(white);
-  // transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  border: 1px solid _color(gray, 5);
+  border-radius: 50%;
+  background-color: _color(white);
   &:after {
     content: "";
     display: block;
@@ -192,45 +191,24 @@ input[type="radio"] {
   &:disabled {
     cursor: not-allowed;
   }
-}
-input[type="checkbox"] {
-  border-radius: 50%;
   &:after {
-    width: 5px;
-    height: 9px;
-    border: 2px solid _color(red);
-    border-top: 0;
-    border-left: 0;
-    left: 7px;
-    top: 3px;
-    transform: rotate(40deg);
+    width: 5.5px;
+    height: 9.5px;
   }
   &:checked {
-    border: 1px solid _color(point);
     &:after {
+      border: 2px solid _color(point);
+      border-top: 0;
+      border-left: 0;
+      top: 3px;
+      left: 7px;
       transform: rotate(40deg);
-      border: 1px solid _color(point);
     }
   }
 }
-input[type="radio"] {
-  border-radius: 50%;
-  &:after {
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    background: _color(point);
-    opacity: 0;
-    transform: scale(var(--s, 0.7));
-  }
-  &:checked {
-    // background-color: _color(point);
-  }
-}
-*/
 select {
-  padding: 2px 20px 3px 7px;
-  border: 1px solid _color(gray, 4);
+  padding: 3px 20px 4px 7px;
+  border: 1px solid _color(gray, 5);
   border-radius: 2px;
   // background: url() no-repeat 95% 50%;
   // -webkit-appearance: none;
@@ -241,8 +219,8 @@ select {
   // }
 }
 button {
-  padding: 6px 12px;
-  border: 1px solid _color(gray, 4);
+  padding: 7px 14px;
+  border: 1px solid _color(gray, 5);
   background-color: _color(white);
   color: _color(black);
   &.primary {
@@ -255,12 +233,16 @@ button {
     }
   }
   &.circle {
+    padding: 8px 15px;
     border-radius: 5em;
+    &.primary {
+      border: 1px solid _color(point);
+      background-color: _color(point);
+    }
   }
   &:hover {
     border-color: _color(point);
     color: _color(point);
     cursor: pointer;
   }
-
 }
