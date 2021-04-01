@@ -1,4 +1,4 @@
-import ResultTab from './ResultTab';
+import SearchTab from './SearchTab';
 import ChannelList from './ChannelList';
 import VideoList from './VideoList';
 
@@ -6,7 +6,7 @@ const SearchLayout = () => {
     return (
         <>
 
-            <ResultTab />
+            <SearchTab />
             <ChannelList />
             <VideoList />
         </>
