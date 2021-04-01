@@ -1,0 +1,70 @@
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
+@import "./lib/breakpoints.scss";
+
+.searchTabContainer {
+  width: 100%;
+  height: 15%;
+  margin-left: 3em;
+  display: flex;
+}
+.searchTextArea {
+  width: 100%;
+  height: 10%;
+
+  .searcSpan {
+    color: _color(point);
+  }
+  ul {
+    margin-top: 1em;
+    display: inline-block;
+    left: 50%;
+  }
+  li {
+    float: left;
+    margin-right: 2em;
+    & .spanTab {
+      display: inline-block;
+      line-height: 3em;
+      color: #000;
+      cursor: pointer;
+      :hover {
+        background-color: #07bc88;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        content: "";
+      }
+    }
+  }
+}
+
+.listContainer {
+  border-top: 1px solid #e6e6e6;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: _color(gray, 2);
+}
+
+.listBox {
+  width: 80%;
+  height: 80%;
+  margin-top: 2em;
+  display: flex;
+  background-color: #fff;
+}
+
+@include respond-to(small) {
+  .main {
+    border: 1px solid _color(blue);
+  }
+}
+@include respond-to(large) {
+  .main {
+    border: 1px solid _color(black);
+  }
+}
