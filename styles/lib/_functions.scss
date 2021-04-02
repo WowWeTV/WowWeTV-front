@@ -7,8 +7,3 @@
 @function _fs($keys...) {
   @return inspect(map-get($fs, $keys...));
 }
-
-// Font Weight
-@function _fw($keys...) {
-  @return inspect(map-get($fw, $keys...));
-}

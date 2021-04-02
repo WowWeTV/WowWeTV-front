@@ -11,20 +11,13 @@ vars.scss 사용 시 functions.scss도 import해야 합니다.
 
 // Font Size
 $fs: (
-  small: 12px,
-  normal: 14px,
-  medium: 17px,
-  large: 20px,
-  xlarge: 23px,
-);
-
-// Font Weight
-$fw: (
-  lighter: 100,
-  light: 300,
-  normal: 400,
-  bold: 500,
-  bolder: 700,
+  small: 0.75rem,
+  normal: 0.875rem,
+  medium: 1.063rem,
+  large: 1.25rem,
+  xlarge: 1.5rem,
+  xxlarge: 1.75rem,
+  xxxlarge: 2rem,
 );
 
 // Palette
