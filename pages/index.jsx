@@ -1,9 +1,12 @@
-import styles from "@/styles/main.module.scss";
+import HeaderLayout from '@/component/layout/header';
 import { useSelector } from 'react-redux';
 
 const Main = () => {
-
-
-  return <div className={styles.main}>홈 !!!!!!!</div>;
+  return (
+    <div>
+      <HeaderLayout />
+    </div>
+  );
 };
+
 export default Main;

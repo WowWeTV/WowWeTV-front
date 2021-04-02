@@ -2,18 +2,143 @@
 @import "./lib/functions.scss";
 @import "./lib/breakpoints.scss";
 
-.main {
-  color: _color(gray, 4);
-  margin: 10px;
-}
+.header {z-index: 9999;}
 
-@include respond-to(small) {
-  .main {
-    border: 1px solid _color(blue);
+.gnbContainer {display: none;}
+.mobileGnbContainer {
+  .mobileGnb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0.813rem;
+    background-color: _color(white);
+    border-bottom: 1px solid _color(gray, 4);
   }
 }
+.mobileLnbContainer {
+  background-color: _color(white);
+  border-bottom: 1px solid _color(gray, 4);
+  ul {
+    overflow: hidden;
+    li {
+      width: 33.3%;
+      float: left;
+      padding: 0.75em 0;
+      text-align: center;
+    }
+  }
+}
+.mobileAsideContainer {
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: _color(black);
+    opacity: 0.8;
+  }
+  .aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 17.188rem;
+    height: 100%;
+    background-color: _color(white);
+    .top {
+      padding: 1.5em 1.563rem;
+      border-bottom: 1px solid _color(gray, 4);
+      div {
+        float: right;
+      }
+    }
+    ul {
+      margin-top: 1em;
+      li {
+        padding: 0.75em 1.563rem;
+      }
+    }
+  }
+}
+
+@include respond-to(medium) {
+  .mobileGnb {padding: 0.85em 1.5rem;}
+}
+
 @include respond-to(large) {
-  .main {
-    border: 1px solid _color(black);
+  .mobileGnbContainer,
+  .mobileLnbContainer,
+  .mobileAsideContainer {
+    display: none;
+  }
+  .gnbContainer {
+    display: block;
+    .gnb {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      padding: 1em 1.563rem;
+      background-color: _color(white);
+      box-sizing: border-box;
+      box-shadow: $shadow;
+      z-index: 101;
+      .gnbLeft {
+        display: flex;
+        h1 {
+          margin-left: 1.25rem;
+        }
+      }
+      .gnbSearchBar {
+        position: relative;
+        input {
+          padding-right: 15.625rem;
+        }
+        div {
+          position: absolute;
+          top: 0.643em;
+          right: 1.125rem;
+        }
+      }
+      .gnbRight {
+        display: flex;
+        align-items: center;
+        div {
+          margin: 0 1.25rem;
+          padding-right: 1.25rem;
+          line-height: 2;
+          border-right: 1px solid _color(gray, 4);
+        }
+      }
+    }
+  }
+  .asideContainer {
+    display: block;
+    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 13.75rem;
+    height: 100%;
+    background-color: _color(white);
+    box-sizing: border-box;
+    box-shadow: $shadow;
+    z-index: 100;
+    ul {
+      margin-top: 5.75em;
+      
+      li {
+        padding: 0.75em 1.25rem;
+        span {
+          &:first-child {
+            margin-right: 0.75rem;
+          }
+        }
+      }
+    }
   }
 }

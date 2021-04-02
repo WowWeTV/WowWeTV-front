@@ -101,7 +101,12 @@ option {
   color: _color(black);
   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+html, body, #__next {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 article,
 aside,
 details,
