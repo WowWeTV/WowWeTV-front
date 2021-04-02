@@ -1,25 +1,16 @@
 @import "./lib/vars.scss";
 @import "./lib/functions.scss";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
-html {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-}
-body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-}
-#__next {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
+@import "./lib/breakpoints.scss";
+@font-face {
+  font-family: "NEXON Lv2 Gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
+html,
+body,
 div,
 span,
 applet,
@@ -104,7 +95,8 @@ option {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "NEXON Lv2 Gothic";
+  font-weight: normal;
   font-style: normal;
   color: _color(black);
   vertical-align: baseline;
@@ -123,28 +115,15 @@ nav,
 section {
   display: block;
 }
-body {
-  font-size: _fs(normal);
-  font-weight: _fw(normal);
-  line-height: 1.5;
-}
-h1 {
-  font-size: 32px;
-}
-h2 {
-  font-size: 28px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 20px;
-}
-h5 {
-  font-size: 18px;
-}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
 h6 {
-  font-size: 16px;
+  font-size: _fs(medium);
+  line-height: 1.5;
 }
 ol,
 ul {
@@ -172,12 +151,13 @@ select,
 option {
   border: none;
   outline: none;
-  font-size: _fs(small);
+  font-family: "NEXON Lv2 Gothic";
+  font-size: _fs(normal);
   border-radius: 3px;
 }
 input {
-  padding: 7px 10px;
-  border: 1px solid _color(gray, 5);
+  padding: 0.65em 0.625rem;
+  border: 1px solid _color(gray, 4);
   &:focus {
     border-color: _color(point);
   }
@@ -189,12 +169,12 @@ input[type="radio"] {
   outline: none;
   display: inline-block;
   position: relative;
-  width: 23px;
-  height: 23px;
+  width: 1.438rem;
+  height: 1.438rem;
   margin: 0;
   vertical-align: top;
   cursor: pointer;
-  border: 1px solid _color(gray, 5);
+  border: 1px solid _color(gray, 4);
   border-radius: 50%;
   background-color: _color(white);
   &:after {
@@ -208,8 +188,8 @@ input[type="radio"] {
     cursor: not-allowed;
   }
   &:after {
-    width: 5.5px;
-    height: 9.5px;
+    width: 0.344rem;
+    height: 0.594rem;
   }
   &:checked {
     &:after {
@@ -223,8 +203,8 @@ input[type="radio"] {
   }
 }
 select {
-  padding: 3px 20px 4px 7px;
-  border: 1px solid _color(gray, 5);
+  padding: 0.75em 1.25rem 0.75em 0.438rem;
+  border: 1px solid _color(gray, 4);
   border-radius: 2px;
   // background: url() no-repeat 95% 50%;
   // -webkit-appearance: none;
@@ -235,8 +215,8 @@ select {
   // }
 }
 button {
-  padding: 7px 14px;
-  border: 1px solid _color(gray, 5);
+  padding: 0.75em 0.875rem;
+  border: 1px solid _color(gray, 4);
   background-color: _color(white);
   color: _color(black);
   &.primary {
@@ -249,16 +229,38 @@ button {
     }
   }
   &.circle {
-    padding: 8px 15px;
+    padding: 0.75em 0.938rem;
     border-radius: 5em;
     &.primary {
       border: 1px solid _color(point);
       background-color: _color(point);
+      &:hover {
+        background-color: _color(blue);
+        color: _color(white);
+      }
     }
   }
   &:hover {
     border-color: _color(point);
     color: _color(point);
     cursor: pointer;
+  }
+}
+
+@include respond-to(large) {
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  input {
+    font-size: _fs(normal);
+  }
+  button,
+  select,
+  option {
+    font-size: _fs(small);
   }
 }
