@@ -9,89 +9,19 @@
   font-style: normal;
 }
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video,
-select,
-option {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, select, option {
   margin: 0;
   padding: 0;
   border: 0;
@@ -101,44 +31,34 @@ option {
   color: _color(black);
   vertical-align: baseline;
 }
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
 html, body, #__next {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 96px 1fr 300px;
 }
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+header {grid-area: header;}
+main {grid-area: main;}
+footer {grid-area: footer;}
+body, h1, h2, h3, h4, h5, h6 {
   font-size: _fs(medium);
-  line-height: 1.5;
+  line-height: 1.5rem;
 }
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
+ol, ul {list-style: none;}
+blockquote,q {
   quotes: none;
-  &:before,
-  &:after {
+  &:before, &:after {
     content: "";
     content: none;
   }
@@ -150,10 +70,7 @@ table {
 a {
   text-decoration: none;
 }
-input,
-button,
-select,
-option {
+input, button, select, option {
   border: none;
   outline: none;
   font-family: "NEXON Lv2 Gothic";
@@ -167,8 +84,7 @@ input {
     border-color: _color(point);
   }
 }
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
@@ -253,19 +169,17 @@ button {
 }
 
 @include respond-to(large) {
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  input {
-    font-size: _fs(normal);
+  body {
+    display: grid;
+    grid-template-areas: 
+      "header header header" 60px
+      "main main main" minmax(100px, auto)
+      "footer footer footer" 300px
+      / repeat(12, 1fr);
   }
-  button,
-  select,
-  option {
-    font-size: _fs(small);
-  }
+  header {grid-area: header;}
+  main {grid-area: main;}
+  footer {grid-area: footer;}
+  body, h1, h2, h3, h4, h5, h6, input {font-size: _fs(normal);}
+  button, select, option {font-size: _fs(small);}
 }

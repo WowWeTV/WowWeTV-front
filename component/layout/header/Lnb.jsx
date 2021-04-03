@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from '@/styles/main.module.scss';
+import Link from 'next/link';
+import styles from '@/styles/header.module.scss';
 
 const Lnb = () => {
     return (
@@ -7,9 +8,9 @@ const Lnb = () => {
             {/* mobile, tablet */}
             <div className={styles.mobileLnbContainer}>
                 <ul>
-                    <li><h2>홈</h2></li>
-                    <li><h2>인기</h2></li>
-                    <li><h2>라이브</h2></li>
+                    <li><h2><Link href="/">홈</Link></h2></li>
+                    <li><h2><Link href="/top100Video">인기</Link></h2></li>
+                    <li><h2><Link href="/">라이브</Link></h2></li>
                 </ul>
             </div>
         </>
