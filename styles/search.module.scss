@@ -2,16 +2,77 @@
 @import "./lib/functions.scss";
 @import "./lib/breakpoints.scss";
 
+.listHeader {
+  margin: 1rem;
+  em {
+    font-size: 1.2em;
+    color: _color(point);
+  }
+}
+.listContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.searchVideoBox {
+  display: flex;
+
+  width: 40em;
+
+  margin: 1em;
+
+  flex-direction: row;
+  img {
+    width: 150px;
+  }
+  .searchVideoDetail {
+    margin-left: 1.5em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 0.5em;
+      color: _color(black);
+    }
+    .videoUserName {
+      color: _color(point);
+    }
+    a {
+      color: _color(point);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    span {
+      overflow: hidden;
+      color: _color(gray, 7);
+    }
+  }
+}
+
+.searchContent {
+  margin: 1em;
+  line-height: 1.5em;
+
+  span {
+    color: _color(gray, 4);
+    font-size: 0.6em;
+  }
+}
+
+.searchPage {
+  display: flex;
+  flex-direction: column;
+}
+
 .searchTabContainer {
-  width: 100%;
-  height: 15%;
   margin-left: 3em;
   display: flex;
 }
 .searchTextArea {
-  width: 100%;
-  height: 10%;
-
   .searcSpan {
     color: _color(point);
   }
@@ -44,27 +105,25 @@
 .listContainer {
   border-top: 1px solid #e6e6e6;
   width: 100%;
-  height: 100%;
+
   display: flex;
   justify-content: center;
-  background-color: _color(gray, 2);
+  background-color: _color(white);
 }
 
 .listBox {
   width: 80%;
-  height: 80%;
+  flex-direction: column;
+
   margin-top: 2em;
   display: flex;
   background-color: #fff;
 }
 
 @include respond-to(small) {
-  .main {
-    border: 1px solid _color(blue);
-  }
 }
 @include respond-to(large) {
-  .main {
-    border: 1px solid _color(black);
+  .listContainer {
+    background-color: _color(gray, 2);
   }
 }

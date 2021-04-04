@@ -1,15 +1,15 @@
 
-import styles from '../../../styles/search.module.scss'
+import styles from '@/styles/search.module.scss';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+
 const SerachTab = () => {
     const router = useRouter()
-    const { query, type } = router.query
-    // console.log(query)
+    const { query } = router.query
+
 
     return <div className={styles.searchTabContainer}>
         <div className={styles.searchTextArea}>
-
             <h2 > <span className={styles.searcSpan}>{query} </span>검색결과</h2>
             <ul>
                 <li>
@@ -22,10 +22,9 @@ const SerachTab = () => {
                 </li>
                 <li>  <Link href={`/search?query=${query}&type=channels`}><span className={styles.spanTab}>채널</span></Link>
                 </li>
-
             </ul>
-
         </div>
+
 
     </div >;
 };
