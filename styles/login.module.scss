@@ -25,6 +25,10 @@
       padding: 7px 35px 10px 11px;
       border: solid 1px _color(gray, 3);
       background-color: _color(white);
+      &:focus-within {
+        border: solid 1px _color(point);
+        box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+      }
       span {
         display: block;
         overflow: hidden;
@@ -41,6 +45,12 @@
           background-color: _color(white);
         }
       }
+    }
+    p {
+      color: #ff0000bf;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.1rem 0.5rem 0.2rem;
     }
     button {
       height: 56px;
@@ -59,10 +69,110 @@
     text-align: center;
     a {
       color: _color(grey, 7);
-      margin : 0 10px;
+      margin: 0 10px;
     }
-    span {
+    .find {
+      color: _color(grey, 7);
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .bar {
       color: _color(grey, 4);
+    }
+  }
+  .modal_wrap {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000080;
+    z-index: 20;
+  }
+  .find_modal {
+    position: relative;
+    width: 575px;
+    top: 150px;
+    height: 320px;
+    margin: 0 auto;
+    z-index: 30;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    .modal_header {
+      position: relative;
+      margin: 0px 20px;
+      padding: 20px 0 10px;
+      border-bottom: 2px solid _color(grey, 5);
+      h1 {
+        width: max-content;
+        margin: -11.5px 0px;
+        padding: 9px 0;
+        border-bottom: 2px solid _color(black);
+      }
+    }
+    .modal_content_header {
+      margin: 10px 20px 20px;
+    }
+    .modal_content_wrap {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .modal_content {
+        flex-direction: column;
+        display: flex;
+        width: 85%;
+        height: 120px;
+        justify-content: center;
+        align-items: center;
+        border: solid 1px _color(gray, 3);
+        .modal_input {
+          position: relative;
+          height: 29px;
+          margin-bottom: 8px;
+          padding: 7px 35px 25px 11px;
+          background-color: _color(white);
+          overflow: hidden;
+          input {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 32px;
+            width: 288px;
+            height: 32px;
+            margin: 1px;
+            padding-left: 19px;
+            border: 0;
+            color: #000;
+            border: solid 1px _color(gray, 5);
+            background-color: _color(white);
+            &:focus {
+              border: solid 1px _color(point);
+              box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+            }
+          }
+        }
+        p {
+          color: #ff0000bf;
+          font-size: 0.8rem;
+          font-weight: 700;
+          margin: -0.1rem 0 -1.4rem;
+        }
+      }
+      button {
+        font-size: 0.83rem;
+        font-weight: 700;
+        margin: 20px 0;
+        padding: 15px 40px;
+        color: _color(gray, 8);
+        border-color: _color(gray, 5);
+        &:hover {
+          border: 1px solid _color(point);
+          background-color: _color(point);
+          color: _color(white);
+          box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+        }
+      }
     }
   }
 }

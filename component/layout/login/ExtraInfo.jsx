@@ -1,13 +1,13 @@
-import styles from "@/styles/login.module.scss";
 import Link from "next/link";
+import styles from "@/styles/login.module.scss";
 
-const ExtraInfo = () => {
+const ExtraInfo = ({ onHandleModal }) => {
   return (
     <div className={styles.find_info}>
-      <Link href="/login">아이디 찾기</Link>
-      <span> | </span>
-      <Link href="/login">비밀번호 찾기</Link>
-      <span> | </span>
+      <span className={styles.find} onClick={onHandleModal}>
+        비밀번호 찾기
+      </span>
+      <span className={styles.bar}> | </span>
       <Link href="/login">회원가입</Link>
     </div>
   );
