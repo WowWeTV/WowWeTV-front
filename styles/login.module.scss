@@ -1,0 +1,68 @@
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
+@import "./lib/breakpoints.scss";
+
+.wrap {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: _color(gray, 1);
+  h1.header {
+    margin-bottom: 3rem;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.35;
+  }
+  .login_container {
+    margin: 0 auto;
+    width: 460px;
+    .input_row {
+      position: relative;
+      height: 29px;
+      margin-bottom: 8px;
+      padding: 7px 35px 10px 11px;
+      border: solid 1px _color(gray, 3);
+      background-color: _color(white);
+      span {
+        display: block;
+        overflow: hidden;
+        input {
+          font-size: 14px;
+          line-height: 16px;
+          position: relative;
+          z-index: 9;
+          width: 100%;
+          height: 16px;
+          padding: 8px 0 6px;
+          color: #000;
+          border: none;
+          background-color: _color(white);
+        }
+      }
+    }
+    button {
+      height: 56px;
+      width: 100%;
+      font-size: large;
+      font-weight: 700;
+      margin: 8px 0px 14px;
+      color: _color(white);
+      background-color: _color(point);
+    }
+  }
+  .find_info {
+    font-size: 14px;
+    line-height: 14px;
+    padding-top: 18px;
+    text-align: center;
+    a {
+      color: _color(grey, 7);
+      margin : 0 10px;
+    }
+    span {
+      color: _color(grey, 4);
+    }
+  }
+}
