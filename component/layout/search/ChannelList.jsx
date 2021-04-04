@@ -1,13 +1,14 @@
 import styles from '@/styles/search.module.scss'
 import { useSelector } from "react-redux";
 import Link from 'next/link';
+import classnames from 'classnames';
 const ChannelsList = () => {
 
     const { searchChannels } = useSelector(state => state.user);
 
     console.log(searchChannels)
     return (<div className={styles.listContainer}>
-        <div className={styles.listBox}>
+        <div className={classnames(styles.listBox, styles.margin_top)}>
 
             <div className={styles.listHeader}>
                 <h2><strong>채널</strong>
@@ -24,7 +25,7 @@ const ChannelsList = () => {
                             <br />
                             <Link href="/">{element.userName}</Link>
                             <div>
-                                <span>{element.videoCount}</span>
+                                <span>동영상 {element.videoCount}</span>
                             </div>
 
                         </div>

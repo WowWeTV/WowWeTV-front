@@ -2,7 +2,9 @@ import SearchTab from './SearchTab';
 import ChannerlList from './ChannelList';
 import VideoList from './VideoList';
 import { useRouter } from 'next/router';
+import SearchMain from './SearchMain';
 import styles from '@/styles/search.module.scss';
+
 const SearchLayout = () => {
     const router = useRouter()
     const { type } = router.query;
@@ -12,10 +14,10 @@ const SearchLayout = () => {
             <div className={styles.searchPage}>
                 <SearchTab />
 
+
                 {type == undefined && (
                     <>
-                        <ChannerlList />
-                        <VideoList />
+                        <SearchMain />
                     </>
 
 
@@ -34,7 +36,6 @@ const SearchLayout = () => {
                     </>
 
                 )}
-
 
 
             </div>
