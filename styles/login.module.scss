@@ -1,0 +1,104 @@
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
+@import "./lib/breakpoints.scss";
+
+.wrap {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: _color(gray, 1);
+  h1.header {
+    margin-bottom: 3rem;
+    font-weight: 600;
+    font-size: _fs(xxxlarge);
+    line-height: 1.35;
+  }
+  .login_container {
+    margin: 0 auto;
+    .input_row {
+      position: relative;
+      padding: 0.5em 2.375em 0.625em 0.625em;
+      border: solid 1px _color(gray, 3);
+      background-color: _color(white);
+      &:focus-within {
+        border: solid 1px _color(point);
+        box-shadow: 0 0.125rem 0.375rem 0 rgb(61 80 81 / 8%);
+      }
+      span {
+        display: block;
+        overflow: hidden;
+        input {
+          font-size: _fs(normal);
+          line-height: 1rem;
+          position: relative;
+          z-index: 9;
+          width: 100%;
+          height: 1rem;
+          padding: 0.5em 0 0.375em;
+          color: #000;
+          border: none;
+          background-color: _color(white);
+        }
+      }
+    }
+    p {
+      color: #ff0000bf;
+      font-size: _fs(normal);
+      font-weight: 700;
+      padding: 0.1rem 0.5rem 0.25rem;
+    }
+    button {
+      height: 3.5rem;
+      width: 100%;
+      font-size: _fs(medium);
+      font-weight: 700;
+      color: _color(white);
+      background-color: _color(point);
+    }
+  }
+  .find_info {
+    font-size: _fs(normal);
+    line-height: 0.875em;
+    padding-top: 1.125rem;
+    text-align: center;
+    a {
+      color: _color(grey, 7);
+      margin: 0 0.625rem;
+    }
+    .find {
+      color: _color(grey, 7);
+      margin: 0 0.625rem;
+      cursor: pointer;
+    }
+    .bar {
+      color: _color(grey, 4);
+    }
+  }
+}
+
+@include respond-to(small) {
+  .login_container {
+    width: 80%;
+    .input_row {
+      height: 1.5rem;
+      margin-bottom: 0.375em;
+    }
+    button {
+      margin: 0.375em 0 0.875em;
+    }
+  }
+}
+@include respond-to(medium) {
+  .login_container {
+    width: 30rem;
+    .input_row {
+      height: 2rem;
+      margin-bottom: 0.5em;
+    }
+    button {
+      margin: 0.5em 0 0.875em;
+    }
+  }
+}
