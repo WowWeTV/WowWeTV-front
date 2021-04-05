@@ -49,18 +49,7 @@ const LoginForm = () => {
           />
         </span>
       </div>
-      {idErrorMsg && (
-        <p
-          style={{
-            color: "#ff0000bf",
-            fontSize: "0.8rem",
-            fontWeight: 700,
-            padding: " 0.1rem 0.5rem 0.2rem",
-          }}
-        >
-          {idErrorMsg}
-        </p>
-      )}
+      {idErrorMsg && <p>{idErrorMsg}</p>}
       <div className={styles.input_row}>
         <span>
           <input
@@ -73,30 +62,8 @@ const LoginForm = () => {
           />
         </span>
       </div>
-      {pwErrorMsg && (
-        <p
-          style={{
-            color: "#ff0000bf",
-            fontSize: "0.8rem",
-            fontWeight: 700,
-            padding: " 0.1rem 0.5rem 0.2rem",
-          }}
-        >
-          {pwErrorMsg}
-        </p>
-      )}
-      {errorMsg && (
-        <p
-          style={{
-            color: "#ff0000bf",
-            fontSize: "0.8rem",
-            fontWeight: 700,
-            padding: " 0.1rem 0.5rem 0.2rem",
-          }}
-        >
-          {errorMsg}
-        </p>
-      )}
+      {pwErrorMsg && <p>{pwErrorMsg}</p>}
+      {errorMsg && <p>{errorMsg}</p>}
 
       <div>
         <button className="login_form_button" onClick={onSubmit}>
