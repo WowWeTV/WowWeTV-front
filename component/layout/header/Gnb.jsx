@@ -6,20 +6,20 @@ import AsideMenu from './AsideMenu';
 const Gnb = () => {
     const [aside, setAside] = useState(false);
     const [search, setSearch] = useState(false);
-    const onToggleMobile = useCallback(() => {setAside(!aside)}, [aside]);
+    const onToggle = useCallback(() => {setAside(!aside)}, [aside]);
     const onShow = useCallback(() => setSearch(!search), [search]);
 
     return (
         <>
             {/* mobile, tablet */}
-            <div className={styles.mobileGnbContainer}>
-                <div className={styles.mobileGnb}>
-                    <div onClick={onToggleMobile}>📂</div>
+            <div className={styles.mobile_gnb_container}>
+                <div className={styles.mobile_gnb}>
+                    <div onClick={onToggle}>📂</div>
                     <h1><Link href="/">WowWeTV</Link></h1>
                     <div>
                         {search 
                             ? (
-                                <div className={styles.mobileSearch}>
+                                <div className={styles.mobile_search}>
                                     <input type="text" placeholder="동영상, 채널 검색" />
                                     <span>🔍</span>
                                 </div>
@@ -27,26 +27,26 @@ const Gnb = () => {
                             : <div onClick={onShow}>🔍</div>
                         }
                         <div 
-                            className={search ? [styles.darkBg, styles.open].join(" ") : styles.darkBg} 
+                            className={search ? [styles.dark_bg, styles.open].join(" ") : styles.darkBg} 
                             onClick={onShow}>
                         </div>
                     </div>
                 </div>
-                <AsideMenu aside={aside} onToggleMobile={onToggleMobile}/>
+                <AsideMenu aside={aside} onToggle={onToggle}/>
             </div>
 
             {/* desktop */}
-            <div className={styles.gnbContainer}>
+            <div className={styles.gnb_container}>
                 <div className={styles.gnb}>
-                    <div className={styles.gnbLeft}>
-                        <div>📂</div>
+                    <div className={styles.gnb_left}>
+                        <div onClick={onToggle}>📂</div>
                         <h1><Link href="/">Wow WeTV</Link></h1>
                     </div>
-                    <div className={styles.gnbSearchBar}>
+                    <div className={styles.gnb_search_bar}>
                         <input type="text" placeholder="검색어를 입력하세요" />
                         <div>🔍</div>
                     </div>
-                    <div className={styles.gnbRight}>
+                    <div className={styles.gnb_right}>
                         <button className={`circle`}>Creator Studio</button>
                         <div>🎥</div>
                         <Link href="/login">
@@ -54,7 +54,7 @@ const Gnb = () => {
                         </Link>
                     </div>
                 </div>
-                <AsideMenu />
+                <AsideMenu aside={aside} onToggle={onToggle} />
             </div>
         </>
     );

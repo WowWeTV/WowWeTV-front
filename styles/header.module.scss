@@ -2,18 +2,23 @@
 @import "./lib/functions.scss";
 @import "./lib/breakpoints.scss";
 
-.header {z-index: 9999;}
+.header {
+  z-index: 9999;
+}
 
-.gnbContainer, .asideContainer {display: none;}
-.mobileGnbContainer {
-  .mobileGnb {
+.gnb_container,
+.aside_container {
+  display: none;
+}
+.mobile_gnb_container {
+  .mobile_gnb {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.8em 1.25rem;
     background-color: _color(white);
     border-bottom: 1px solid _color(gray, 4);
-    .mobileSearch {
+    .mobile_search {
       position: fixed;
       top: 0;
       left: 0;
@@ -31,10 +36,12 @@
         border: none;
       }
     }
-    span {cursor: pointer;}
+    span {
+      cursor: pointer;
+    }
   }
 }
-.mobileLnbContainer {
+.mobile_lnb_container {
   background-color: _color(white);
   border-bottom: 1px solid _color(gray, 4);
   ul {
@@ -47,7 +54,7 @@
     }
   }
 }
-.mobileAsideContainer {
+.mobile_aside_container {
   .aside {
     position: fixed;
     top: 0;
@@ -69,14 +76,14 @@
       cursor: pointer;
     }
   }
-  .asideMenu {
+  .aside_menu {
     margin-top: 1em;
     li {
       padding: 0.75em 1.563rem;
     }
   }
 }
-.darkBg {
+.dark_bg {
   display: none;
   position: absolute;
   top: 0;
@@ -92,8 +99,12 @@
 }
 
 @include respond-to(large) {
-  .mobileGnbContainer, .mobileLnbContainer, .mobileAsideContainer {display: none;}
-  .gnbContainer {
+  .mobile_gnb_container,
+  .mobile_lnb_container,
+  .mobile_aside_container {
+    display: none;
+  }
+  .gnb_container {
     display: block;
     .gnb {
       position: fixed;
@@ -109,13 +120,13 @@
       box-sizing: border-box;
       box-shadow: $shadow;
       z-index: 101;
-      .gnbLeft {
+      .gnb_left {
         display: flex;
         h1 {
           margin-left: 1.25rem;
         }
       }
-      .gnbSearchBar {
+      .gnb_search_bar {
         position: relative;
         input {
           padding-right: 15.625rem;
@@ -126,7 +137,7 @@
           right: 1.125rem;
         }
       }
-      .gnbRight {
+      .gnb_right {
         display: flex;
         align-items: center;
         div {
@@ -138,7 +149,7 @@
       }
     }
   }
-  .asideContainer {
+  .aside_container {
     display: inline-block;
     position: fixed;
     top: 0;
@@ -149,19 +160,68 @@
     border-right: 1px solid _color(gray, 3);
     box-sizing: border-box;
     z-index: 100;
-    ul {
-      height: 100%;
-      margin-top: 5.75em;
-      li {
-        padding: 0.75em 1.25rem;
-        span {
-          h2 {
-            display: inline-block;
+    li {
+      padding: 0.75em 1.25rem;
+      span {
+        margin-left: 0.75rem;
+        h2 {
+          display: inline-block;
+        }
+      }
+      &:hover {
+        background-color: _color(gray, 1);
+        cursor: pointer;
+      }
+    }
+    .aside_lnb {
+      margin-top: 5.5em;
+    }
+    .aside_sub_container {
+      padding-top: 1em;
+      border-top: 1px solid _color(gray, 3);
+      div {
+        position: relative;
+        margin-left: 3px;
+        .aside_btn {
+          position: absolute;
+          top: -0.25em;
+          right: 0;
+          width: 2.5em;
+          height: 2rem;
+          text-align: center;
+          line-height: 2rem;
+          border-radius: 50%;
+          transition: all 0.4s;
+          z-index: 101;
+          &:hover {
+            background-color: _color(gray, 3);
           }
-          &:last-child {
-            margin-left: 0.75rem;
+          &.toggle {
+            transform: rotate(180deg);
           }
         }
+      }
+      .aside_sub {
+        margin-top: 0.5em;
+        margin-left: 0.65rem;
+        li {
+          padding: 0.4em 1.25rem;
+          font-size: _fs(small);
+          h3 {
+            color: _color(gray, 7);
+            &:hover {
+              font-weight: bold;
+              color: _color(black);
+            }
+          }
+        }
+      }
+    }
+    &.aside_folded {
+      width: 3.85rem;
+      span,
+      .aside_sub {
+        display: none;
       }
     }
   }

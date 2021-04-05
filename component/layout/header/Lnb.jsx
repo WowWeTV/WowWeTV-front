@@ -6,13 +6,13 @@ const Lnb = () => {
     return (
         <>
             {/* mobile, tablet */}
-            <div className={styles.mobileLnbContainer}>
+            <nav className={styles.mobile_lnb_container}>
                 <ul>
                     <li><h2><Link href="/">홈</Link></h2></li>
                     <li><h2><Link href="/top100Video">인기</Link></h2></li>
                     <li><h2><Link href="/">라이브</Link></h2></li>
                 </ul>
-            </div>
+            </nav>
         </>
     );
 };
