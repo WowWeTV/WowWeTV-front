@@ -12,29 +12,28 @@
   z-index: 20;
 }
 .find_modal {
-  position: relative;
-  width: 575px;
-  top: 150px;
-  height: 320px;
+  position: relative;  
+  top: 9.375rem;
   margin: 0 auto;
   z-index: 30;
   background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 15%);
   .modal_header {
     position: relative;
-    margin: 0px 20px;
-    padding: 20px 0 10px;
-    border-bottom: 2px solid _color(grey, 5);
+    margin: 0px 1.25rem;
+    padding: 1.25rem 0 0.625rem;
+    border-bottom: 0.125rem solid _color(grey, 5);
     h1 {
+      font-size: _fs(medium);
       width: max-content;
-      margin: -11.5px 0px;
-      padding: 9px 0;
-      border-bottom: 2px solid _color(black);
+      margin: -0.75rem 0px;
+      padding: 0.5rem 0;
+      border-bottom: 0.125rem solid _color(black);
     }
   }
   .modal_content_header {
-    margin: 10px 20px 20px;
+    margin: 0.625rem 1.25rem 1.25rem;
   }
   .modal_content_wrap {
     flex-direction: column;
@@ -45,55 +44,79 @@
       flex-direction: column;
       display: flex;
       width: 85%;
-      height: 120px;
+      height: 7.5rem;
       justify-content: center;
       align-items: center;
-      border: solid 1px _color(gray, 3);
+      border: solid 0.0625rem _color(gray, 3);
       .modal_input {
         position: relative;
-        height: 29px;
-        margin-bottom: 8px;
-        padding: 7px 35px 25px 11px;
+        height: 1.8125rem;
+        margin-bottom: 0.5rem;
+        padding: 0.4375rem 1rem 1.5625rem 0.6rem;
         background-color: _color(white);
         overflow: hidden;
         input {
-          font-size: 14px;
+          font-size: _fs(normal);
           font-weight: 700;
-          line-height: 32px;
-          width: 288px;
-          height: 32px;
-          margin: 1px;
-          padding-left: 19px;
+          line-height: 2rem;
+          height: 2rem;
+          margin: 0.0625rem;
+          padding-left: 1.1875rem;
           border: 0;
           color: #000;
-          border: solid 1px _color(gray, 5);
+          border: solid 0.0625rem _color(gray, 5);
           background-color: _color(white);
           &:focus {
-            border: solid 1px _color(point);
-            box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+            border: solid 0.0625rem _color(point);
+            box-shadow: 0 0.125rem 0.375rem 0 rgb(61 80 81 / 8%);
           }
         }
       }
       p {
         color: #ff0000bf;
-        font-size: 0.8rem;
+        font-size: _fs(normal);
         font-weight: 700;
         margin: -0.1rem 0 -1.4rem;
       }
     }
     button {
-      font-size: 0.83rem;
+      font-size: _fs(normal);
       font-weight: 700;
-      margin: 20px 0;
-      padding: 15px 40px;
+      margin: 1.25rem 0;
+      padding: 0.9375rem 2.5rem;
       color: _color(gray, 8);
       border-color: _color(gray, 5);
       &:hover {
-        border: 1px solid _color(point);
+        border: 0.0625rem solid _color(point);
         background-color: _color(point);
         color: _color(white);
-        box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+        box-shadow: 0 0.125rem 0.375rem 0 rgb(61 80 81 / 8%);
       }
+    }
+  }
+}
+
+@include respond-to(small) {
+  .find_modal {
+    width: 85%;
+    height: 20rem;
+    input {
+      width: 85%;
+    }
+    .modal_content_header{
+      font-size: _fs(normal);
+    }
+  }
+}
+@include respond-to(medium) {
+  .find_modal {
+    width: 36rem;
+    height: 20rem;
+    input {
+      width: 18rem;
+    }
+    .modal_content_header{
+      font-size: _fs(medium);
     }
   }
 }
