@@ -1,14 +1,46 @@
 import SearchTab from './SearchTab';
-import ChannelList from './ChannelList';
+import ChannerlList from './ChannelList';
 import VideoList from './VideoList';
+import { useRouter } from 'next/router';
+import SearchMain from './SearchMain';
+import styles from '@/styles/search.module.scss';
 
 const SearchLayout = () => {
+    const router = useRouter()
+    const { type } = router.query;
+
     return (
         <>
+            <div className={styles.searchPage}>
+                <SearchTab />
 
-            <SearchTab />
-            <ChannelList />
-            <VideoList />
+
+                {type == undefined && (
+                    <>
+                        <SearchMain />
+                    </>
+
+
+                )}
+                {type === 'videos' && (
+                    <>
+
+                        <VideoList />
+                    </>
+
+
+                )}
+                {type === 'channels' && (
+                    <>
+                        <ChannerlList />
+                    </>
+
+                )}
+
+
+            </div>
+
+
         </>
 
     );
