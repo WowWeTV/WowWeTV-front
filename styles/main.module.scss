@@ -2,9 +2,9 @@
 @import "./lib/functions.scss";
 @import "./lib/breakpoints.scss";
 
-// @include respond-to(large) {
-//   .main {
-//     margin-top: 60px;
-//     margin-left: 13.75rem;
-//   }
-// }
+@include respond-to(large) {
+  .main {
+    margin-top: 4.25em;
+    margin-left: 13.75rem;
+  }
+}
