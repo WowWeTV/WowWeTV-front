@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import wrapper from "../store";
-import "../styles/globals.scss";
+import PropTypes from 'prop-types';
+import wrapper from '../store';
+import '../styles/globals.scss';
 
 const App = ({ Component }) => {
   return <Component />;
