@@ -21,7 +21,6 @@ const VideosList = () => {
                     return (
 
 
-
                         <div className={styles.searchVideoBox}>
                             <img src={element.videoUrl} />
                             <div className={styles.searchVideoDetail}>

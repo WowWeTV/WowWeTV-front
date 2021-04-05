@@ -6,44 +6,31 @@ import SearchMain from './SearchMain';
 import styles from '@/styles/search.module.scss';
 
 const SearchLayout = () => {
-    const router = useRouter()
-    const { type } = router.query;
+  const router = useRouter();
+  const { type } = router.query;
 
-    return (
-        <>
-            <div className={styles.searchPage}>
-                <SearchTab />
-
-
-                {type == undefined && (
-                    <>
-                        <SearchMain />
-                    </>
-
-
-                )}
-                {type === 'videos' && (
-                    <>
-
-                        <VideoList />
-                    </>
-
-
-                )}
-                {type === 'channels' && (
-                    <>
-                        <ChannerlList />
-                    </>
-
-                )}
-
-
-            </div>
-
-
-        </>
-
-    );
+  return (
+    <>
+      <div className={styles.searchPage}>
+        <SearchTab />
+        {type === undefined && (
+          <>
+            <SearchMain />
+          </>
+        )}
+        {type === 'videos' && (
+          <>
+            <VideoList />
+          </>
+        )}
+        {type === 'channels' && (
+          <>
+            <ChannerlList />
+          </>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default SearchLayout;
