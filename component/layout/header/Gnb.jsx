@@ -1,22 +1,22 @@
-import React, { useCallback, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import classnames from "classnames";
-import styles from "@/styles/header.module.scss";
+import React, { useCallback, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import classnames from 'classnames';
+import styles from '@/styles/layout/header.module.scss';
 import {
   AiOutlineMenu,
   AiOutlineSearch,
   AiOutlineVideoCamera,
-} from "react-icons/ai";
-import AsideMenu from "./AsideMenu";
+} from 'react-icons/ai';
+import AsideMenu from './AsideMenu';
 
 const Gnb = () => {
   const router = useRouter();
   const [aside, setAside] = useState(false);
   const [search, setSearch] = useState(false);
   const [inputs, setInputs] = useState({
-    mobileSearchInput: "",
-    searchInput: "",
+    mobileSearchInput: '',
+    searchInput: '',
   });
   const { mobileSearchInput, searchInput } = inputs;
 
@@ -24,8 +24,8 @@ const Gnb = () => {
   const onShow = useCallback(() => {
     setSearch(!search),
       setInputs({
-        mobileSearchInput: "",
-        searchInput: "",
+        mobileSearchInput: '',
+        searchInput: '',
       });
   }, [search]);
   const onChange = useCallback(

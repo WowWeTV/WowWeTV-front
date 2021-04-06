@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styles from "@/styles/login.module.scss";
+import Link from 'next/link';
+import styles from '@/styles/layout/login.module.scss';
 
 const ExtraInfo = ({ onHandleModal }) => {
   return (

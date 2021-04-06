@@ -1,6 +1,6 @@
-@import "./lib/vars";
-@import "./lib/functions.scss";
-@import "./lib/breakpoints.scss";
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
 
 @include respond-to(large) {
   .main {
