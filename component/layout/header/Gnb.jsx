@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import classnames from 'classnames';
 import styles from '@/styles/layout/header.module.scss';
 import {
@@ -72,15 +72,15 @@ const Gnb = () => {
                   value={mobileSearchInput}
                   name="mobileSearchInput"
                 />
-                <button type="submit">
-                  <Link
-                    href={
-                      mobileSearchInput && `/search?query=${mobileSearchInput}`
-                    }
-                  >
+                <Link
+                  href={
+                    mobileSearchInput && `/search?query=${mobileSearchInput}`
+                  }
+                >
+                  <button type="submit">
                     <AiOutlineSearch className="icon" />
-                  </Link>
-                </button>
+                  </button>
+                </Link>
               </form>
             ) : (
               <div onClick={onShow} className="icon">
@@ -117,11 +117,11 @@ const Gnb = () => {
               value={searchInput}
               name="searchInput"
             />
-            <button type="submit" className="icon search_icon">
-              <Link href={searchInput && `/search?query=${searchInput}`}>
+            <Link href={searchInput && `/search?query=${searchInput}`}>
+              <button type="submit" className="icon search_icon">
                 <AiOutlineSearch />
-              </Link>
-            </button>
+              </button>
+            </Link>
           </form>
           <div className={styles.gnb_right}>
             <button className="circle">Creator Studio</button>
