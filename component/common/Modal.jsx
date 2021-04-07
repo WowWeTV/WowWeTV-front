@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '@/styles/common/modal.module.scss';
+import PropTypes from 'prop-types';
 
 const FindPWModal = ({
   onHandleModal,
@@ -22,7 +23,7 @@ const FindPWModal = ({
     if (inputs === '') {
       setErrorMsg(`${inputPlaceholder}을 입력해 주세요.`);
     } else {
-      //Add function
+      // Add function
       setErrorMsg(errMsg);
     }
   };
@@ -55,5 +56,14 @@ const FindPWModal = ({
     </div>
   );
 };
+
+FindPWModal.propTypes = {
+  onHandleModal: PropTypes.func.isRequired,
+  errMsg: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  contentHeader: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string.isRequired,
+  btnText: PropTypes.string.isRequired,
+}
 
 export default FindPWModal;
