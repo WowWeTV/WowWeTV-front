@@ -5,6 +5,13 @@
 .header {
   z-index: 9999;
 }
+.header_fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  transition: 0.4s ease;
+}
 
 .gnb_container,
 .aside_container {
@@ -25,21 +32,24 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0.5em 1.25rem;
+    padding: 0.6em 1.5rem;
     background-color: _color(white);
     box-sizing: border-box;
     z-index: 9999;
     input {
-      width: 85%;
+      width: 80%;
+      padding: 0;
       border: none;
-      background-color: _color(white);
     }
     button {
+      margin: 0;
+      padding: 0;
       border: none;
     }
   }
 }
 .mobile_lnb_container {
+  width: 100%;
   background-color: _color(white);
   border-bottom: 1px solid _color(gray, 4);
   ul {
