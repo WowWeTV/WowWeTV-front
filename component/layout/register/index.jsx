@@ -1,6 +1,6 @@
 import RegisterHeader from "./RegisterHeader";
 import RegisterForm from "./RegisterForm";
-import styles from "@/styles/register.module.scss";
+import styles from "@/styles/layout/register.module.scss";
 
 const RegisterLayout = () => {
   return (

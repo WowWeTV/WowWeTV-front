@@ -1,5 +1,5 @@
-import styles from "@/styles/register.module.scss";
-import Link from "next/link";
+import styles from '@/styles/layout/register.module.scss';
+import Link from 'next/link';
 
 const RegisterHeader = () => {
   return (

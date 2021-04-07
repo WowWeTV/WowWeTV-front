@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "@/styles/register.module.scss";
+import styles from "@/styles/layout/register.module.scss";
 import cn from "classnames";
 const RegisterForm = () => {
   const [inputs, setInputs] = useState({
