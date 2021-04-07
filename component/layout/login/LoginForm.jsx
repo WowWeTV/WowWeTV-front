@@ -3,13 +3,13 @@ import styles from '@/styles/layout/login.module.scss';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
-    id: '',
+    name: '',
     password: '',
   });
-  const [idErrorMsg, setIdErrorMsg] = useState('');
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
   const [pwErrorMsg, setPwErrorMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const { id, password } = inputs;
+  const { name, password } = inputs;
 
   const onChange = (e) => {
     const { value, id } = e.target;
@@ -21,17 +21,17 @@ const LoginForm = () => {
 
   const onSubmit = () => {
     if (inputs.id === '') {
-      setIdErrorMsg('아이디를 입력해주세요.');
+      setNameErrorMsg('아이디를 입력해주세요.');
       setPwErrorMsg('');
       setErrorMsg('');
     } else if (inputs.password === '') {
       setPwErrorMsg('비밀번호를 입력해주세요.');
-      setIdErrorMsg('');
+      setNameErrorMsg('');
       setErrorMsg('');
     } else {
       // Add function
       setErrorMsg('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
-      setIdErrorMsg('');
+      setNameErrorMsg('');
       setPwErrorMsg('');
     }
   };
@@ -40,16 +40,16 @@ const LoginForm = () => {
       <div className={styles.input_row}>
         <span>
           <input
-            id="id"
+            id="name"
             placeholder="아이디"
             type="text"
-            value={id}
+            value={name}
             onChange={onChange}
             className="text-input"
           />
         </span>
       </div>
-      {idErrorMsg && <p>{idErrorMsg}</p>}
+      {nameErrorMsg && <p>{nameErrorMsg}</p>}
       <div className={styles.input_row}>
         <span>
           <input
@@ -66,7 +66,7 @@ const LoginForm = () => {
       {errorMsg && <p>{errorMsg}</p>}
 
       <div>
-        <button className="login_form_button" onClick={onSubmit}>
+        <button type="button" className="login_form_button" onClick={onSubmit}>
           로그인
         </button>
       </div>

@@ -1,69 +1,70 @@
-import { useState } from "react";
-import styles from "@/styles/layout/register.module.scss";
-import cn from "classnames";
+import { useState } from 'react';
+import styles from '@/styles/layout/register.module.scss';
+import cn from 'classnames';
+
 const RegisterForm = () => {
   const [inputs, setInputs] = useState({
-    name: "",
-    password: "",
-    password_check: "",
-    email: "",
-    verify: "",
+    name: '',
+    password: '',
+    password_check: '',
+    email: '',
+    verify: '',
   });
   const [verifyNum, setVerifyNum] = useState();
   const [verifyInput, setVerifyInput] = useState(false);
-  const [nameErrorMsg, setNameErrorMsg] = useState("");
-  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
-  const [pwCheckErrMsg, setPwCheckErrMsg] = useState("");
-  const [emailErrorMsg, setEmailErrorMsg] = useState("");
-  const [verifyErrorMsg, setVerifyErrorMsg] = useState("");
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+  const [pwCheckErrMsg, setPwCheckErrMsg] = useState('');
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
+  const [verifyErrorMsg, setVerifyErrorMsg] = useState('');
   const nameRe = /^[가-힣a-z]{3,10}$/;
   const passwordRe = /^[A-Za-z0-9]{6,10}$/;
   const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   const verifyRe = /^[0-9]{6}$/;
   const onBlurName = () => {
     if (!inputs.name) {
-      setNameErrorMsg("이름은 필수 정보입니다.");
+      setNameErrorMsg('이름은 필수 정보입니다.');
     } else if (!nameRe.test(inputs.name)) {
-      setNameErrorMsg("3~10자 한글과 영문 소문자만 사용하세요.");
+      setNameErrorMsg('3~10자 한글과 영문 소문자만 사용하세요.');
     } else {
-      setNameErrorMsg("");
+      setNameErrorMsg('');
     }
   };
   const onBlurPassword = () => {
     if (!inputs.password) {
-      setPasswordErrorMsg("비밀번호는 필수 정보입니다.");
+      setPasswordErrorMsg('비밀번호는 필수 정보입니다.');
     } else if (!passwordRe.test(inputs.password)) {
-      setPasswordErrorMsg("6~10자 영문 대/소문자와 숫자만 사용하세요.");
+      setPasswordErrorMsg('6~10자 영문 대/소문자와 숫자만 사용하세요.');
     } else {
-      setPasswordErrorMsg("");
+      setPasswordErrorMsg('');
     }
   };
   const onBlurPasswordCheck = () => {
     if (!inputs.password_check) {
-      setPwCheckErrMsg("비밀번호 확인은 필수 정보입니다.");
+      setPwCheckErrMsg('비밀번호 확인은 필수 정보입니다.');
     } else if (inputs.password !== inputs.password_check) {
-      setPwCheckErrMsg("비밀번호와 비밀번호 확인이 다릅니다.");
+      setPwCheckErrMsg('비밀번호와 비밀번호 확인이 다릅니다.');
     } else {
-      setPwCheckErrMsg("");
+      setPwCheckErrMsg('');
     }
   };
   const onBlurEmail = () => {
     if (!inputs.email) {
-      setEmailErrorMsg("이메일은 필수 정보입니다.");
+      setEmailErrorMsg('이메일은 필수 정보입니다.');
     } else if (!emailRe.test(inputs.email)) {
-      setEmailErrorMsg("이메일 주소를 다시 확인해주세요.");
+      setEmailErrorMsg('이메일 주소를 다시 확인해주세요.');
     } else {
-      setEmailErrorMsg("");
+      setEmailErrorMsg('');
     }
   };
   const onBlurVerify = () => {
     if (!inputs.verify) {
-      setVerifyErrorMsg("인증번호는 필수 정보입니다.");
+      setVerifyErrorMsg('인증번호는 필수 정보입니다.');
     } else if (!verifyRe.test(inputs.verify)) {
       console.log(verifyRe.test(inputs.verify));
-      setVerifyErrorMsg("인증번호를 다시 확인해주세요.");
+      setVerifyErrorMsg('인증번호를 다시 확인해주세요.');
     } else {
-      setVerifyErrorMsg("");
+      setVerifyErrorMsg('');
     }
   };
 
@@ -88,20 +89,20 @@ const RegisterForm = () => {
       emailRe.test(inputs.email) &&
       verifyNum.toString() === inputs.verify
     ) {
-      console.log("Start function");
-      //Add function
+      console.log('Start function'); // 나중에 삭제
+      // Add function
     } else {
-      console.log("Fail"); //나중에 삭제
+      console.log('Fail'); // 나중에 삭제
     }
   };
   const onEmailSubmit = async () => {
     if (!inputs.email) {
-      setEmailErrorMsg("이메일을 입력해주세요.");
+      setEmailErrorMsg('이메일을 입력해주세요.');
     } else {
       const vNum = Math.floor(Math.random() * 900000 + 100000);
       setVerifyNum(vNum);
       console.log(vNum); // 나중에 삭제
-      //Add function
+      // Add function
       setVerifyInput(true);
     }
   };
@@ -176,7 +177,11 @@ const RegisterForm = () => {
               onBlur={onBlurEmail}
             />
           </span>
-          <button className={styles.btn_verify} onClick={onEmailSubmit}>
+          <button
+            type="button"
+            className={styles.btn_verify}
+            onClick={onEmailSubmit}
+          >
             인증번호 받기
           </button>
         </div>
@@ -200,7 +205,11 @@ const RegisterForm = () => {
       </div>
 
       <div>
-        <button className={styles.register_form_button} onClick={onSubmit}>
+        <button
+          type="button"
+          className={styles.register_form_button}
+          onClick={onSubmit}
+        >
           가입하기
         </button>
       </div>
