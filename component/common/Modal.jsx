@@ -49,7 +49,7 @@ const FindPWModal = ({
               </div>
               {errorMsg && <p>{errorMsg}</p>}
             </div>
-            <button onClick={handleSubmit}>{btnText}</button>
+            <button type="button" onClick={handleSubmit}>{btnText}</button>
           </div>
         </div>
       </div>
