@@ -1,4 +1,5 @@
-import LoginLayout from "@/component/layout/login/index";
+import LoginLayout from '@/component/layout/login/index';
+
 const Login = () => {
   return (
     <div>
