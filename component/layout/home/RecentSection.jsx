@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import classnames from 'classnames';
 import styles from '@/styles/main.module.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -8,11 +9,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import {
   AiOutlineHeart,
   AiOutlinePlayCircle,
-  AiOutlinePlus,
+  AiOutlineRight,
 } from 'react-icons/ai';
 
-const Carousel = () => {
-  const { newVideoList } = useSelector((state) => state.video);
+const RecentSection = () => {
+  const { recentVideoList } = useSelector((state) => state.video);
 
   const settings = {
     autoplay: true,
@@ -26,11 +27,11 @@ const Carousel = () => {
   };
 
   return (
-    <section className={styles.new_video_section}>
+    <section className={styles.recent_section}>
       {/* mobile */}
-      <div className={styles.new_video_slider}>
+      <div className={styles.recent_slider}>
         <Slider {...settings}>
-          {newVideoList.map((element) => {
+          {recentVideoList.slice(0, 4).map((element) => {
             return (
               <div key={element.id} className={styles.slide}>
                 <img src={element.videoUrl} alt={element.videoTitle} />
@@ -45,27 +46,31 @@ const Carousel = () => {
       </div>
 
       {/* tablet, desktop */}
-      <div className={styles.new_video_container}>
-        <div className={styles.new_video_title}>
+      <div className={styles.recent_container}>
+        <div className={styles.section_title}>
           <Link href="/recentVideo">
             <h3>지금 뜨는</h3>
           </Link>
           <Link href="/recentVideo">
             <button>
               더보기
-              <AiOutlinePlus className={styles.icon} />
+              <AiOutlineRight className={styles.icon} />
             </button>
           </Link>
         </div>
-        <div className={styles.new_video_list}>
-          {newVideoList.slice(0, 2).map((element) => {
+        <div className={styles.recent_list}>
+          {recentVideoList.slice(0, 2).map((element) => {
             return (
-              <div key={element.id} className={styles.new_video}>
-                <div className={styles.new_video_img}>
-                  <img src={element.videoUrl} alt={element.videoTitle} />
+              <div key={element.id} className={styles.recent}>
+                <div
+                  className={classnames(styles.recent_img, styles.video_img)}
+                >
+                  <img src={element.videoUrl} alt={`${element.videoTitle}`} />
                   <span>{(element.videoLength / 3600).toFixed(2)}</span>
                 </div>
-                <div className={styles.new_video_info}>
+                <div
+                  className={classnames(styles.recent_info, styles.video_info)}
+                >
                   <p>{element.videoTitle}</p>
                   <Link
                     href={`/search?query=${element.userName}&type=channels`}
@@ -85,15 +90,19 @@ const Carousel = () => {
             );
           })}
         </div>
-        <div className={styles.new_video_list}>
-          {newVideoList.slice(2, 4).map((element) => {
+        <div className={styles.recent_list}>
+          {recentVideoList.slice(2, 4).map((element) => {
             return (
-              <div key={element.id} className={styles.new_video}>
-                <div className={styles.new_video_img}>
+              <div key={element.id} className={styles.recent}>
+                <div
+                  className={classnames(styles.recent_img, styles.video_img)}
+                >
                   <img src={element.videoUrl} alt={element.videoTitle} />
                   <span>{(element.videoLength / 3600).toFixed(2)}</span>
                 </div>
-                <div className={styles.new_video_info}>
+                <div
+                  className={classnames(styles.recent_info, styles.video_info)}
+                >
                   <p>{element.videoTitle}</p>
                   <Link
                     href={`/search?query=${element.userName}&type=channels`}
@@ -118,4 +127,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default RecentSection;
