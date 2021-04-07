@@ -1,22 +1,22 @@
-import React, { useCallback, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import classnames from "classnames";
-import styles from "@/styles/header.module.scss";
+import React, { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import classnames from 'classnames';
+import styles from '@/styles/layout/header.module.scss';
 import {
   AiOutlineMenu,
   AiOutlineSearch,
   AiOutlineVideoCamera,
-} from "react-icons/ai";
-import AsideMenu from "./AsideMenu";
+} from 'react-icons/ai';
+import AsideMenu from './AsideMenu';
 
 const Gnb = () => {
   const router = useRouter();
   const [aside, setAside] = useState(false);
   const [search, setSearch] = useState(false);
   const [inputs, setInputs] = useState({
-    mobileSearchInput: "",
-    searchInput: "",
+    mobileSearchInput: '',
+    searchInput: '',
   });
   const { mobileSearchInput, searchInput } = inputs;
 
@@ -24,8 +24,8 @@ const Gnb = () => {
   const onShow = useCallback(() => {
     setSearch(!search),
       setInputs({
-        mobileSearchInput: "",
-        searchInput: "",
+        mobileSearchInput: '',
+        searchInput: '',
       });
   }, [search]);
   const onChange = useCallback(
@@ -72,15 +72,15 @@ const Gnb = () => {
                   value={mobileSearchInput}
                   name="mobileSearchInput"
                 />
-                <button type="submit">
-                  <Link
-                    href={
-                      mobileSearchInput && `/search?query=${mobileSearchInput}`
-                    }
-                  >
+                <Link
+                  href={
+                    mobileSearchInput && `/search?query=${mobileSearchInput}`
+                  }
+                >
+                  <button type="submit">
                     <AiOutlineSearch className="icon" />
-                  </Link>
-                </button>
+                  </button>
+                </Link>
               </form>
             ) : (
               <div onClick={onShow} className="icon">
@@ -92,7 +92,7 @@ const Gnb = () => {
                 search ? classnames(styles.dark_bg, styles.open) : styles.darkBg
               }
               onClick={onShow}
-            ></div>
+            />
           </div>
         </div>
         <AsideMenu aside={aside} onToggle={onToggle} />
@@ -117,11 +117,11 @@ const Gnb = () => {
               value={searchInput}
               name="searchInput"
             />
-            <button type="submit" className="icon search_icon">
-              <Link href={searchInput && `/search?query=${searchInput}`}>
+            <Link href={searchInput && `/search?query=${searchInput}`}>
+              <button type="submit" className="icon search_icon">
                 <AiOutlineSearch />
-              </Link>
-            </button>
+              </button>
+            </Link>
           </form>
           <div className={styles.gnb_right}>
             <button className="circle">Creator Studio</button>

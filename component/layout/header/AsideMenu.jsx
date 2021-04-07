@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from "react";
-import Link from "next/link";
-import classnames from "classnames";
-import styles from "@/styles/header.module.scss";
+import React, { useCallback, useState } from 'react';
+import Link from 'next/link';
+import classnames from 'classnames';
+import styles from '@/styles/layout/header.module.scss';
+import PropTypes from 'prop-types';
+
 import {
   AiFillHome,
   AiOutlineClose,
@@ -10,8 +12,8 @@ import {
   AiOutlineStar,
   AiOutlineUp,
   AiOutlineUser,
-} from "react-icons/ai";
-import { useRouter } from "next/router";
+} from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 const AsideMenu = ({ aside, onToggle }) => {
   const router = useRouter();
@@ -30,7 +32,7 @@ const AsideMenu = ({ aside, onToggle }) => {
             aside ? classnames(styles.dark_bg, styles.open) : styles.darkBg
           }
           onClick={onToggle}
-        ></div>
+        />
         <div
           className={
             aside ? classnames(styles.aside, styles.open) : styles.aside
@@ -71,7 +73,7 @@ const AsideMenu = ({ aside, onToggle }) => {
         }
       >
         <ul className={styles.aside_lnb}>
-          <li className={pathname === "/" ? styles.menu_active : null}>
+          <li className={pathname === '/' ? styles.menu_active : null}>
             <Link href="/">
               <>
                 <div className={`icon ${styles.icon}`}>
@@ -82,7 +84,7 @@ const AsideMenu = ({ aside, onToggle }) => {
             </Link>
           </li>
           <li
-            className={pathname === "/top100Video" ? styles.menu_active : null}
+            className={pathname === '/top100Video' ? styles.menu_active : null}
           >
             <Link href="/top100Video">
               <>
@@ -93,7 +95,7 @@ const AsideMenu = ({ aside, onToggle }) => {
               </>
             </Link>
           </li>
-          <li className={pathname === "/streaming" ? styles.menu_active : null}>
+          <li className={pathname === '/streaming' ? styles.menu_active : null}>
             <Link href="/streaming">
               <>
                 <div className={`icon ${styles.icon}`}>
@@ -105,8 +107,8 @@ const AsideMenu = ({ aside, onToggle }) => {
           </li>
           <li
             className={
-              pathname.includes("my")
-                ? classNames(styles.menu_active, styles.aside_sub_container)
+              pathname.includes('my')
+                ? classnames(styles.menu_active, styles.aside_sub_container)
                 : styles.aside_sub_container
             }
           >
@@ -127,7 +129,7 @@ const AsideMenu = ({ aside, onToggle }) => {
               <ul className={styles.aside_sub}>
                 <li
                   className={
-                    pathname === "/my/recentPlaylist"
+                    pathname === '/my/recentPlaylist'
                       ? styles.submenu_active
                       : null
                   }
@@ -138,7 +140,7 @@ const AsideMenu = ({ aside, onToggle }) => {
                 </li>
                 <li
                   className={
-                    pathname === "/my/likedPlaylist"
+                    pathname === '/my/likedPlaylist'
                       ? styles.submenu_active
                       : null
                   }
@@ -149,7 +151,7 @@ const AsideMenu = ({ aside, onToggle }) => {
                 </li>
                 <li
                   className={
-                    pathname === "/my/patron" ? styles.submenu_active : null
+                    pathname === '/my/patron' ? styles.submenu_active : null
                   }
                 >
                   <Link href="/my/patron">
@@ -165,4 +167,8 @@ const AsideMenu = ({ aside, onToggle }) => {
   );
 };
 
+AsideMenu.propTypes = {
+  aside: PropTypes.string.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
 export default AsideMenu;

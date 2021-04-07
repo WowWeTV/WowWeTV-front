@@ -1,7 +1,7 @@
-import styles from '@/styles/layout/login.module.scss';
+import styles from '@/styles/layout/register.module.scss';
 import Link from 'next/link';
 
-const LoginHeader = () => {
+const RegisterHeader = () => {
   return (
     <h1 className={styles.header}>
       <Link href="/">WowWeTV</Link>
@@ -9,4 +9,4 @@ const LoginHeader = () => {
   );
 };
 
-export default LoginHeader;
+export default RegisterHeader;

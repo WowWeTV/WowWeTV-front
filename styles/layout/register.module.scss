@@ -1,0 +1,151 @@
+@import "./lib/vars.scss";
+@import "./lib/functions.scss";
+@import "./lib/breakpoints.scss";
+
+.wrap {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: _color(gray, 1);
+  h1.header {
+    font-weight: 600;
+    font-size: _fs(xxxlarge);
+    line-height: 1.35;
+  }
+  .register_container {
+    margin: 0 auto;
+    .register_title {
+      margin: 1.1875rem 0 0.5rem;
+      font-size: _fs(normal);
+      font-weight: 700;
+      label {
+        cursor: pointer;
+      }
+    }
+    .input_area {
+      position: relative;
+      padding: 0.5em 2.375em 0.625em 0.625em;
+      border: solid 1px _color(gray, 5);
+      background-color: _color(white);
+      &:focus-within {
+        border: solid 1px _color(point);
+        box-shadow: 0 0.125rem 0.375rem 0 rgb(61 80 81 / 8%);
+      }
+      .input_box {
+        display: block;
+        overflow: hidden;
+      }
+    }
+    .register_input {
+      font-size: _fs(normal);
+      line-height: 1rem;
+      position: relative;
+      z-index: 9;
+      width: 100%;
+      height: 1rem;
+      padding: 0.5em 0 0.375em;
+      color: #000;
+      border: none;
+      background-color: _color(white);
+    }
+    .email_input_area {
+      position: relative;
+      .input_box {
+        padding: 0.5em 2.375em 0.625em 0.625em;
+        box-sizing: border-box;
+        background-color: _color(white);
+        border: solid 1px _color(gray, 5);
+        display: block;
+        overflow: hidden;
+        &:focus-within {
+          border: solid 1px _color(point);
+          box-shadow: 0 0.125rem 0.375rem 0 rgb(61 80 81 / 8%);
+        }
+      }
+      .btn_verify {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 28%;
+        font-weight: 700;
+        color: _color(white);
+        background-color: _color(point);
+        border-radius: 1.5px;
+        span {
+          padding: 0.5em 0 0.375em;
+        }
+      }
+    }
+    .verify_input_box {
+      margin-top: 1.5rem;
+    }
+    p {
+      color: #ff0000bf;
+      font-size: _fs(normal);
+      font-weight: 700;
+      margin: -0.2rem 0 -0.8rem;
+    }
+    button.register_form_button {
+      height: 3.5rem;
+      width: 100%;
+      font-size: _fs(medium);
+      font-weight: 700;
+      color: _color(white);
+      background-color: _color(point);
+    }
+  }
+}
+
+@include respond-to(small) {
+  .header {
+    margin-bottom: 0.5rem;
+  }
+  .register_container {
+    width: 80%;
+    .input_area {
+      .input_box {
+        margin-bottom: 0.375em;
+        height: 1.5rem;
+      }
+    }
+    .email_input_area {
+      padding: 0 30% 0 0;
+      .input_box {
+        margin-bottom: 0.375em;
+        height: 3.1875rem;
+      }
+      .btn_verify {
+        height: 3.1875rem;
+      }
+    }
+    button.register_form_button {
+      margin: 1.5em 0 0.875em;
+    }
+  }
+}
+@include respond-to(medium) {
+  .header {
+    margin-bottom: 3rem;
+  }
+  .register_container {
+    width: 30rem;
+    .input_area {
+      height: 2rem;
+      margin-bottom: 0.5em;
+    }
+    .email_input_area {
+      .input_box {
+        margin-bottom: 0.375em;
+        height: 3.1875rem;
+      }
+      .btn_verify {
+        height: 3.1875rem;
+      }
+    }
+    button.register_form_button {
+      margin: 2em 0 0.875em;
+    }
+  }
+}

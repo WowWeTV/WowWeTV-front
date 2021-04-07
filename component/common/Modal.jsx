@@ -1,5 +1,6 @@
-import { useState } from "react";
-import styles from "@/styles/modal.module.scss";
+import { useState } from 'react';
+import styles from '@/styles/common/modal.module.scss';
+import PropTypes from 'prop-types';
 
 const FindPWModal = ({
   onHandleModal,
@@ -7,22 +8,22 @@ const FindPWModal = ({
   header,
   contentHeader,
   inputPlaceholder,
-  btnText
+  btnText,
 }) => {
   const onClickModal = (e) => {
     e.stopPropagation();
   };
-  const [inputs, setInputs] = useState("");
+  const [inputs, setInputs] = useState('');
   const onChange = (e) => {
     setInputs(e.target.value);
   };
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState('');
   const handleSubmit = () => {
     console.log(inputs);
-    if (inputs === "") {
+    if (inputs === '') {
       setErrorMsg(`${inputPlaceholder}을 입력해 주세요.`);
     } else {
-      //Add function
+      // Add function
       setErrorMsg(errMsg);
     }
   };
@@ -48,12 +49,23 @@ const FindPWModal = ({
               </div>
               {errorMsg && <p>{errorMsg}</p>}
             </div>
-            <button onClick={handleSubmit}>{btnText}</button>
+            <button type="button" onClick={handleSubmit}>
+              {btnText}
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+FindPWModal.propTypes = {
+  onHandleModal: PropTypes.func.isRequired,
+  errMsg: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  contentHeader: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string.isRequired,
+  btnText: PropTypes.string.isRequired,
 };
 
 export default FindPWModal;

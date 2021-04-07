@@ -1,4 +1,4 @@
-import styles from '@/styles/search.module.scss';
+import styles from '@/styles/layout/search.module.scss';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

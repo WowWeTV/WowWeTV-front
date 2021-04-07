@@ -17,9 +17,9 @@
 
 ### 👫🏻 팀 원
 
-조혜송(FrontEnd)
-박정훈(FrontEnd)
-이은빈(FrontEnd)
+- [조혜송](https://github.com/SpaciousKitchen) 
+- [박정훈](https://github.com/Jetty2020) 
+- [이은빈](https://github.com/eunbin-lee)
 
 
 

@@ -7,10 +7,14 @@ breakpoints 설정 방법
 */
 
 $breakpoints: (
-  "small": 20rem,
-  "medium": 48rem,
-  "large": 64rem,
-  "xlarge": 90rem,
+  //320px
+  'small': 20rem,
+  //768px
+  'medium': 48rem,
+  //1024px
+  'large': 64rem,
+  //1440px
+  'xlarge': 90rem
 );
 
 @mixin respond-to($breakpoint) {

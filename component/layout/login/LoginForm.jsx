@@ -1,15 +1,15 @@
-import { useState } from "react";
-import styles from "@/styles/login.module.scss";
+import { useState } from 'react';
+import styles from '@/styles/layout/login.module.scss';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
-    id: "",
-    password: "",
+    name: '',
+    password: '',
   });
-  const [idErrorMsg, setIdErrorMsg] = useState("");
-  const [pwErrorMsg, setPwErrorMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const { id, password } = inputs;
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const [pwErrorMsg, setPwErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const { name, password } = inputs;
 
   const onChange = (e) => {
     const { value, id } = e.target;
@@ -20,19 +20,19 @@ const LoginForm = () => {
   };
 
   const onSubmit = () => {
-    if (inputs.id === "") {
-      setIdErrorMsg("아이디를 입력해주세요.");
-      setPwErrorMsg("");
-      setErrorMsg("");
-    } else if (inputs.password === "") {
-      setPwErrorMsg("비밀번호를 입력해주세요.");
-      setIdErrorMsg("");
-      setErrorMsg("");
+    if (inputs.id === '') {
+      setNameErrorMsg('아이디를 입력해주세요.');
+      setPwErrorMsg('');
+      setErrorMsg('');
+    } else if (inputs.password === '') {
+      setPwErrorMsg('비밀번호를 입력해주세요.');
+      setNameErrorMsg('');
+      setErrorMsg('');
     } else {
       // Add function
-      setErrorMsg("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-      setIdErrorMsg("");
-      setPwErrorMsg("");
+      setErrorMsg('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
+      setNameErrorMsg('');
+      setPwErrorMsg('');
     }
   };
   return (
@@ -40,16 +40,16 @@ const LoginForm = () => {
       <div className={styles.input_row}>
         <span>
           <input
-            id="id"
+            id="name"
             placeholder="아이디"
             type="text"
-            value={id}
+            value={name}
             onChange={onChange}
             className="text-input"
           />
         </span>
       </div>
-      {idErrorMsg && <p>{idErrorMsg}</p>}
+      {nameErrorMsg && <p>{nameErrorMsg}</p>}
       <div className={styles.input_row}>
         <span>
           <input
@@ -66,7 +66,7 @@ const LoginForm = () => {
       {errorMsg && <p>{errorMsg}</p>}
 
       <div>
-        <button className="login_form_button" onClick={onSubmit}>
+        <button type="button" className="login_form_button" onClick={onSubmit}>
           로그인
         </button>
       </div>

@@ -1,4 +1,4 @@
-import styles from '@/styles/search.module.scss';
+import styles from '@/styles/layout/search.module.scss';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import classNames from 'classnames';

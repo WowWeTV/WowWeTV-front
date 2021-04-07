@@ -3,7 +3,7 @@ import ChannerlList from './ChannelList';
 import VideoList from './VideoList';
 import { useRouter } from 'next/router';
 import SearchMain from './SearchMain';
-import styles from '@/styles/search.module.scss';
+import styles from '@/styles/layout/search.module.scss';
 
 const SearchLayout = () => {
   const router = useRouter();

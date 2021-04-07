@@ -1,10 +1,10 @@
-@import "./lib/vars.scss";
-@import "./lib/functions.scss";
-@import "./lib/breakpoints.scss";
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
 @font-face {
-  font-family: "NEXON Lv2 Gothic";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff")
-    format("woff");
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -95,7 +95,7 @@ option {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "NEXON Lv2 Gothic";
+  font-family: 'NEXON Lv2 Gothic';
   font-weight: normal;
   font-style: normal;
   color: _color(black);
@@ -159,7 +159,7 @@ q {
   quotes: none;
   &:before,
   &:after {
-    content: "";
+    content: '';
     content: none;
   }
 }
@@ -176,9 +176,24 @@ select,
 option {
   border: none;
   outline: none;
-  font-family: "NEXON Lv2 Gothic";
+  font-family: 'NEXON Lv2 Gothic';
   font-size: _fs(normal);
   border-radius: 3px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-transition: background-color 9999s ease-out;
+  -webkit-box-shadow: 0 0 0px 1000px _color(white) inset !important;
+  -webkit-text-fill-color: _color(black) !important;
 }
 input {
   padding: 0.65em 0.625rem;
@@ -187,8 +202,8 @@ input {
     border-color: _color(point);
   }
 }
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
@@ -203,7 +218,7 @@ input[type="radio"] {
   border-radius: 50%;
   background-color: _color(white);
   &:after {
-    content: "";
+    content: '';
     display: block;
     left: 0;
     top: 0;
@@ -276,6 +291,46 @@ button {
   font-size: _fs(xlarge);
   color: _color(gray, 8);
   cursor: pointer;
+}
+// main carousel slide dots
+.slick_dots {
+  display: inline-block;
+  margin: auto;
+  padding: 0;
+  margin-top: -5px;
+  text-align: center;
+  li {
+    position: relative;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 0;
+    width: 6.5px;
+    height: 6.5px;
+    button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+      color: transparent;
+      border: none;
+      border-radius: 50%;
+      background-color: _color(gray, 5);
+      &:hover,
+      &:focus {
+        background-color: _color(point);
+        outline: 0;
+      }
+    }
+    &.slick-active {
+      button {
+        background-color: _color(point);
+      }
+    }
+  }
 }
 
 @include respond-to(large) {
