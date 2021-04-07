@@ -44,8 +44,7 @@
     "react/button-has-type":"off",
     "no-plusplus":"off",
     "jsx-a11y/alt-text":"off",
-    "no-unused-expressions":"off",
-    "no-sequences":"off",
+   
     "prettier/prettier": [
       "error",
       {
