@@ -8,7 +8,7 @@ const ExtraInfo = ({ onHandleModal }) => {
         비밀번호 찾기
       </span>
       <span className={styles.bar}> | </span>
-      <Link href="/login">회원가입</Link>
+      <Link href="/register">회원가입</Link>
     </div>
   );
 };
