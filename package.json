@@ -50,11 +50,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint . --ext .js"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "src/**.{js,jsx}": [
+    "*.{js,jsx}": [
       "eslint --fix",
       "prettier --write",
       "git add"

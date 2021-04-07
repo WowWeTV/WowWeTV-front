@@ -30,10 +30,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en" dir="ltr">
-        <Head>
-          <link href="/styles/globals.scss" ref="stylesheets" />
-          <link href="/styles/search.module.scss" ref="stylesheets" />
-        </Head>
+        <InlineStylesHead />
         <body>
           <Main />
           <NextScript />
