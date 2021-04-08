@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import HomeLayout from '@/component/layout/home';
-import { useSelector } from 'react-redux';
 import HeaderLayout from '@/component/layout/header';
+import FooterLayout from '@/component/layout/footer';
 
 const Main = () => {
   return (
@@ -13,6 +13,7 @@ const Main = () => {
       <>
         <HeaderLayout />
         <HomeLayout />
+        <FooterLayout />
       </>
     </div>
   );

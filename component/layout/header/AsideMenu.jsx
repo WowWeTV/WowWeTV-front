@@ -15,7 +15,7 @@ import {
 } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 
-const AsideMenu = ({ aside, onToggle }) => {
+const AsideMenu = ({ sideMenu, onToggle }) => {
   const router = useRouter();
   const { pathname } = router;
   const [submenu, setSubmenu] = useState(true);
@@ -29,13 +29,13 @@ const AsideMenu = ({ aside, onToggle }) => {
       <aside className={styles.mobile_aside_container}>
         <div
           className={
-            aside ? classnames(styles.dark_bg, styles.open) : styles.darkBg
+            sideMenu ? classnames(styles.dark_bg, styles.open) : styles.darkBg
           }
           onClick={onToggle}
         />
         <div
           className={
-            aside ? classnames(styles.aside, styles.open) : styles.aside
+            sideMenu ? classnames(styles.sideMenu, styles.open) : styles.aside
           }
         >
           <div className={styles.mobile_aside_top}>
@@ -67,7 +67,7 @@ const AsideMenu = ({ aside, onToggle }) => {
       {/* desktop */}
       <aside
         className={
-          aside
+          sideMenu
             ? classnames(styles.aside_folded, styles.aside_container)
             : styles.aside_container
         }
@@ -168,7 +168,7 @@ const AsideMenu = ({ aside, onToggle }) => {
 };
 
 AsideMenu.propTypes = {
-  aside: PropTypes.string.isRequired,
+  sideMenu: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
 export default AsideMenu;

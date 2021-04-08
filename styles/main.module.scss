@@ -2,6 +2,9 @@
 @import './lib/functions.scss';
 @import './lib/breakpoints.scss';
 
+.main {
+  overflow: hidden;
+}
 .recent_container {
   display: none;
 }
@@ -67,7 +70,7 @@
     position: absolute;
     bottom: 0.5em;
     right: 0.25rem;
-    width: 2.75rem;
+    width: 2.5rem;
     height: 1.75em;
     text-align: center;
     line-height: 1.75em;
@@ -141,7 +144,6 @@
   p {
     &:nth-child(1) {
       overflow: hidden;
-      height: 2.5em;
       margin-top: 0.15em;
       line-height: 1.25em;
       font-size: _fs(normal);
@@ -170,23 +172,25 @@
     display: none;
   }
   // recent video list
+  .recent_section {
+    padding: 2.5em 0;
+    background-color: _color(gray, 2);
+  }
   .recent_container {
     display: block;
-  }
-  .recent_section {
-    background-color: _color(gray, 2);
-    padding: 2em 3rem;
+    width: 680px;
+    margin: 0 auto;
   }
   .recent_list {
     overflow: hidden;
     width: 100%;
     margin-top: 1em;
-    cursor: pointer;
   }
   .recent {
     width: 49%;
     float: left;
     margin-right: 2%;
+    cursor: pointer;
     &:last-child {
       margin-right: 0;
     }
@@ -221,7 +225,9 @@
 
   // top100
   .top100_container {
-    padding: 2.5em 3rem;
+    width: 680px;
+    margin: 0 auto;
+    padding: 2.5em 0;
     .section_title {
       margin-bottom: 1em;
     }
@@ -256,21 +262,25 @@
   }
   // recent
   .recent_section {
-    padding: 2.5em 2.5rem;
+    padding: 2.5em 0;
   }
   .recent_container {
     overflow: hidden;
   }
   .recent_list {
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    width: 49%;
     float: left;
+    &:last-child {
+      margin-left: 1.5%;
+    }
   }
   .recent {
-    width: 49%;
-    margin: 0 0.5%;
+    width: 48.5%;
   }
   .recent_img {
-    height: 128px;
+    height: 100px;
     span {
       bottom: 0.25em;
       right: 0.25rem;
@@ -282,7 +292,6 @@
     p {
       &:nth-child(1) {
         overflow: hidden;
-        height: 3em;
         line-height: 1.5em;
         font-size: _fs(normal);
         display: -webkit-box;
@@ -304,32 +313,26 @@
   // top100
   .top100_img {
     width: 150px;
-    height: 90px;
+    height: 85px;
     margin: 0 0.25rem;
   }
 }
 
 @include respond-to(xlarge) {
   // recent
-  .recent_container {
-    width: 80%;
-    margin: 0 auto;
-    .section_title {
-      padding: 0 0.75%;
-    }
+  .recent_section {
+    padding: 3em 0;
   }
-  .recent {
-    width: 47%;
-    margin: 0 1.5%;
+  .recent_container {
+    width: 1100px;
   }
   .recent_img {
-    height: 130px;
+    height: 150px;
   }
   //top100
   .top100_container {
-    width: 80%;
-    margin: 1.5em auto;
-    padding: 1.25em 2.5rem;
+    width: 1100px;
+    margin: 0.5em auto;
     box-sizing: border-box;
     .section_title {
       padding-right: 0.125%;
@@ -339,7 +342,7 @@
     position: relative;
     display: unset;
     width: 19.05%;
-    height: 210px;
+    height: 220px;
     margin: 0 0.5% 1em;
     padding-right: 0;
     &:nth-child(1) {
@@ -351,17 +354,17 @@
   }
   .top100_img {
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
   .top100_ranking {
     position: absolute;
-    top: 125px;
-    left: 15px;
+    top: 133px;
+    left: 18px;
     font-size: _fs(xxlarge);
     border: none;
   }
   .top100_info {
-    width: 75%;
-    margin-left: 25%;
+    width: 77%;
+    margin-left: 23%;
   }
 }

@@ -12,7 +12,7 @@ import AsideMenu from './AsideMenu';
 
 const Gnb = () => {
   const router = useRouter();
-  const [aside, setAside] = useState(false);
+  const [sideMenu, setSideMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const [inputs, setInputs] = useState({
     mobileSearchInput: '',
@@ -20,13 +20,13 @@ const Gnb = () => {
   });
   const { mobileSearchInput, searchInput } = inputs;
 
-  const onToggle = useCallback(() => setAside(!aside), [aside]);
+  const onToggle = useCallback(() => setSideMenu(!sideMenu), [sideMenu]);
   const onShow = useCallback(() => {
-    setSearch(!search),
-      setInputs({
-        mobileSearchInput: '',
-        searchInput: '',
-      });
+    setSearch(!search);
+    setInputs({
+      mobileSearchInput: '',
+      searchInput: '',
+    });
   }, [search]);
   const onChange = useCallback(
     (e) => {
@@ -41,12 +41,12 @@ const Gnb = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      mobileSearchInput.length > 1
-        ? router.push(`/search?query=${mobileSearchInput}`)
-        : null;
-      searchInput.length > 1
-        ? router.push(`/search?query=${searchInput}`)
-        : null;
+      if (mobileSearchInput) {
+        router.push(`/search?query=${mobileSearchInput}`);
+      }
+      if (searchInput) {
+        router.push(`/search?query=${searchInput}`);
+      }
     },
     [inputs, router],
   );
@@ -95,7 +95,7 @@ const Gnb = () => {
             />
           </div>
         </div>
-        <AsideMenu aside={aside} onToggle={onToggle} />
+        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
       </div>
 
       {/* desktop */}
@@ -133,7 +133,7 @@ const Gnb = () => {
             </Link>
           </div>
         </div>
-        <AsideMenu aside={aside} onToggle={onToggle} />
+        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
       </div>
     </>
   );

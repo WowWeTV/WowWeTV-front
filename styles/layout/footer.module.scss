@@ -1,0 +1,128 @@
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
+
+.footer {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 1em;
+  background-color: _color(gray, 2);
+}
+.footer_lnb,
+.footer_cr {
+  display: none;
+}
+.footer_container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2.5em 0 5em;
+  box-sizing: border-box;
+}
+.mobile_footer_lnb {
+  display: flex;
+  justify-content: center;
+  li {
+    margin-right: 0.75rem;
+    padding-right: 0.75rem;
+    line-height: 0.8em;
+    font-size: _fs(normal);
+    border-right: 1px solid _color(gray, 4);
+    a {
+      color: _color(gray, 8);
+      opacity: 0.8;
+    }
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+}
+.footer_notice {
+  margin: 1.75em 0;
+  text-align: center;
+  line-height: 1.25em;
+  font-size: _fs(normal);
+  color: _color(gray, 7);
+  word-break: keep-all;
+}
+.footer_copyright {
+  text-align: center;
+  font-size: _fs(medium);
+  color: _color(gray, 7);
+  opacity: 0.9;
+}
+
+@include respond-to(medium) {
+  .footer {
+    margin-top: 5em;
+    background-color: _color(white);
+    border-top: 1px solid _color(gray, 3);
+  }
+  .footer_container {
+    width: 60%;
+  }
+}
+
+@include respond-to(large) {
+  .mobile_footer_lnb {
+    display: none;
+  }
+  .footer_lnb,
+  .footer_cr {
+    display: inline-block;
+  }
+  .footer {
+    padding-left: 13.75rem;
+    box-sizing: border-box;
+  }
+  .footer_container {
+    width: 700px;
+    padding-bottom: 2.5em;
+  }
+  .footer_lnb {
+    display: flex;
+    justify-content: center;
+    li {
+      margin-right: 0.5rem;
+      padding-right: 0.5rem;
+      line-height: 0.8em;
+      font-size: _fs(small);
+      border-right: 1px solid _color(gray, 4);
+      a {
+        color: _color(gray, 9);
+        opacity: 0.8;
+      }
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+        border-right: none;
+      }
+      &:nth-child(2) {
+        b {
+          font-weight: bold;
+          color: _color(gray, 9);
+        }
+      }
+    }
+  }
+  .footer_notice {
+    margin: 1.5em 0 0.75em;
+    font-size: _fs(small);
+    color: _color(gray, 9);
+    opacity: 0.8;
+  }
+  .footer_copyright {
+    font-size: _fs(small);
+    color: _color(point);
+    .footer_cr {
+      margin-left: 0.25rem;
+      font-size: _fs(xsmall);
+      color: _color(gray, 9);
+      b {
+        font-weight: bold;
+        color: _color(gray, 8);
+      }
+    }
+  }
+}
