@@ -10,46 +10,45 @@ const SerachTab = () => {
   return (
     <div className={styles.searchTabContainer}>
       <div className={styles.searchTextArea}>
-        <h2 className={styles.search_h2}>
-          {' '}
-          <span className={styles.searcSpan}>{query} </span>검색결과
-        </h2>
+        <div className={styles.search_text}>
+          <h2>
+            {' '}
+            <span className={classNames(styles.searchSpan, styles.point)}>
+              {' '}
+              {query}{' '}
+            </span>
+            <span className={styles.searchSpan}> 검색결과 </span>
+          </h2>
+        </div>
 
-        <div>
+        <div className={styles.search_menu}>
           <ul>
-            <li>
+            <li
+              className={classNames({
+                [`${styles.selected}`]: type === undefined,
+              })}
+            >
               <Link href={`/search?query=${query}`}>
-                <span
-                  className={classNames(styles.spanTab, {
-                    [`${styles.selected}`]: type === undefined,
-                  })}
-                >
-                  {' '}
-                  전체
-                </span>
+                <span className={styles.spanTab}> 전체</span>
               </Link>
             </li>
-            <li>
+            <li
+              className={classNames({
+                [`${styles.selected}`]: type === 'videos',
+              })}
+            >
               <Link href={`/search?query=${query}&type=videos`}>
-                <span
-                  className={classNames(styles.spanTab, {
-                    [`${styles.selected}`]: type === 'videos',
-                  })}
-                >
-                  동영상
-                </span>
+                <span className={styles.spanTab}>동영상</span>
               </Link>
             </li>
-            <li>
+            <li
+              className={classNames({
+                [`${styles.selected}`]: type === 'channels',
+              })}
+            >
               {' '}
               <Link href={`/search?query=${query}&type=channels`}>
-                <span
-                  className={classNames(styles.spanTab, {
-                    [`${styles.selected}`]: type === 'channels',
-                  })}
-                >
-                  채널
-                </span>
+                <span className={styles.spanTab}>채널</span>
               </Link>
             </li>
           </ul>
