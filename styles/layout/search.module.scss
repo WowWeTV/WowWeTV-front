@@ -118,6 +118,8 @@
   }
   li {
     float: left;
+    margin-right: 2em;
+
     width: 33.3%;
     float: left;
     padding: 0.55em 0;
@@ -125,7 +127,7 @@
     &.selected {
       border-bottom: 2px solid _color(point);
     }
-   
+    
 
     & .spanTab {
       display: inline-block;
@@ -133,7 +135,7 @@
       color: #000;
       cursor: pointer;
 
-     
+    
     }
   }
 }
@@ -201,7 +203,9 @@
       margin-right: 2em;
       padding: 0.55em 0;
       width: auto;
-    
+      &.selected {
+        border-bottom: 2px solid _color(point);
+      }
      
       & .spanTab {
         display: inline-block;

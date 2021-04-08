@@ -1,5 +1,6 @@
+import React, { useCallback, useState, useEffect } from 'react';
 import styles from '@/styles/layout/search.module.scss';
-import { useState } from 'react';
+
 import Link from 'next/link';
 import classnames from 'classnames';
 import PageNation from '@/component/common/PageNation';
@@ -22,23 +23,30 @@ const ChannelsList = () => {
           </h2>
         </div>
         <div className={styles.listContent}>
-          {searchChannels.map((element) => {
-            return (
-              <div className={styles.searchContent}>
-                <img src={element.userImg} alt="userImg" />
-                <br />
-                <Link href="/">{element.userName}</Link>
-                <div>
-                  <span>동영상 {element.videoCount}</span>
+          {searchChannels
+            .slice(
+              (curPage - 1) * (rowsPerPage * 3),
+              (curPage - 1) * (rowsPerPage * 3) + rowsPerPage * 3,
+            )
+            .map((element) => {
+              return (
+                <div className={styles.searchContent}>
+                  <img src={element.userImg} alt="userImg" />
+                  <br />
+                  <Link href="/">{element.userName}</Link>
+                  <div>
+                    <span>동영상 {element.videoCount}</span>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         <PageNation
           curPage={curPage}
           startPage={startPage}
           rowsPerPage={rowsPerPage}
+          setCurPage={setCurPage}
+          setStartPage={setStartPage}
         />
       </div>
     </div>
