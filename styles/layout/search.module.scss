@@ -2,15 +2,13 @@
 @import '../lib/functions.scss';
 @import '../lib/breakpoints.scss';
 
-
 .listHeader {
-  margin: 1rem;
+  margin: 1rem 0;
   em {
     font-size: 1.2em;
     color: _color(point);
   }
 }
-
 
 .link {
   &.moreList {
@@ -24,24 +22,23 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
 }
 
 .searchVideoBox {
   display: flex;
-
-  width: 40em;
-
-  margin: 1em;
-
-  flex-direction: row;
+  width: 300px;
+  margin: 0 auto 1em;
   img {
     width: 150px;
   }
   .searchVideoDetail {
-    padding: 0 3rem;
+    padding-left: 1em;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    box-sizing: border-box;
     .title {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -65,7 +62,7 @@
 }
 
 .searchContent {
-  margin: 1em;
+  margin-bottom: 0.75em;
   line-height: 1.5em;
 
   span {
@@ -80,36 +77,31 @@
 }
 
 .searchTabContainer {
- 
-
   display: flex;
   position: relative;
   border-bottom: 1px solid _color(gray, 3);
+  box-sizing: border-box;
 }
-
 
 .searchTextArea {
   width: 100%;
 
-  .search_menu{
+  .search_menu {
     border-top: 1px solid _color(gray, 3);
   }
 
-  .search_text{
+  .search_text {
     padding: 1.05em;
 
     .searchSpan {
-  
       font-size: 1.3em;
-      
-      &.point{
-       
+
+      &.point {
         color: _color(point);
       }
-    
     }
   }
- 
+
   ul {
     margin-top: 1em;
     display: inline-block;
@@ -127,15 +119,12 @@
     &.selected {
       border-bottom: 2px solid _color(point);
     }
-    
 
     & .spanTab {
       display: inline-block;
       line-height: 2em;
       color: #000;
       cursor: pointer;
-
-    
     }
   }
 }
@@ -149,11 +138,9 @@
 }
 
 .listBox {
-  width: 80%;
+  width: 280px;
+  margin: 0 auto;
   flex-direction: column;
-  border-top: 1px solid _color(gray, 3);
-  border-left: 1px solid _color(gray, 3);
-  border-right: 1px solid _color(gray, 3);
 
   display: flex;
   background-color: #fff;
@@ -163,41 +150,55 @@
   }
 }
 
+@include respond-to(medium) {
+  .listContent {
+    display: unset;
+    overflow: hidden;
+  }
+  .searchContent {
+    width: 130px;
+    float: left;
+    margin-right: 26.5px;
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+  .listBox {
+    width: 600px;
+  }
+  .searchVideoBox {
+    width: 50%;
+    height: 112.5px;
+    float: left;
+  }
+}
 
 @include respond-to(large) {
-  .searchPage{
+  .searchPage {
     margin-top: 4.25em;
     margin-left: 13.75rem;
-
-
   }
-  
+
   .listContainer {
     background-color: _color(gray, 2);
   }
 
- 
-
-  
-  .search_text{
-    
+  .search_text {
     .searchSpan {
       font-size: 1.7em;
     }
   }
- 
+
   .searchTextArea {
     width: auto;
     padding: 3em 0 0 10em;
-    .search_text{
-
-      padding:0;
-    };
-    .search_menu{
+    .search_text {
+      padding: 0;
+    }
+    .search_menu {
       border-top: none;
     }
-   
-   
+
     li {
       float: left;
       margin-right: 2em;
@@ -206,17 +207,18 @@
       &.selected {
         border-bottom: 2px solid _color(point);
       }
-     
+
       & .spanTab {
         display: inline-block;
         line-height: 2em;
         color: #000;
         cursor: pointer;
-  
-       
       }
     }
   }
-  
-  
+  .listBox {
+    border-top: 1px solid _color(gray, 3);
+    border-left: 1px solid _color(gray, 3);
+    border-right: 1px solid _color(gray, 3);
+  }
 }
