@@ -35,7 +35,7 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
         />
         <div
           className={
-            sideMenu ? classnames(styles.sideMenu, styles.open) : styles.aside
+            sideMenu ? classnames(styles.aside, styles.open) : styles.aside
           }
         >
           <div className={styles.mobile_aside_top}>
