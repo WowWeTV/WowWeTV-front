@@ -31,13 +31,14 @@ const RecentSection = () => {
       {/* mobile */}
       <div className={styles.recent_slider}>
         <Slider {...settings}>
-          {recentVideoList.slice(0, 4).map((element) => {
+          {recentVideoList.slice(0, 4).map((video) => {
+            const { id, videoUrl, userName, videoTitle } = video;
             return (
-              <div key={element.id} className={styles.slide}>
-                <img src={element.videoUrl} alt={element.videoTitle} />
+              <div key={id} className={styles.slide}>
+                <img src={videoUrl} alt={videoTitle} />
                 <div className={styles.slide_info}>
-                  <p>{element.userName}</p>
-                  <p>{element.videoTitle}</p>
+                  <p>{userName}</p>
+                  <p>{videoTitle}</p>
                 </div>
               </div>
             );
@@ -59,31 +60,38 @@ const RecentSection = () => {
           </Link>
         </div>
         <div className={styles.recent_list}>
-          {recentVideoList.slice(0, 2).map((element) => {
+          {recentVideoList.slice(0, 2).map((video) => {
+            const {
+              id,
+              videoUrl,
+              userName,
+              videoTitle,
+              videoLength,
+              views,
+              likes,
+            } = video;
             return (
-              <div key={element.id} className={styles.recent}>
+              <div key={id} className={styles.recent}>
                 <div
                   className={classnames(styles.recent_img, styles.video_img)}
                 >
-                  <img src={element.videoUrl} alt={`${element.videoTitle}`} />
-                  <span>{(element.videoLength / 3600).toFixed(2)}</span>
+                  <img src={videoUrl} alt={`${videoTitle}`} />
+                  <span>{(videoLength / 3600).toFixed(2)}</span>
                 </div>
                 <div
                   className={classnames(styles.recent_info, styles.video_info)}
                 >
-                  <p>{element.videoTitle}</p>
-                  <Link
-                    href={`/search?query=${element.userName}&type=channels`}
-                  >
-                    <p>{element.userName}</p>
+                  <p>{videoTitle}</p>
+                  <Link href={`/search?query=${userName}&type=channels`}>
+                    <p>{userName}</p>
                   </Link>
                   <p>
                     <AiOutlinePlayCircle className={styles.icon} />
-                    {element.views}
+                    {views}
                     <span>
                       <AiOutlineHeart className={styles.icon} />
                     </span>
-                    {element.like}
+                    {likes}
                   </p>
                 </div>
               </div>
@@ -91,31 +99,29 @@ const RecentSection = () => {
           })}
         </div>
         <div className={styles.recent_list}>
-          {recentVideoList.slice(2, 4).map((element) => {
+          {recentVideoList.slice(2, 4).map((video) => {
             return (
-              <div key={element.id} className={styles.recent}>
+              <div key={video.id} className={styles.recent}>
                 <div
                   className={classnames(styles.recent_img, styles.video_img)}
                 >
-                  <img src={element.videoUrl} alt={element.videoTitle} />
-                  <span>{(element.videoLength / 3600).toFixed(2)}</span>
+                  <img src={video.videoUrl} alt={video.videoTitle} />
+                  <span>{(video.videoLength / 3600).toFixed(2)}</span>
                 </div>
                 <div
                   className={classnames(styles.recent_info, styles.video_info)}
                 >
-                  <p>{element.videoTitle}</p>
-                  <Link
-                    href={`/search?query=${element.userName}&type=channels`}
-                  >
-                    <p>{element.userName}</p>
+                  <p>{video.videoTitle}</p>
+                  <Link href={`/search?query=${video.userName}&type=channels`}>
+                    <p>{video.userName}</p>
                   </Link>
                   <p>
                     <AiOutlinePlayCircle className={styles.icon} />
-                    {element.views}
+                    {video.views}
                     <span>
                       <AiOutlineHeart className={styles.icon} />
                     </span>
-                    {element.like}
+                    {video.like}
                   </p>
                 </div>
               </div>

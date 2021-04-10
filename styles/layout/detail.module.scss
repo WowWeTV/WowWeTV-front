@@ -1,0 +1,218 @@
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
+
+.detail_container {
+  background-color: _color(gray, 2);
+}
+// video player
+.player {
+  width: 100%;
+  height: 180px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+// video information
+.info_container {
+  padding-top: 1em;
+  background-color: _color(white);
+}
+.video_info {
+  padding: 0 5%;
+  border-bottom: 1px solid _color(gray, 4);
+  .tags_list {
+    height: 2.25em;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    li {
+      padding: 0 0.25rem;
+      margin-right: 0.5rem;
+      background-color: _color(gray, 2);
+      border-radius: 3px;
+      a {
+        line-height: 1em;
+        font-size: _fs(small);
+        color: _color(gray, 7);
+        white-space: nowrap;
+      }
+    }
+  }
+}
+.video_summary {
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      font-size: _fs(large);
+      font-weight: bold;
+    }
+    button {
+      padding: 10px;
+      padding-right: 0;
+      border: none;
+      line-height: 0;
+      font-size: _fs(medium);
+      color: _color(gray, 7);
+    }
+  }
+  .views_date {
+    font-size: _fs(small);
+    span {
+      color: _color(gray, 7);
+    }
+    .views {
+      margin-right: 0.25rem;
+      &::after {
+        margin-left: 0.25rem;
+        content: '·';
+      }
+    }
+  }
+  .likes_comments {
+    overflow: hidden;
+    margin: 1.25em 0 1.5em;
+    font-size: _fs(normal);
+    span {
+      color: _color(gray, 9);
+    }
+    .likes,
+    .comments {
+      display: flex;
+      align-items: center;
+      float: left;
+      font-weight: bold;
+    }
+    .likes {
+      margin-right: 0.5rem;
+    }
+    .link {
+      float: right;
+      font-size: _fs(xlarge);
+      color: _color(gray, 9);
+    }
+    .icon {
+      margin-right: 0.125rem;
+      font-size: _fs(xlarge);
+      color: _color(gray, 9);
+    }
+  }
+}
+.video_desc {
+  margin-bottom: 1.5em;
+}
+.user_info {
+  display: flex;
+  align-items: center;
+  padding: 0.75em 5%;
+  .user_img {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+  .user_name {
+    margin-left: 0.5rem;
+    font-size: _fs(normal);
+    font-weight: bold;
+  }
+}
+// recommended video list
+.recommend_container {
+  margin-top: 1em;
+  background-color: _color(white);
+  .title {
+    border-bottom: 1px solid _color(gray, 4);
+    h4 {
+      padding: 0.75em 5%;
+    }
+  }
+}
+.recommend_list {
+  padding: 1em 5%;
+}
+.recommend {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 1em;
+  .more {
+    width: 5%;
+    float: right;
+    font-size: _fs(xlarge);
+    color: _color(gray, 6);
+  }
+}
+.recommend_img {
+  position: relative;
+  float: left;
+  line-height: 0;
+  img {
+    width: 145px;
+    height: 85px;
+    object-fit: cover;
+  }
+  span {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.25rem;
+    width: 2.5rem;
+    height: 1.75em;
+    text-align: center;
+    line-height: 1.75em;
+    font-size: _fs(xsmall);
+    color: _color(white);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+.recommend_info {
+  width: 35%;
+  height: 80px;
+  float: left;
+  margin: 0 4%;
+  padding: 0;
+  border: none;
+  p {
+    &:nth-child(1) {
+      overflow: hidden;
+      margin-top: 0.15em;
+      line-height: 1.25em;
+      font-size: _fs(normal);
+      font-weight: bold;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      white-space: unset;
+    }
+    &:nth-child(2) {
+      margin-top: 0.15em;
+      font-size: _fs(small);
+      color: _color(gray, 7);
+    }
+    &:nth-child(3) {
+      display: flex;
+      font-size: _fs(xsmall);
+      box-sizing: border-box;
+      .icon {
+        padding-top: 0.4em;
+        margin-right: 0.15rem;
+        font-size: _fs(normal);
+        opacity: 0.8;
+      }
+      span {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

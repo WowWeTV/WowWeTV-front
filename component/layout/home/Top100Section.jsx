@@ -26,28 +26,37 @@ const Top100Section = () => {
         </Link>
       </div>
       <div>
-        {top100VideoList.slice(0, 5).map((element, index) => {
+        {top100VideoList.slice(0, 5).map((video, index) => {
+          const {
+            id,
+            videoUrl,
+            userName,
+            videoTitle,
+            videoLength,
+            views,
+            likes,
+          } = video;
           return (
-            <div key={element.id} className={styles.top100}>
+            <div key={id} className={styles.top100}>
               <div className={styles.top100_ranking}>{index + 1}</div>
               <div className={classnames(styles.top100_img, styles.video_img)}>
-                <img src={element.videoUrl} alt={element.videoTitle} />
-                <span>{(element.videoLength / 3600).toFixed(2)}</span>
+                <img src={videoUrl} alt={videoTitle} />
+                <span>{(videoLength / 3600).toFixed(2)}</span>
               </div>
               <div
                 className={classnames(styles.top100_info, styles.video_info)}
               >
-                <p>{element.videoTitle}</p>
-                <Link href={`/search?query=${element.userName}&type=channels`}>
-                  <p>{element.userName}</p>
+                <p>{videoTitle}</p>
+                <Link href={`/search?query=${userName}&type=channels`}>
+                  <p>{userName}</p>
                 </Link>
                 <p>
                   <AiOutlinePlayCircle className={styles.icon} />
-                  {element.views}
+                  {views}
                   <span>
                     <AiOutlineHeart className={styles.icon} />
                   </span>
-                  {element.like}
+                  {likes}
                 </p>
               </div>
             </div>
@@ -55,28 +64,37 @@ const Top100Section = () => {
         })}
       </div>
       <div>
-        {top100VideoList.slice(5, 10).map((element, index) => {
+        {top100VideoList.slice(5, 10).map((video, index) => {
+          const {
+            id,
+            videoUrl,
+            userName,
+            videoTitle,
+            videoLength,
+            views,
+            likes,
+          } = video;
           return (
-            <div key={element.id} className={styles.top100}>
+            <div key={id} className={styles.top100}>
               <div className={styles.top100_ranking}>{index + 6}</div>
               <div className={classnames(styles.top100_img, styles.video_img)}>
-                <img src={element.videoUrl} alt={`${element.videoTitle}`} />
-                <span>{(element.videoLength / 3600).toFixed(2)}</span>
+                <img src={videoUrl} alt={`${videoTitle}`} />
+                <span>{(videoLength / 3600).toFixed(2)}</span>
               </div>
               <div
                 className={classnames(styles.top100_info, styles.video_info)}
               >
-                <p>{element.videoTitle}</p>
-                <Link href={`/search?query=${element.userName}&type=channels`}>
-                  <p>{element.userName}</p>
+                <p>{videoTitle}</p>
+                <Link href={`/search?query=${userName}&type=channels`}>
+                  <p>{userName}</p>
                 </Link>
                 <p>
                   <AiOutlinePlayCircle className={styles.icon} />
-                  {element.views}
+                  {views}
                   <span>
                     <AiOutlineHeart className={styles.icon} />
                   </span>
-                  {element.like}
+                  {likes}
                 </p>
               </div>
             </div>
