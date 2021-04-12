@@ -23,7 +23,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 1.5em;
 }
 
 .searchVideoBox {
@@ -174,6 +173,9 @@
 }
 
 @include respond-to(large) {
+  .listHeader {
+    margin: 1rem;
+  }
   .searchPage {
     margin-top: 4.25em;
     margin-left: 13.75rem;
@@ -181,6 +183,9 @@
 
   .listContainer {
     background-color: _color(gray, 2);
+  }
+  .listContent {
+    margin: 1em;
   }
 
   .search_text {
@@ -217,6 +222,7 @@
     }
   }
   .listBox {
+    width: 80%;
     border-top: 1px solid _color(gray, 3);
     border-left: 1px solid _color(gray, 3);
     border-right: 1px solid _color(gray, 3);

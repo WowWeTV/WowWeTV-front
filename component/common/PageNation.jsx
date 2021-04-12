@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import styles from '@/styles/common/common.module.scss';
 import classnames from 'classnames';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const PageNation = ({
