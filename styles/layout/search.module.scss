@@ -2,7 +2,7 @@
 @import '../lib/functions.scss';
 @import '../lib/breakpoints.scss';
 
-.listHeader {
+.list_header {
   margin: 1rem 0;
   em {
     font-size: 1.2em;
@@ -18,21 +18,21 @@
   }
 }
 
-.listContent {
+.list_content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.searchVideoBox {
+.search_videobox {
   display: flex;
   width: 300px;
   margin: 0 auto 1em;
   img {
     width: 150px;
   }
-  .searchVideoDetail {
+  .search_videodetail {
     padding-left: 1em;
     display: flex;
     justify-content: center;
@@ -45,7 +45,7 @@
       font-size: 0.5em;
       color: _color(black);
     }
-    .videoUserName {
+    .video_username {
       color: _color(point);
     }
     a {
@@ -60,7 +60,7 @@
   }
 }
 
-.searchContent {
+.search_content {
   margin-bottom: 0.75em;
   line-height: 1.5em;
 
@@ -70,19 +70,19 @@
   }
 }
 
-.searchPage {
+.search_page {
   display: flex;
   flex-direction: column;
 }
 
-.searchTabContainer {
+.searchtab_container {
   display: flex;
   position: relative;
   border-bottom: 1px solid _color(gray, 3);
   box-sizing: border-box;
 }
 
-.searchTextArea {
+.search_textarea {
   width: 100%;
 
   .search_menu {
@@ -92,7 +92,7 @@
   .search_text {
     padding: 1.05em;
 
-    .searchSpan {
+    .search_span {
       font-size: 1.3em;
 
       &.point {
@@ -119,7 +119,7 @@
       border-bottom: 2px solid _color(point);
     }
 
-    & .spanTab {
+    & .span_tab {
       display: inline-block;
       line-height: 2em;
       color: #000;
@@ -128,7 +128,7 @@
   }
 }
 
-.listContainer {
+.list_container {
   width: 100%;
   display: flex;
   background-color: _color(white);
@@ -136,7 +136,7 @@
   align-items: center;
 }
 
-.listBox {
+.list_box {
   width: 280px;
   margin: 0 auto;
   flex-direction: column;
@@ -150,11 +150,11 @@
 }
 
 @include respond-to(medium) {
-  .listContent {
+  .list_content {
     display: unset;
     overflow: hidden;
   }
-  .searchContent {
+  .search_content {
     width: 130px;
     float: left;
     margin-right: 26.5px;
@@ -162,10 +162,10 @@
       margin-right: 0;
     }
   }
-  .listBox {
+  .list_box {
     width: 600px;
   }
-  .searchVideoBox {
+  .search_videobox {
     width: 50%;
     height: 112.5px;
     float: left;
@@ -173,28 +173,28 @@
 }
 
 @include respond-to(large) {
-  .listHeader {
+  .list_header {
     margin: 1rem;
   }
-  .searchPage {
+  .search_page {
     margin-top: 4.25em;
     margin-left: 13.75rem;
   }
 
-  .listContainer {
+  .list_container {
     background-color: _color(gray, 2);
   }
-  .listContent {
+  .list_content {
     margin: 1em;
   }
 
   .search_text {
-    .searchSpan {
+    .search_span {
       font-size: 1.7em;
     }
   }
 
-  .searchTextArea {
+  .search_textarea {
     width: auto;
     padding: 3em 0 0 10em;
     .search_text {
@@ -213,7 +213,7 @@
         border-bottom: 2px solid _color(point);
       }
 
-      & .spanTab {
+      & .span_tab {
         display: inline-block;
         line-height: 2em;
         color: #000;
@@ -221,7 +221,7 @@
       }
     }
   }
-  .listBox {
+  .list_box {
     width: 80%;
     border-top: 1px solid _color(gray, 3);
     border-left: 1px solid _color(gray, 3);

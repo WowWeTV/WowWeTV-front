@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import styles from '@/styles/common/common.module.scss';
+import styles from '@/styles/common/pagenation.module.scss';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 

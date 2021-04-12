@@ -12,15 +12,15 @@ const VideosList = () => {
   const { searchVideoList } = useSelector((state) => state.video);
 
   return (
-    <div className={styles.listContainer}>
-      <div className={classnames(styles.listBox, styles.margin_top)}>
-        <div className={styles.listHeader}>
+    <div className={styles.list_container}>
+      <div className={classnames(styles.list_box, styles.margin_top)}>
+        <div className={styles.list_header}>
           <h2>
             <strong>동영상</strong>
             <em> {searchVideoList.length} </em>
           </h2>
         </div>
-        <div className={styles.listContent}>
+        <div className={styles.list_content}>
           {searchVideoList
             .slice(
               (curPage - 1) * (rowsPerPage * 2),
@@ -28,12 +28,12 @@ const VideosList = () => {
             )
             .map((element) => {
               return (
-                <div className={styles.searchVideoBox}>
+                <div className={styles.search_videobox}>
                   <img src={element.videoUrl} />
-                  <div className={styles.searchVideoDetail}>
+                  <div className={styles.search_videodetail}>
                     <span className={styles.title}>{element.videoTitle}</span>
 
-                    <Link href="/" className={styles.videoUserName}>
+                    <Link href="/" className={styles.video_username}>
                       {element.userName}
                     </Link>
                     <div>

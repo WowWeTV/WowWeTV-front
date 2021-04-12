@@ -14,15 +14,15 @@ const ChannelsList = () => {
   const { searchChannels } = useSelector((state) => state.user);
 
   return (
-    <div className={styles.listContainer}>
-      <div className={classnames(styles.listBox, styles.margin_top)}>
-        <div className={styles.listHeader}>
+    <div className={styles.list_container}>
+      <div className={classnames(styles.list_box, styles.margin_top)}>
+        <div className={styles.list_header}>
           <h2>
             <strong>채널</strong>
             <em> {searchChannels.length} </em>
           </h2>
         </div>
-        <div className={styles.listContent}>
+        <div className={styles.list_content}>
           {searchChannels
             .slice(
               (curPage - 1) * (rowsPerPage * 3),
@@ -30,7 +30,7 @@ const ChannelsList = () => {
             )
             .map((element) => {
               return (
-                <div className={styles.searchContent}>
+                <div className={styles.search_content}>
                   <img src={element.userImg} alt="userImg" />
                   <br />
                   <Link href="/">{element.userName}</Link>

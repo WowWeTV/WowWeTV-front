@@ -11,7 +11,7 @@ const SearchLayout = () => {
 
   return (
     <>
-      <div className={styles.searchPage}>
+      <div className={styles.search_page}>
         <SearchTab />
         {type === undefined && (
           <>

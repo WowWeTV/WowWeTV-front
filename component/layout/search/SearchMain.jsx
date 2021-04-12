@@ -13,9 +13,9 @@ const ChannelsList = () => {
 
   return (
     <>
-      <div className={styles.listContainer}>
-        <div className={classnames(styles.listBox, styles.margin_top)}>
-          <div className={styles.listHeader}>
+      <div className={styles.list_container}>
+        <div className={classnames(styles.list_box, styles.margin_top)}>
+          <div className={styles.list_header}>
             <h2>
               <strong>채널</strong>
               <em> {searchChannels.length} </em>
@@ -27,10 +27,10 @@ const ChannelsList = () => {
               </a>
             </Link>
           </div>
-          <div className={styles.listContent}>
+          <div className={styles.list_content}>
             {searchChannels.slice(0, 6).map((element) => {
               return (
-                <div className={styles.searchContent}>
+                <div className={styles.search_content}>
                   <img src={element.userImg} alt="userImg" />
                   <br />
                   <Link href="/">{element.userName}</Link>
@@ -43,8 +43,8 @@ const ChannelsList = () => {
           </div>
         </div>
 
-        <div className={styles.listBox}>
-          <div className={styles.listHeader}>
+        <div className={styles.list_box}>
+          <div className={styles.list_header}>
             <h2>
               <strong>동영상</strong>
               <em> {searchVideoList.length} </em>
@@ -56,15 +56,15 @@ const ChannelsList = () => {
               </a>
             </Link>
           </div>
-          <div className={styles.listContent}>
+          <div className={styles.list_content}>
             {searchVideoList.slice(0, 20).map((element) => {
               return (
-                <div className={styles.searchVideoBox}>
+                <div className={styles.search_videobox}>
                   <img src={element.videoUrl} alt="userImg" />
-                  <div className={styles.searchVideoDetail}>
+                  <div className={styles.search_videodetail}>
                     <span className={styles.title}>{element.videoTitle}</span>
 
-                    <Link href="/" className={styles.videoUserName}>
+                    <Link href="/" className={styles.video_username}>
                       {element.userName}
                     </Link>
                     <div>
