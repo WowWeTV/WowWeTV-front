@@ -2,12 +2,13 @@ import { useState } from 'react';
 import styles from '@/styles/common/modal.module.scss';
 import PropTypes from 'prop-types';
 
-const FindPWModal = ({
+const Modal = ({
   onHandleModal,
   errMsg,
   header,
   contentHeader,
   inputPlaceholder,
+  contentText,
   btnText,
 }) => {
   const onClickModal = (e) => {
@@ -37,17 +38,24 @@ const FindPWModal = ({
           <h2 className={styles.modal_content_header}>{contentHeader}</h2>
           <div className={styles.modal_content_wrap}>
             <div className={styles.modal_content}>
-              <div className={styles.modal_input}>
-                <input
-                  id="input"
-                  placeholder={inputPlaceholder}
-                  type="text"
-                  value={inputs}
-                  onChange={onChange}
-                  className="text-input"
-                />
-              </div>
-              {errorMsg && <p>{errorMsg}</p>}
+              {inputPlaceholder && (
+                <>
+                  <div className={styles.modal_input}>
+                    <input
+                      id="input"
+                      placeholder={inputPlaceholder}
+                      type="text"
+                      value={inputs}
+                      onChange={onChange}
+                      className="text-input"
+                    />
+                  </div>
+                  {errorMsg && <p>{errorMsg}</p>}
+                </>
+              )}
+              {contentText && (
+                <div className={styles.modal_text}>{contentText}</div>
+              )}
             </div>
             <button type="button" onClick={handleSubmit}>
               {btnText}
@@ -59,13 +67,14 @@ const FindPWModal = ({
   );
 };
 
-FindPWModal.propTypes = {
+Modal.propTypes = {
   onHandleModal: PropTypes.func.isRequired,
-  errMsg: PropTypes.string.isRequired,
+  errMsg: PropTypes.string,
   header: PropTypes.string.isRequired,
   contentHeader: PropTypes.string.isRequired,
-  inputPlaceholder: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string,
+  contentText: PropTypes.string,
   btnText: PropTypes.string.isRequired,
 };
 
-export default FindPWModal;
+export default Modal;

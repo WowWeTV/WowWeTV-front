@@ -12,7 +12,7 @@
 .slide {
   position: relative;
   width: 100%;
-  height: 180px;
+  height: 11.25em;
   img {
     width: 100%;
     height: 100%;
@@ -64,7 +64,7 @@
   img {
     width: 100%;
     height: 100%;
-    // object-fit: cover;
+    object-fit: cover;
   }
   span {
     position: absolute;
@@ -116,7 +116,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 .top100_ranking {
   display: flex;
@@ -129,8 +129,8 @@
   box-sizing: border-box;
 }
 .top100_img {
-  width: 145px;
-  height: 80px;
+  width: 7.5rem;
+  height: 4em;
   img {
     width: 100%;
     height: 100%;
@@ -139,26 +139,23 @@
 }
 
 .top100_info {
-  width: 40%;
-  margin-left: 3%;
+  width: 45%;
+  height: 4em;
+  margin-left: 4%;
   p {
     &:nth-child(1) {
       overflow: hidden;
-      margin-top: 0.15em;
       line-height: 1.25em;
       font-size: _fs(normal);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      word-break: break-all;
-      white-space: unset;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     &:nth-child(2) {
       font-size: _fs(small);
     }
     &:nth-child(3) {
-      margin-top: 0.125em;
-      font-size: _fs(xsmall);
+      margin-top: 0;
+      font-size: _fs(small);
       box-sizing: border-box;
       .icon {
         padding-top: 0.1em;
@@ -178,7 +175,7 @@
   }
   .recent_container {
     display: block;
-    width: 680px;
+    width: 42.5rem;
     margin: 0 auto;
   }
   .recent_list {
@@ -196,36 +193,28 @@
     }
   }
   .recent_img {
-    height: 180px;
+    height: 11em;
     span {
       bottom: 0.75em;
       right: 0.75rem;
     }
   }
   .recent_info {
-    padding: 1em 1.5rem;
     background-color: _color(white);
     border: 1px solid _color(gray, 4);
     p {
       &:nth-child(1) {
         font-size: _fs(medium);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      &:nth-child(2) {
-        font-size: _fs(small);
       }
       &:nth-child(3) {
         display: flex;
-        font-size: _fs(small);
       }
     }
   }
 
   // top100
   .top100_container {
-    width: 680px;
+    width: 42.5rem;
     margin: 0 auto;
     padding: 2.5em 0;
     .section_title {
@@ -280,7 +269,7 @@
     width: 48.5%;
   }
   .recent_img {
-    height: 100px;
+    height: 6.75em;
     span {
       bottom: 0.25em;
       right: 0.25rem;
@@ -311,10 +300,20 @@
     }
   }
   // top100
+  .top100 {
+    margin-bottom: 1em;
+  }
   .top100_img {
-    width: 150px;
-    height: 85px;
+    width: 9rem;
+    height: 5.5em;
     margin: 0 0.25rem;
+  }
+  .top100_info {
+    padding: 0;
+    height: 5.5em;
+    &:nth-child(3) {
+      font-size: _fs(xsmall);
+    }
   }
 }
 
@@ -324,14 +323,14 @@
     padding: 3em 0;
   }
   .recent_container {
-    width: 1100px;
+    width: 68.75rem;
   }
   .recent_img {
-    height: 150px;
+    height: 10em;
   }
   //top100
   .top100_container {
-    width: 1100px;
+    width: 68.75rem;
     margin: 0.5em auto;
     box-sizing: border-box;
     .section_title {
@@ -342,8 +341,8 @@
     position: relative;
     display: unset;
     width: 19.05%;
-    height: 220px;
-    margin: 0 0.5% 1em;
+    height: 15.25em;
+    margin: 0 0.5% 1.25em;
     padding-right: 0;
     &:nth-child(1) {
       margin-left: 0;
@@ -354,12 +353,13 @@
   }
   .top100_img {
     width: 100%;
-    height: 120px;
+    height: 8em;
+    margin-bottom: 1em;
   }
   .top100_ranking {
     position: absolute;
-    top: 133px;
-    left: 18px;
+    top: 4.65em;
+    left: 1.125rem;
     font-size: _fs(xxlarge);
     border: none;
   }
