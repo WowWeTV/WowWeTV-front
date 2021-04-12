@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
@@ -12,7 +12,11 @@ const Lnb = () => {
 
   const handleScroll = useCallback(() => {
     const { pageYOffset } = window;
-    pageYOffset >= '43' ? setFixed(true) : setFixed(false);
+    if (pageYOffset >= 43) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
     setPageY(pageYOffset);
   }, [fixed, pageY]);
 
@@ -23,34 +27,43 @@ const Lnb = () => {
 
   return (
     <>
-      {/* mobile, tablet */}
-      <nav
-        className={
-          fixed
-            ? classnames(styles.mobile_lnb_container, styles.header_fixed)
-            : styles.mobile_lnb_container
-        }
-      >
-        <ul>
-          <li className={pathname === '/' ? styles.menu_active : null}>
-            <h2>
-              <Link href="/">홈</Link>
-            </h2>
-          </li>
-          <li
-            className={pathname === '/top100Video' ? styles.menu_active : null}
-          >
-            <h2>
-              <Link href="/top100Video">인기</Link>
-            </h2>
-          </li>
-          <li className={pathname === '/streaming' ? styles.menu_active : null}>
-            <h2>
-              <Link href="/streaming">라이브</Link>
-            </h2>
-          </li>
-        </ul>
-      </nav>
+      {pathname === '/' ||
+      pathname.includes('/top100Video') ||
+      pathname.includes('/streaming') ? (
+        <nav
+          className={
+            fixed
+              ? classnames(styles.mobile_lnb_container, styles.header_fixed)
+              : styles.mobile_lnb_container
+          }
+        >
+          <ul>
+            <li className={pathname === '/' ? styles.menu_active : null}>
+              <h2>
+                <Link href="/">홈</Link>
+              </h2>
+            </li>
+            <li
+              className={
+                pathname.includes('/top100Video') ? styles.menu_active : null
+              }
+            >
+              <h2>
+                <Link href="/top100Video">인기</Link>
+              </h2>
+            </li>
+            <li
+              className={
+                pathname.includes('/streaming') ? styles.menu_active : null
+              }
+            >
+              <h2>
+                <Link href="/streaming">라이브</Link>
+              </h2>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
     </>
   );
 };

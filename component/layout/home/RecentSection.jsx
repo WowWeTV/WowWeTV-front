@@ -121,7 +121,7 @@ const RecentSection = () => {
                     <span>
                       <AiOutlineHeart className={styles.icon} />
                     </span>
-                    {video.like}
+                    {video.likes}
                   </p>
                 </div>
               </div>

@@ -1,6 +1,6 @@
-@import "./lib/vars.scss";
-@import "./lib/functions.scss";
-@import "./lib/breakpoints.scss";
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
 
 .modal_wrap {
   position: fixed;
@@ -12,7 +12,7 @@
   z-index: 20;
 }
 .find_modal {
-  position: relative;  
+  position: relative;
   top: 9.375rem;
   margin: 0 auto;
   z-index: 30;
@@ -78,6 +78,17 @@
         font-weight: 700;
         margin: -0.1rem 0 -1.4rem;
       }
+      .modal_text {
+        overflow: hidden;
+        padding: 0 0.75rem;
+        line-height: 1.5em;
+        font-size: _fs(normal);
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        white-space: unset;
+      }
     }
     button {
       font-size: _fs(normal);
@@ -103,7 +114,7 @@
     input {
       width: 85%;
     }
-    .modal_content_header{
+    .modal_content_header {
       font-size: _fs(normal);
     }
   }
@@ -115,7 +126,7 @@
     input {
       width: 18rem;
     }
-    .modal_content_header{
+    .modal_content_header {
       font-size: _fs(medium);
     }
   }
