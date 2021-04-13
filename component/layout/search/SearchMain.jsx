@@ -1,16 +1,24 @@
+import { useEffect } from 'react';
 import styles from '@/styles/layout/search.module.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
+import { loadSearchVideos } from '@/lib/action/video';
+import { loadSearchUser } from '@/lib/action/user';
 
 const ChannelsList = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const { searchChannels } = useSelector((state) => state.user);
   const { searchVideoList } = useSelector((state) => state.video);
   const { query } = router.query;
 
+  useEffect(() => {
+    // dispatch(loadSearchVideos());
+    // dispatch(loadSearchUser());
+  }, []);
   return (
     <>
       <div className={styles.list_container}>
