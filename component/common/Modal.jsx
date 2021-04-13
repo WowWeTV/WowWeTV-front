@@ -10,6 +10,7 @@ const Modal = ({
   inputPlaceholder,
   contentText,
   btnText,
+  copyBtn,
 }) => {
   const onClickModal = (e) => {
     e.stopPropagation();
@@ -20,7 +21,6 @@ const Modal = ({
   };
   const [errorMsg, setErrorMsg] = useState('');
   const handleSubmit = () => {
-    console.log(inputs);
     if (inputs === '') {
       setErrorMsg(`${inputPlaceholder}을 입력해 주세요.`);
     } else {
@@ -28,8 +28,16 @@ const Modal = ({
       setErrorMsg(errMsg);
     }
   };
+  const onCopyUrl = () => {
+    navigator.clipboard.writeText(contentText);
+    alert('링크가 복사되었습니다.');
+    onHandleModal();
+  };
   return (
-    <div className={styles.modal_wrap} onClick={onHandleModal}>
+    <div
+      className={styles.modal_wrap}
+      onClick={copyBtn ? () => onHandleModal() : onHandleModal}
+    >
       <div className={styles.find_modal} onClick={onClickModal}>
         <div className={styles.modal_header}>
           <h1>{header}</h1>
@@ -57,9 +65,21 @@ const Modal = ({
                 <div className={styles.modal_text}>{contentText}</div>
               )}
             </div>
-            <button type="button" onClick={handleSubmit}>
-              {btnText}
-            </button>
+            {btnText && (
+              <button type="button" onClick={handleSubmit}>
+                {btnText}
+              </button>
+            )}
+            {copyBtn && (
+              <div className={styles.copy_btn}>
+                <button type="button" onClick={onCopyUrl} className="primary">
+                  {copyBtn}
+                </button>
+                <button type="button" onClick={() => onHandleModal()}>
+                  취 소
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -74,7 +94,8 @@ Modal.propTypes = {
   contentHeader: PropTypes.string.isRequired,
   inputPlaceholder: PropTypes.string,
   contentText: PropTypes.string,
-  btnText: PropTypes.string.isRequired,
+  btnText: PropTypes.string,
+  copyBtn: PropTypes.string,
 };
 
 export default Modal;

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import numeral from 'numeral';
 import styles from '@/styles/layout/detail.module.scss';
+import Modal from '../../common/Modal';
 import {
   AiOutlineDown,
   AiOutlineHeart,
   AiOutlineLink,
   AiOutlineMessage,
+  AiOutlineUp,
 } from 'react-icons/ai';
 
 const VideoInfo = () => {
@@ -26,6 +28,16 @@ const VideoInfo = () => {
     createDate,
     comments,
   } = singleVideo;
+  const [descText, setDescText] = useState(false);
+  const [urlModal, setUrlModal] = useState(false);
+  // const [videoLike, setVideoLike] = useState(likes);
+
+  const onToggleDesc = useCallback(() => {
+    setDescText(!descText);
+  }, [descText]);
+  const onHandleModal = useCallback(() => {
+    setUrlModal(!urlModal);
+  }, [urlModal]);
 
   return (
     <div className={styles.info_container}>
@@ -34,7 +46,7 @@ const VideoInfo = () => {
           <ul>
             {tags.map((tag) => (
               <li key={tag}>
-                <Link href="">{`#${tag}`}</Link>
+                <Link href={`/search?query=${tag}`}>{`#${tag}`}</Link>
               </li>
             ))}
           </ul>
@@ -42,8 +54,8 @@ const VideoInfo = () => {
         <div className={styles.video_summary}>
           <div className={styles.title}>
             <h4>{videoTitle}</h4>
-            <button>
-              <AiOutlineDown />
+            <button onClick={onToggleDesc}>
+              {descText ? <AiOutlineUp /> : <AiOutlineDown />}
             </button>
           </div>
           <div className={styles.views_date}>
@@ -52,7 +64,7 @@ const VideoInfo = () => {
             </span>
             <span
               className={styles.date}
-            >{`${createDate.toLocaleString()}`}</span>
+            >{`${createDate.toLocaleString().substr(0, 12)}`}</span>
           </div>
           <div className={styles.likes_comments}>
             <span className={styles.likes}>
@@ -61,16 +73,25 @@ const VideoInfo = () => {
             </span>
             <span className={styles.comments}>
               <AiOutlineMessage className={styles.icon} />
-              {comments}
+              {comments.length}
             </span>
-            <span className={styles.link}>
+            <span className={styles.link} onClick={onHandleModal}>
               <AiOutlineLink />
             </span>
+            {urlModal && (
+              <Modal
+                onHandleModal={onHandleModal}
+                header="공유"
+                contentHeader="영상 링크를 복사하시겠습니까?"
+                contentText={videoUrl}
+                copyBtn="복 사"
+              />
+            )}
           </div>
         </div>
-        <div className={styles.video_desc}>{videoDesc}</div>
+        {descText && <div className={styles.video_desc}>{videoDesc}</div>}
       </div>
-      <Link href="/">
+      <Link href={`/search?query=${userName}&type=channels`}>
         <div className={styles.user_info}>
           <div className={styles.user_img}>
             <img src={userImg} alt={userName} />
