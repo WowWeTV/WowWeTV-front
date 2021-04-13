@@ -4,6 +4,7 @@
 
 .detail_container {
   background-color: _color(gray, 2);
+  box-sizing: border-box;
 }
 // video player
 .player {
@@ -79,7 +80,7 @@
   }
   .likes_comments {
     overflow: hidden;
-    margin: 1.25em 0 1.5em;
+    margin: 1.25em 0;
     font-size: _fs(normal);
     span {
       color: _color(gray, 9);
@@ -92,7 +93,7 @@
       font-weight: bold;
     }
     .likes {
-      margin-right: 0.5rem;
+      margin-right: 0.75rem;
     }
     .link {
       float: right;
@@ -156,10 +157,11 @@
 .recommend_img {
   position: relative;
   float: left;
+  margin: 0.1em 0;
   line-height: 0;
   img {
-    width: 145px;
-    height: 85px;
+    width: 8rem;
+    height: 4.5em;
     object-fit: cover;
   }
   span {
@@ -176,8 +178,8 @@
   }
 }
 .recommend_info {
-  width: 35%;
-  height: 80px;
+  width: 40%;
+  height: 4.75em;
   float: left;
   margin: 0 4%;
   padding: 0;
@@ -202,7 +204,7 @@
     }
     &:nth-child(3) {
       display: flex;
-      font-size: _fs(xsmall);
+      font-size: _fs(small);
       box-sizing: border-box;
       .icon {
         padding-top: 0.4em;
@@ -214,5 +216,113 @@
         margin-left: 0.5rem;
       }
     }
+  }
+}
+//video comment list
+.comment_container {
+  margin-top: 1em;
+  background-color: _color(white);
+  .title {
+    display: flex;
+    padding: 0.75em 5%;
+    border-bottom: 1px solid _color(gray, 4);
+    span {
+      margin-left: 0.25rem;
+      font-weight: bold;
+      color: _color(point);
+    }
+  }
+}
+.write_comment {
+  padding: 0.75em 5% 0;
+  input {
+    width: 76%;
+    padding: 0.75em 1rem;
+    box-sizing: border-box;
+    // &:focus {
+    //   height: 5em;
+    // }
+  }
+  button {
+    width: 23%;
+    margin-left: 0.125rem;
+    padding: 0.75em 1rem;
+    box-sizing: border-box;
+  }
+}
+.comment_list {
+  li {
+    font-size: _fs(normal);
+  }
+  .comment_box {
+    margin: 0 5%;
+    padding: 1.25em 0;
+    border-bottom: 1px solid _color(gray, 4);
+    box-sizing: border-box;
+    &.open_nested {
+      border: none;
+    }
+    .show_nested {
+      margin-top: 0.5em;
+      padding: 0.5em 0.75rem;
+    }
+  }
+}
+.user_name {
+  font-weight: bold;
+}
+.comment_text {
+  line-height: 1.5em;
+}
+.date {
+  font-size: _fs(small);
+  color: _color(gray, 7);
+}
+.nested_box {
+  padding: 0 5%;
+  border-top: 1px solid _color(gray, 4);
+  border-bottom: 1px solid _color(gray, 4);
+  background-color: _color(gray, 2);
+  form {
+    padding: 1em 0;
+    input {
+      width: 76%;
+      padding: 0.75em 1rem;
+      box-sizing: border-box;
+    }
+    .submit_nested {
+      width: 23%;
+      margin-left: 0.125rem;
+      padding: 0.75em 1rem;
+      color: _color(point);
+      box-sizing: border-box;
+    }
+  }
+  .close_nested {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 0;
+    .icon {
+      margin-left: 0.25rem;
+      color: _color(gray, 7);
+    }
+  }
+}
+.nested_list {
+  li {
+    overflow: hidden;
+    padding: 0.75em 0;
+    border-bottom: 1px solid _color(gray, 4);
+  }
+  .icon {
+    width: 9%;
+    float: left;
+    margin-top: 0.25em;
+    font-size: _fs(large);
+  }
+  .nested_text {
+    width: 91%;
+    float: left;
   }
 }

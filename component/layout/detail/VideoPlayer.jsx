@@ -5,7 +5,6 @@ import styles from '@/styles/layout/detail.module.scss';
 
 const VideoPlayer = () => {
   const router = useRouter();
-  const { query } = router.query;
   const { singleVideo } = useSelector((state) => state.video);
   const {
     id,

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/detail.module.scss';
+import Modal from '../../common/Modal';
 import {
   AiOutlineHeart,
   AiOutlineMore,
@@ -11,6 +12,21 @@ import {
 
 const Recommend = () => {
   const { recommendedVideoList } = useSelector((state) => state.video);
+  const [urlModal, setUrlModal] = useState(false);
+  const [urlText, setUrlText] = useState('');
+
+  const onHandleModal = useCallback(
+    (id) => {
+      if (id) {
+        const selected = recommendedVideoList.filter(
+          (video) => video.id === id,
+        )[0].videoUrl;
+        setUrlText(selected);
+      }
+      setUrlModal(!urlModal);
+    },
+    [urlModal, urlText],
+  );
 
   return (
     <div className={styles.recommend_container}>
@@ -56,12 +72,21 @@ const Recommend = () => {
                     {likes}
                   </p>
                 </div>
-                <div className={styles.more}>
+                <div className={styles.more} onClick={() => onHandleModal(id)}>
                   <AiOutlineMore />
                 </div>
               </div>
             );
           })}
+          {urlModal && (
+            <Modal
+              onHandleModal={onHandleModal}
+              header="공유"
+              contentHeader="영상 링크를 복사하시겠습니까?"
+              contentText={urlText}
+              copyBtn="복 사"
+            />
+          )}
         </ul>
       </div>
     </div>
