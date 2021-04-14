@@ -39,8 +39,8 @@ const VideoComment = () => {
   );
 
   return (
-    <div className={styles.comment_container}>
-      <div className={styles.title}>
+    <div className={styles.comment_container} id="comment">
+      <div className={styles.comment_title}>
         <h4>댓글</h4>
         <span>{comments.length}</span>
       </div>

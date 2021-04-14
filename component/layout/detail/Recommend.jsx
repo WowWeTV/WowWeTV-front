@@ -30,7 +30,7 @@ const Recommend = () => {
 
   return (
     <div className={styles.recommend_container}>
-      <div className={styles.title}>
+      <div className={styles.recommend_title}>
         <h4>추천 동영상</h4>
       </div>
       <div className={styles.recommend_list}>
@@ -46,7 +46,7 @@ const Recommend = () => {
               likes,
             } = video;
             return (
-              <div key={id} className={styles.recommend}>
+              <li key={id} className={styles.recommend}>
                 <div
                   className={classnames(styles.recommend_img, styles.video_img)}
                 >
@@ -75,7 +75,7 @@ const Recommend = () => {
                 <div className={styles.more} onClick={() => onHandleModal(id)}>
                   <AiOutlineMore />
                 </div>
-              </div>
+              </li>
             );
           })}
           {urlModal && (
