@@ -2,24 +2,17 @@ import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/detail.module.scss';
-import { AiOutlineUp } from 'react-icons/ai';
+import VideoNestedComment from './VideoNestedComment';
 
 const VideoComment = () => {
   const { singleVideo } = useSelector((state) => state.video);
   const { comments } = singleVideo;
 
   const [commentInput, setCommentInput] = useState('');
-  const [nested, setNested] = useState(false);
-  // const [selectedNested, setSelectedNested] = useState([]);
+  const initialNestedState = new Array(comments.length).fill(false);
+  const [nestedList, setNestedList] = useState(initialNestedState);
 
-  const onChange = useCallback(
-    (e) => {
-      const { value } = e.target;
-      setCommentInput(value);
-    },
-    [commentInput],
-  );
-
+  // 댓글 게시 날짜
   const postedDate = useCallback(
     (date) => {
       const today = new Date();
@@ -32,11 +25,30 @@ const VideoComment = () => {
       if (calcMin < 1) return '방금 전';
       if (calcMin < 60) return `${calcMin}분 전`;
       if (calcHour < 24) return `${calcHour}시간 전`;
-      if (calcDay < 365) return `${calcDay}일 전`;
+      if (calcDay < 7) return `${calcDay}일 전`;
       return upload.toLocaleString().substr(0, 12);
     },
     [comments],
   );
+  // 댓글 등록
+  const onChangeComment = useCallback(
+    (e) => {
+      setCommentInput(e.target.value);
+    },
+    [commentInput],
+  );
+  const onSubmitComment = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!commentInput) return alert('댓글을 입력해 주세요');
+      return alert(`${commentInput}\n댓글이 등록되었습니다.`);
+    },
+    [commentInput],
+  );
+  // 대댓글 열기
+  const onShowNested = (index) => {
+    setNestedList(nestedList.map((state, i) => (i === index ? !state : state)));
+  };
 
   return (
     <div className={styles.comment_container} id="comment">
@@ -44,14 +56,14 @@ const VideoComment = () => {
         <h4>댓글</h4>
         <span>{comments.length}</span>
       </div>
-      <form className={styles.write_comment}>
+      <form className={styles.write_comment} onSubmit={onSubmitComment}>
         <input
           type="textarea"
           placeholder="댓글을 입력해 주세요"
           value={commentInput}
-          onChange={onChange}
+          onChange={onChangeComment}
         />
-        <button type="submit" className="primary">
+        <button type="submit" className="primary" onClick={onSubmitComment}>
           등록
         </button>
       </form>
@@ -69,7 +81,7 @@ const VideoComment = () => {
               <li key={id}>
                 <div
                   className={
-                    nested
+                    nestedList[index]
                       ? classnames(styles.open_nested, styles.comment_box)
                       : styles.comment_box
                   }
@@ -77,45 +89,15 @@ const VideoComment = () => {
                   <p className={styles.user_name}>{user.userName}</p>
                   <div className={styles.comment_text}>{commentText}</div>
                   <p className={styles.date}>{postedDate(createDate)}</p>
-                  <button className={styles.show_nested}>
+                  <button
+                    className={styles.show_nested}
+                    onClick={() => onShowNested(index)}
+                  >
                     댓글 {nestedComment.length > 0 && nestedComment.length}
                   </button>
                 </div>
-                {nested && (
-                  <div className={styles.nested_box}>
-                    {nestedComment.length > 0 && (
-                      <ul className={styles.nested_list}>
-                        {nestedComment.map((item) => (
-                          <li key={item.id}>
-                            <div className={styles.icon}>└</div>
-                            <div className={styles.nested_text}>
-                              <p className={styles.user_name}>
-                                {item.userName}
-                              </p>
-                              <div className={styles.nested_text}>
-                                {item.nestedCommentText}
-                              </div>
-                              <p className={styles.date}>
-                                {postedDate(item.createDate)}
-                              </p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    <form>
-                      <input
-                        type="textarea"
-                        placeholder="댓글을 입력해 주세요"
-                      />
-                      <button type="submit" className={styles.submit_nested}>
-                        등록
-                      </button>
-                    </form>
-                    <div className={styles.close_nested}>
-                      댓글접기 <AiOutlineUp className={styles.icon} />
-                    </div>
-                  </div>
+                {nestedList[index] && (
+                  <VideoNestedComment postedDate={postedDate} />
                 )}
               </li>
             );

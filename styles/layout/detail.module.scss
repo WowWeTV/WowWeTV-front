@@ -278,6 +278,7 @@
   font-size: _fs(small);
   color: _color(gray, 7);
 }
+// VideoNestedComment
 .nested_box {
   padding: 0 5%;
   border-top: 1px solid _color(gray, 4);
@@ -321,7 +322,7 @@
     margin-top: 0.25em;
     font-size: _fs(large);
   }
-  .nested_text {
+  .nested_info {
     width: 91%;
     float: left;
   }
@@ -344,6 +345,22 @@
     }
     button {
       width: 13%;
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      input {
+        width: 86%;
+      }
+      .submit_nested {
+        width: 13%;
+      }
+    }
+  }
+  .nested_list {
+    .icon {
+      width: 5%;
     }
   }
 }
@@ -397,6 +414,7 @@
   .player {
     border: 1px solid _color(gray, 5);
     border-bottom: none;
+    box-sizing: border-box;
   }
   .info_container {
     border: 1px solid _color(gray, 4);
@@ -478,12 +496,20 @@
   }
   .write_comment {
     button {
-      padding: 1em 1rem;
+      font-size: _fs(normal);
     }
   }
   .comment_list {
     .comment_box {
       margin: 0;
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      .submit_nested {
+        font-size: _fs(normal);
+      }
     }
   }
 }
@@ -525,6 +551,17 @@
     }
     button {
       width: 10%;
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      input {
+        width: 89%;
+      }
+      .submit_nested {
+        width: 10.5%;
+      }
     }
   }
 }
