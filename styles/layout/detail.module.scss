@@ -58,7 +58,7 @@
       font-size: _fs(large);
       font-weight: bold;
     }
-    button {
+    .desc_btn {
       padding: 0.625em 0.625rem;
       padding-right: 0;
       border: none;
@@ -93,9 +93,11 @@
       align-items: center;
       float: left;
       font-weight: bold;
+      cursor: pointer;
     }
     .likes {
       margin-right: 0.75rem;
+      transition: all 0.4s ease-in;
     }
     .link {
       float: right;
@@ -106,11 +108,20 @@
       margin-right: 0.125rem;
       font-size: _fs(xlarge);
       color: _color(gray, 9);
+      &.clicked_likes {
+        color: _color(point);
+      }
     }
   }
 }
 .video_desc {
   margin-bottom: 1.5em;
+  &.mobile_desc {
+    display: block;
+  }
+  &.desktop_desc {
+    display: none;
+  }
 }
 .user_info {
   display: flex;
@@ -257,14 +268,18 @@
   .comment_box {
     margin: 0 5%;
     padding: 1.25em 0;
-    border-bottom: 1px solid _color(gray, 4);
+    border-bottom: 1px solid _color(gray, 3);
     box-sizing: border-box;
     &.open_nested {
       border: none;
     }
-    .show_nested {
+    .nested_btn {
       margin-top: 0.5em;
       padding: 0.5em 0.75rem;
+      &.clicked {
+        color: _color(point);
+        border-color: _color(point);
+      }
     }
   }
 }
@@ -277,6 +292,18 @@
 .date {
   font-size: _fs(small);
   color: _color(gray, 7);
+}
+.more_comments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em 5% 7em;
+  font-size: _fs(normal);
+  cursor: pointer;
+  .icon {
+    margin-left: 0.25rem;
+    color: _color(gray, 7);
+  }
 }
 // VideoNestedComment
 .nested_box {
@@ -304,6 +331,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5em 0;
+    cursor: pointer;
     .icon {
       margin-left: 0.25rem;
       color: _color(gray, 7);
@@ -428,8 +456,21 @@
     }
   }
   .video_summary {
+    margin-top: 0.625em;
     .title {
       padding: 0;
+    }
+    .desc_btn {
+      display: none;
+    }
+  }
+  .video_desc {
+    width: 90%;
+    &.mobile_desc {
+      display: none;
+    }
+    &.desktop_desc {
+      display: block;
     }
   }
   // Recommend

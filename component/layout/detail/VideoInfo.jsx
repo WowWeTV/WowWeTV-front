@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import numeral from 'numeral';
 import styles from '@/styles/layout/detail.module.scss';
 import Modal from '../../common/Modal';
 import {
+  AiFillHeart,
   AiOutlineDown,
   AiOutlineHeart,
   AiOutlineLink,
@@ -30,11 +32,23 @@ const VideoInfo = () => {
   } = singleVideo;
   const [descText, setDescText] = useState(false);
   const [urlModal, setUrlModal] = useState(false);
-  // const [videoLike, setVideoLike] = useState(likes);
+  const [videoLike, setVideoLike] = useState(false);
+  const [likesNumber, setLikesNumber] = useState(likes);
 
+  // 좋아요 클릭
+  const onClickLike = () => {
+    setVideoLike(!videoLike);
+    if (videoLike) {
+      setLikesNumber(likes);
+    } else {
+      setLikesNumber(likes + 1);
+    }
+  };
+  // 영상 설명 토글
   const onToggleDesc = useCallback(() => {
     setDescText(!descText);
   }, [descText]);
+  // 영상 링크 모달
   const onHandleModal = useCallback(() => {
     setUrlModal(!urlModal);
   }, [urlModal]);
@@ -68,7 +82,7 @@ const VideoInfo = () => {
           <div className={styles.video_summary}>
             <div className={styles.title}>
               <h4>{videoTitle}</h4>
-              <button onClick={onToggleDesc}>
+              <button className={styles.desc_btn} onClick={onToggleDesc}>
                 {descText ? <AiOutlineUp /> : <AiOutlineDown />}
               </button>
             </div>
@@ -81,9 +95,15 @@ const VideoInfo = () => {
               >{`${createDate.toLocaleString().substr(0, 12)}`}</span>
             </div>
             <div className={styles.likes_comments}>
-              <span className={styles.likes}>
-                <AiOutlineHeart className={styles.icon} />
-                {likes}
+              <span className={styles.likes} onClick={onClickLike}>
+                {videoLike ? (
+                  <AiFillHeart
+                    className={classnames(styles.clicked_likes, styles.icon)}
+                  />
+                ) : (
+                  <AiOutlineHeart className={styles.icon} />
+                )}
+                {likesNumber}
               </span>
               <span className={styles.comments}>
                 <a href="#comment">
@@ -105,7 +125,14 @@ const VideoInfo = () => {
               )}
             </div>
           </div>
-          {descText && <div className={styles.video_desc}>{videoDesc}</div>}
+          {descText && (
+            <div className={classnames(styles.mobile_desc, styles.video_desc)}>
+              {videoDesc}
+            </div>
+          )}
+          <div className={classnames(styles.desktop_desc, styles.video_desc)}>
+            {videoDesc}
+          </div>
         </div>
         <Link href={`/search?query=${userName}&type=channels`}>
           <div className={styles.user_info}>
