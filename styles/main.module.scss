@@ -117,6 +117,7 @@
   align-items: center;
   width: 100%;
   margin-bottom: 1em;
+  cursor: pointer;
 }
 .top100_ranking {
   display: flex;
@@ -139,7 +140,7 @@
 }
 
 .top100_info {
-  width: 45%;
+  width: calc(100% - 10rem);
   height: 4em;
   margin-left: 4%;
   p {
@@ -224,15 +225,19 @@
   .top100 {
     width: 50%;
     float: left;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
     padding-right: 1.5rem;
     box-sizing: border-box;
   }
   .top100_img {
+    width: 8.5em;
+    height: 5em;
     margin: 0 0.5rem;
   }
   .top100_info {
-    padding-top: 0.5em;
+    width: calc(100% - 12em);
+    height: 5em;
+    margin-left: 2%;
     p {
       &:nth-child(3) {
         margin-top: 0.25em;
@@ -301,16 +306,11 @@
   }
   // top100
   .top100 {
-    margin-bottom: 1em;
-  }
-  .top100_img {
-    width: 9rem;
-    height: 5.5em;
-    margin: 0 0.25rem;
+    margin-bottom: 1.25em;
   }
   .top100_info {
-    padding: 0;
-    height: 5.5em;
+    width: calc(100% - 17em);
+    margin-top: -1.75em;
     &:nth-child(3) {
       font-size: _fs(xsmall);
     }
@@ -353,18 +353,19 @@
   }
   .top100_img {
     width: 100%;
-    height: 8em;
+    height: 7.75em;
     margin-bottom: 1em;
   }
   .top100_ranking {
     position: absolute;
-    top: 4.65em;
+    top: 4.375em;
     left: 1.125rem;
     font-size: _fs(xxlarge);
     border: none;
   }
   .top100_info {
     width: 77%;
+    margin-top: 1em;
     margin-left: 23%;
   }
 }

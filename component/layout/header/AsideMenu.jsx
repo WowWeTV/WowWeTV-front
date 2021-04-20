@@ -83,10 +83,8 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
               </>
             </Link>
           </li>
-          <li
-            className={pathname === '/top100Video' ? styles.menu_active : null}
-          >
-            <Link href="/top100Video">
+          <li className={pathname.includes('/sub') ? styles.menu_active : null}>
+            <Link href="/sub">
               <>
                 <div className={`icon ${styles.icon}`}>
                   <AiOutlineStar />

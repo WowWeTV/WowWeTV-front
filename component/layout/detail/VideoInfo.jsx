@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -30,13 +30,29 @@ const VideoInfo = () => {
     createDate,
     comments,
   } = singleVideo;
+  const [fixed, setFixed] = useState(false);
+  const [pageY, setPageY] = useState(0);
   const [descText, setDescText] = useState(false);
   const [urlModal, setUrlModal] = useState(false);
   const [videoLike, setVideoLike] = useState(false);
   const [likesNumber, setLikesNumber] = useState(likes);
 
+  // 스크롤 이벤트
+  const handleScroll = useCallback(() => {
+    const { pageYOffset } = window;
+    if (pageYOffset >= 43) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
+    setPageY(pageYOffset);
+  }, [fixed, pageY]);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pageY]);
   // 좋아요 클릭
-  const onClickLike = () => {
+  const onAddLike = () => {
     setVideoLike(!videoLike);
     if (videoLike) {
       setLikesNumber(likes);
@@ -64,7 +80,13 @@ const VideoInfo = () => {
             <p className={styles.user_name}>{userName}</p>
           </div>
         </Link>
-        <div className={styles.player}>
+        <div
+          className={
+            fixed
+              ? classnames(styles.player, styles.player_fixed)
+              : styles.player
+          }
+        >
           <img src={videoUrl} alt="video" />
         </div>
       </div>
@@ -95,7 +117,7 @@ const VideoInfo = () => {
               >{`${createDate.toLocaleString().substr(0, 12)}`}</span>
             </div>
             <div className={styles.likes_comments}>
-              <span className={styles.likes} onClick={onClickLike}>
+              <span className={styles.likes} onClick={onAddLike}>
                 {videoLike ? (
                   <AiFillHeart
                     className={classnames(styles.clicked_likes, styles.icon)}

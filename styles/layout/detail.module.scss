@@ -19,6 +19,13 @@
     object-fit: cover;
   }
 }
+.player_fixed {
+  position: fixed;
+  top: 2.65em;
+  left: 0;
+  z-index: 100;
+  transition: 0.4s ease;
+}
 .info_container {
   padding-top: 1em;
   background-color: _color(white);
@@ -440,9 +447,15 @@
     }
   }
   .player {
+    height: 25em;
     border: 1px solid _color(gray, 5);
     border-bottom: none;
     box-sizing: border-box;
+  }
+  .player_fixed {
+    position: unset;
+    z-index: unset;
+    transition: unset;
   }
   .info_container {
     border: 1px solid _color(gray, 4);
