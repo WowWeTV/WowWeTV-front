@@ -73,36 +73,34 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
         }
       >
         <ul className={styles.aside_lnb}>
-          <li className={pathname === '/' ? styles.menu_active : null}>
-            <Link href="/">
-              <>
-                <div className={`icon ${styles.icon}`}>
-                  <AiFillHome />
-                </div>
-                <h2>홈</h2>
-              </>
-            </Link>
-          </li>
-          <li className={pathname.includes('/sub') ? styles.menu_active : null}>
-            <Link href="/sub">
-              <>
-                <div className={`icon ${styles.icon}`}>
-                  <AiOutlineStar />
-                </div>
-                <h2>인기영상</h2>
-              </>
-            </Link>
-          </li>
-          <li className={pathname === '/streaming' ? styles.menu_active : null}>
-            <Link href="/streaming">
-              <>
-                <div className={`icon ${styles.icon}`}>
-                  <AiOutlineComment />
-                </div>
-                <h2>라이브</h2>
-              </>
-            </Link>
-          </li>
+          <Link href="/">
+            <li className={pathname === '/' ? styles.menu_active : null}>
+              <div className={`icon ${styles.icon}`}>
+                <AiFillHome />
+              </div>
+              <h2>홈</h2>
+            </li>
+          </Link>
+          <Link href="/sub">
+            <li
+              className={pathname.includes('/sub') ? styles.menu_active : null}
+            >
+              <div className={`icon ${styles.icon}`}>
+                <AiOutlineStar />
+              </div>
+              <h2>인기영상</h2>
+            </li>
+          </Link>
+          <Link href="/streaming">
+            <li
+              className={pathname === '/streaming' ? styles.menu_active : null}
+            >
+              <div className={`icon ${styles.icon}`}>
+                <AiOutlineComment />
+              </div>
+              <h2>라이브</h2>
+            </li>
+          </Link>
           <li
             className={
               pathname.includes('my')
@@ -112,12 +110,12 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
           >
             <div className={styles.aside_sub_title}>
               <Link href="/my/recentPlaylist">
-                <>
-                  <div className={`icon ${styles.icon}`}>
-                    <AiOutlineUser />
-                  </div>
-                  <h2>MY</h2>
-                </>
+                <div className={`icon ${styles.icon}`}>
+                  <AiOutlineUser />
+                </div>
+              </Link>
+              <Link href="/my/recentPlaylist">
+                <h2 className={styles.aside_my}>MY</h2>
               </Link>
               <div className={styles.aside_btn} onClick={onToggleSub}>
                 {submenu ? <AiOutlineDown /> : <AiOutlineUp />}

@@ -8,7 +8,6 @@
 .recent_container {
   display: none;
 }
-// recent carousel slide
 .slide {
   position: relative;
   width: 100%;
@@ -104,7 +103,6 @@
     }
   }
 }
-// top100 video list
 .top100_container {
   padding: 2.5em 1.5rem;
   .section_title {
@@ -169,7 +167,6 @@
   .recent_slider {
     display: none;
   }
-  // recent video list
   .recent_section {
     padding: 2.5em 0;
     background-color: _color(gray, 2);
@@ -212,8 +209,6 @@
       }
     }
   }
-
-  // top100
   .top100_container {
     width: 42.5rem;
     margin: 0 auto;
@@ -254,7 +249,6 @@
     margin-top: 4.25em;
     margin-left: 13.75rem;
   }
-  // recent
   .recent_section {
     padding: 2.5em 0;
   }
@@ -304,7 +298,6 @@
       }
     }
   }
-  // top100
   .top100 {
     margin-bottom: 1.25em;
   }
@@ -318,7 +311,6 @@
 }
 
 @include respond-to(xlarge) {
-  // recent
   .recent_section {
     padding: 3em 0;
   }
@@ -328,7 +320,6 @@
   .recent_img {
     height: 10em;
   }
-  //top100
   .top100_container {
     width: 68.75rem;
     margin: 0.5em auto;

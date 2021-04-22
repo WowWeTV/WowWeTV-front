@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from '@/styles/layout/sub.module.scss';
 import Top100Video from './Top100Video';
@@ -15,6 +14,7 @@ const SubLayout = () => {
 
   return (
     <div className={styles.sub_container}>
+      <h2 className={styles.sub_title}>인기</h2>
       <div className={styles.sub_tabs}>
         <div>
           {tabTitle.map((title, idx) => {

@@ -192,7 +192,7 @@
     z-index: 100;
     li {
       overflow: hidden;
-      padding: 0.75em 1.25rem;
+      padding: 1em 1.25rem;
       div,
       h2 {
         float: left;
@@ -206,11 +206,13 @@
       }
     }
     .icon {
-      margin-top: 0.2em;
       font-size: _fs(medium);
     }
     .aside_lnb {
       margin-top: 5.5em;
+      .icon {
+        margin-top: 0.175em;
+      }
     }
     .aside_sub_container {
       padding-top: 1em;
@@ -235,12 +237,15 @@
             background-color: _color(gray, 3);
           }
         }
+        .aside_my {
+          padding-right: 5rem;
+        }
       }
       .aside_sub {
         margin-top: 2em;
         margin-left: 0.5rem;
         li {
-          padding: 0.4em 1.25rem;
+          padding: 0.5em 1.25rem;
           font-size: _fs(small);
           h3 {
             color: _color(gray, 7);
