@@ -45,6 +45,7 @@
     "no-plusplus": "off",
     "jsx-a11y/alt-text": "off",
     "react/require-default-props": "off",
+    "no-param-reassign": 0,
 
     "prettier/prettier": [
       "error",
