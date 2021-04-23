@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/detail.module.scss';
 import VideoNestedComment from './VideoNestedComment';
 import { AiOutlineDown } from 'react-icons/ai';
+import { addComment } from 'lib/slices/videoSlice';
 
 const VideoComment = () => {
   const { singleVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
   const { comments } = singleVideo;
 
   const [startIndex, setStartIndex] = useState(0);
@@ -45,8 +47,12 @@ const VideoComment = () => {
   const onSubmitComment = useCallback(
     (e) => {
       e.preventDefault();
-      // if (!commentInput) return alert('댓글을 입력해 주세요');
-      // return alert(`${commentInput}\n댓글이 등록되었습니다.`);
+      // if (!commentInput) {
+      //   return alert('댓글을 입력해 주세요');
+      // }
+      dispatch(addComment({ commentText: commentInput }));
+      // alert(`${commentInput}\n댓글이 등록되었습니다.`);
+      setCommentInput('');
     },
     [commentInput],
   );
@@ -80,6 +86,7 @@ const VideoComment = () => {
         <ul>
           {comments
             .slice(startIndex, lastIndex * moreComments)
+            .reverse()
             .map((comment, index) => {
               const {
                 id,
@@ -97,7 +104,9 @@ const VideoComment = () => {
                         : styles.comment_box
                     }
                   >
-                    <p className={styles.user_name}>{user.userName}</p>
+                    <p className={styles.user_name}>
+                      {index} {user.userName}
+                    </p>
                     <div className={styles.comment_text}>{commentText}</div>
                     <p className={styles.date}>{postedDate(createDate)}</p>
                     <button

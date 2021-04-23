@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNestedComment } from 'lib/slices/videoSlice';
 import styles from '@/styles/layout/detail.module.scss';
 import { AiOutlineUp } from 'react-icons/ai';
 
 const VideoNestedComment = ({ postedDate, onShowNested, index }) => {
   const { singleVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
   const { comments } = singleVideo;
 
   const [nestedInputs, setNestedInputs] = useState('');
@@ -21,8 +23,12 @@ const VideoNestedComment = ({ postedDate, onShowNested, index }) => {
   const onSubmitNested = useCallback(
     (e) => {
       e.preventDefault();
-      // if (!nestedInputs) return alert('댓글을 입력해 주세요');
-      // return alert(`${nestedInputs}\n댓글이 등록되었습니다.`);
+      // if (!nestedInputs) {
+      //   return alert('댓글을 입력해 주세요');
+      // }
+      dispatch(addNestedComment({ nestedCommentText: nestedInputs }));
+      // alert(`${nestedInputs}\n댓글이 등록되었습니다.`);
+      setNestedInputs('');
     },
     [nestedInputs],
   );
@@ -30,7 +36,7 @@ const VideoNestedComment = ({ postedDate, onShowNested, index }) => {
   return (
     <div className={styles.nested_box}>
       <ul className={styles.nested_list}>
-        {comments[0].nestedComment.map((comment) => (
+        {comments[index].nestedComment.map((comment) => (
           <li key={comment.id}>
             <div className={styles.icon}>└</div>
             <div className={styles.nested_info}>

@@ -110,6 +110,7 @@
       float: right;
       font-size: _fs(xlarge);
       color: _color(gray, 9);
+      cursor: pointer;
     }
     .icon {
       margin-right: 0.125rem;
@@ -228,7 +229,7 @@
       font-size: _fs(small);
       box-sizing: border-box;
       .icon {
-        padding-top: 0.4em;
+        padding-top: 0.3em;
         margin-right: 0.15rem;
         font-size: _fs(normal);
         opacity: 0.8;

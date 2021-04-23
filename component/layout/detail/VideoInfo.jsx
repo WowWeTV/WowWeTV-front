@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLike, addView, removeLike } from 'lib/slices/videoSlice';
 import classnames from 'classnames';
 import numeral from 'numeral';
 import styles from '@/styles/layout/detail.module.scss';
@@ -16,6 +17,7 @@ import {
 
 const VideoInfo = () => {
   const { singleVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
   const {
     id,
     videoTitle,
@@ -35,8 +37,11 @@ const VideoInfo = () => {
   const [descText, setDescText] = useState(false);
   const [urlModal, setUrlModal] = useState(false);
   const [videoLike, setVideoLike] = useState(false);
-  const [likesNumber, setLikesNumber] = useState(likes);
 
+  // 영상 조회 수 증가
+  useEffect(() => {
+    dispatch(addView());
+  }, []);
   // 스크롤 이벤트
   const handleScroll = useCallback(() => {
     const { pageYOffset } = window;
@@ -55,12 +60,12 @@ const VideoInfo = () => {
   const onAddLike = () => {
     setVideoLike(!videoLike);
     if (videoLike) {
-      setLikesNumber(likes);
+      dispatch(removeLike());
     } else {
-      setLikesNumber(likes + 1);
+      dispatch(addLike());
     }
   };
-  // 영상 설명 토글
+  // 영상 설명
   const onToggleDesc = useCallback(() => {
     setDescText(!descText);
   }, [descText]);
@@ -125,7 +130,7 @@ const VideoInfo = () => {
                 ) : (
                   <AiOutlineHeart className={styles.icon} />
                 )}
-                {likesNumber}
+                {likes}
               </span>
               <span className={styles.comments}>
                 <a href="#comment">
