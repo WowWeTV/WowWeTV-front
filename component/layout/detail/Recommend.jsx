@@ -72,9 +72,12 @@ const Recommend = () => {
                     {likes}
                   </p>
                 </div>
-                <div className={styles.more} onClick={() => onHandleModal(id)}>
+                <button
+                  className={styles.more}
+                  onClick={() => onHandleModal(id)}
+                >
                   <AiOutlineMore />
-                </div>
+                </button>
               </li>
             );
           })}
