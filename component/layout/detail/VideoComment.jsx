@@ -24,12 +24,10 @@ const VideoComment = () => {
     postedComment: '',
   });
   const { newComment, postedComment } = commentInput;
-  const initialButtonState = new Array(comments.length).fill(false);
-  const [commentWorks, setCommentWorks] = useState(initialButtonState);
-  const initialModify = new Array(comments.length).fill(false);
-  const [modification, setModification] = useState(initialModify);
-  const initialNestedState = new Array(comments.length).fill(false);
-  const [nestedList, setNestedList] = useState(initialNestedState);
+  const initialStates = new Array(comments.length).fill(false);
+  const [updateButton, setUpdateButton] = useState(initialStates);
+  const [modification, setModification] = useState(initialStates);
+  const [nestedList, setNestedList] = useState(initialStates);
 
   // 댓글 게시 날짜
   const postedDate = useCallback(
@@ -62,7 +60,7 @@ const VideoComment = () => {
     (e) => {
       e.preventDefault();
       if (!newComment) {
-        alert('댓글을 입력해 주세요');
+        alert('댓글을 입력해 주세요.');
       } else {
         dispatch(addComment({ commentText: newComment }));
         alert(`${newComment}\n댓글이 등록되었습니다.`);
@@ -72,46 +70,58 @@ const VideoComment = () => {
     [newComment],
   );
   // 댓글 수정, 삭제 보기 버튼
-  const onClickWorksButton = useCallback(
+  const onClickUpdateButton = useCallback(
     (index) => {
-      setCommentWorks(commentWorks.map((_, i) => i === index));
+      setUpdateButton(updateButton.map((_, i) => i === index));
     },
-    [commentWorks],
+    [updateButton],
   );
   // 댓글 수정
   const onClickModifyButton = useCallback(
     (index) => {
-      setCommentWorks(initialButtonState);
+      setUpdateButton(initialStates);
       setModification(
         modification.map((state, i) => (i === index ? !state : false)),
       );
       setCommentInput({ postedComment: commentList[index].commentText });
     },
-    [commentWorks, modification, postedComment],
+    [updateButton, modification, postedComment],
   );
   const onModifyComment = useCallback(
     (e, id) => {
       e.preventDefault();
-      dispatch(modifyComment({ id, commentText: postedComment }));
-      alert(`${postedComment}\n댓글이 수정되었습니다.`);
-      setCommentWorks(initialButtonState);
+      if (!postedComment) {
+        alert('댓글을 입력해 주세요.');
+      } else {
+        dispatch(modifyComment({ id, commentText: postedComment }));
+        alert(`${postedComment}\n댓글이 수정되었습니다.`);
+        setModification(initialStates);
+      }
     },
-    [postedComment, commentWorks, comments],
+    [postedComment, modification, comments],
+  );
+  // 댓글 삭제
+  const onRemoveComment = useCallback(
+    (id) => {
+      dispatch(removeComment({ id }));
+      alert('댓글이 삭제되었습니다.');
+    },
+    [comments],
   );
   // 댓글 더보기
   const onShowMoreComments = useCallback(() => {
-    setCommentWorks(initialButtonState);
+    setUpdateButton(initialStates);
     setMoreComments(moreComments + 1);
-  }, [commentWorks, moreComments]);
+  }, [updateButton, moreComments]);
   // 대댓글 열기
   const onShowNested = useCallback(
     (index) => {
-      setCommentWorks(initialButtonState);
+      setUpdateButton(initialStates);
       setNestedList(
         nestedList.map((state, i) => (i === index ? !state : state)),
       );
     },
-    [commentWorks, nestedList],
+    [updateButton, nestedList],
   );
 
   return (
@@ -127,7 +137,7 @@ const VideoComment = () => {
           value={newComment}
           name="newComment"
           onChange={onChangeComment}
-          onClick={() => setCommentWorks(initialButtonState)}
+          onClick={() => setUpdateButton(initialStates)}
         />
         <button type="submit" className="primary" onClick={onAddComment}>
           등록
@@ -154,7 +164,7 @@ const VideoComment = () => {
                 >
                   <div className={styles.comment_info_box}>
                     {modification[index] ? (
-                      <div className={styles.modify_comment_box}>
+                      <div className={styles.comment_form}>
                         <form onSubmit={(e) => onModifyComment(e, id)}>
                           <input
                             type="textarea"
@@ -171,7 +181,7 @@ const VideoComment = () => {
                               className="primary"
                               onClick={(e) => onModifyComment(e, id)}
                             >
-                              등록
+                              수정
                             </button>
                           </div>
                         </form>
@@ -180,7 +190,7 @@ const VideoComment = () => {
                       <>
                         <div
                           className={styles.comment_info}
-                          onClick={() => setCommentWorks(initialButtonState)}
+                          onClick={() => setUpdateButton(initialStates)}
                         >
                           <p className={styles.user_name}>
                             {index} {user.userName}
@@ -193,17 +203,17 @@ const VideoComment = () => {
                           </p>
                         </div>
                         <button
-                          className={styles.comment_works_btn}
-                          onClick={() => onClickWorksButton(index)}
+                          className={styles.comment_update_btn}
+                          onClick={() => onClickUpdateButton(index)}
                         >
                           <AiOutlineMore />
                         </button>
-                        {commentWorks[index] && (
-                          <div className={styles.works_list}>
+                        {updateButton[index] && (
+                          <div className={styles.modify_remove}>
                             <button onClick={() => onClickModifyButton(index)}>
                               수정
                             </button>
-                            <button onClick={() => dispatch(removeComment(id))}>
+                            <button onClick={() => onRemoveComment(id)}>
                               삭제
                             </button>
                           </div>
@@ -226,7 +236,7 @@ const VideoComment = () => {
                   <VideoNestedComment
                     postedDate={postedDate}
                     onShowNested={onShowNested}
-                    index={index}
+                    commentIndex={index}
                   />
                 )}
               </li>
