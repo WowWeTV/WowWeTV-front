@@ -1,18 +1,109 @@
 @import './lib/vars.scss';
 @import './lib/functions.scss';
 @import './lib/breakpoints.scss';
-.channel_container {
-  height: 100%;
+.info_box_content {
+  display: none;
 }
-.info_banner {
-  .banner_img {
+.share_btn {
+  width: 6rem;
+  color: #fff;
+  margin-left: auto;
+  order: 2;
+  background: #4c6ef5;
+  float: right;
+}
+.inf_wrap {
+  position: relative;
+  border-bottom: 1px solid #d8d8d8;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .info_banner {
     width: 100%;
-    height: 50%;
+    .banner_img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .info_img_mobile {
+    position: absolute;
+    width: 100%;
+  }
+  .info_box {
+    width: 100%;
+    .user_img_mobile {
+      position: absolute;
+
+      width: 70px;
+      height: 70px;
+
+      border: 3px solid #d8d8d8;
+      border-radius: 50%;
+    }
+    .info_box_content_mobile {
+      position: relative;
+      .info_user_mobile {
+        padding: 65px 15px 0;
+        position: relative;
+      }
+
+      .user_detail_mobile {
+        display: inline-block;
+        h2 {
+          font-size: 1.5rem;
+        }
+        span {
+          font-size: 0.7rem;
+          margin-left: 0.1em;
+        }
+      }
+    }
+  }
+}
+.info_menu {
+  width: 80%;
+  ul {
+    margin-top: 1em;
+    display: inline-block;
+    left: 50%;
+    display: flex;
+  }
+  li {
+    float: left;
+    margin-right: 2em;
+    padding: 0.55em 0;
+    width: auto;
+    &.selected {
+      border-bottom: 2px solid _color(point);
+    }
+    & .span_tab {
+      display: inline-block;
+      line-height: 2em;
+      color: #000;
+      cursor: pointer;
+    }
   }
 }
 .inf_content {
 }
+
+.channel_info_mobile {
+  width: 100%;
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  z-index: 200;
+  display: block;
+}
+
 @include respond-to(large) {
+  .info_box_content_mobile {
+    display: none;
+    .channel_info_user_mobile {
+      display: none;
+    }
+  }
   .channel_container {
     margin-top: 4.25em;
     margin-left: 13.75rem;
@@ -48,6 +139,8 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
+        position: static;
+        border: 1px solid #d8d8d8;
       }
       .info_box_content {
         display: flex;

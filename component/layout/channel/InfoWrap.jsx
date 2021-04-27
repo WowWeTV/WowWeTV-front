@@ -25,11 +25,29 @@ const InfoWrap = () => {
               <span>동영상 500</span>
             </div>
           </div>
-
           <button className={styles.share_btn}>
             <AiOutlineShareAlt size="1.2em" />
             공유
           </button>
+        </div>
+
+        <div className={styles.info_box_content_mobile}>
+          <div className={styles.channel_info_mobile}>
+            <img
+              className={styles.user_img_mobile}
+              src={singlechannel.userImg}
+            />
+          </div>
+          <div className={styles.info_user_mobile}>
+            <div className={styles.user_detail_mobile}>
+              <h2>{singlechannel.userName}</h2>
+              <span>동영상 500</span>
+            </div>
+            <button className={styles.share_btn}>
+              <AiOutlineShareAlt size="1.2em" />
+              공유
+            </button>
+          </div>
         </div>
       </div>
       <div className={styles.info_menu}>
