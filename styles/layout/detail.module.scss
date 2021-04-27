@@ -305,7 +305,7 @@
 .comment_text {
   line-height: 1.5em;
 }
-.modify_comment_box {
+.comment_form {
   input {
     width: 100%;
     padding: 0.75em;
@@ -330,22 +330,22 @@
   font-size: _fs(small);
   color: _color(gray, 7);
 }
-.comment_works_btn {
+.comment_update_btn {
   float: right;
   padding: 0 0 1em 1rem;
   font-size: _fs(xlarge);
   color: _color(gray, 6);
   border: none;
 }
-.works_list {
+.modify_remove {
   position: absolute;
-  top: 2em;
+  top: 3.25em;
   right: 0;
   width: 5rem;
   background-color: _color(white);
   border: 1px solid _color(gray, 4);
   border-radius: 3px;
-  z-index: 100;
+  z-index: 1;
   button {
     display: block;
     width: 100%;
@@ -405,19 +405,41 @@
 }
 .nested_list {
   li {
+    position: relative;
     overflow: hidden;
     padding: 0.75em 0;
     border-bottom: 1px solid _color(gray, 4);
   }
+  .comment_form {
+    input {
+      width: calc(93% - 0.75rem);
+      margin-top: -1em;
+      padding: 0.75em 0.5rem;
+      background-color: unset;
+    }
+  }
   .icon {
-    width: 9%;
+    width: 7%;
     float: left;
     margin-top: 0.25em;
+    margin-right: 0.75rem;
     font-size: _fs(large);
   }
   .nested_info {
-    width: 91%;
+    width: calc(91% - 3rem);
     float: left;
+  }
+  .nested_update_btn {
+    float: right;
+    padding: 0 0 1em 1rem;
+    font-size: _fs(xlarge);
+    color: _color(gray, 6);
+    background-color: unset;
+    border: none;
+  }
+  .modify_remove {
+    top: 0.75em;
+    right: 1.75rem;
   }
 }
 
@@ -440,7 +462,7 @@
       width: 13.6%;
     }
   }
-  .modify_comment_box {
+  .comment_form {
     div {
       button {
         width: 13.6%;
@@ -451,7 +473,7 @@
   .nested_box {
     form {
       input {
-        width: 86%;
+        width: 86.5%;
       }
       .submit_nested {
         width: 13%;
@@ -459,8 +481,17 @@
     }
   }
   .nested_list {
+    .comment_form {
+      input {
+        width: calc(97% - 0.75rem);
+      }
+      button {
+        width: 13%;
+        padding: 0.75em 1rem;
+      }
+    }
     .icon {
-      width: 5%;
+      width: 3%;
     }
   }
 }
@@ -590,11 +621,10 @@
   }
   .recommend_info {
     width: 100%;
-    height: 8em;
+    height: 6em;
     float: unset;
     margin: 0;
     padding: 0;
-    height: unset;
     p {
       &:nth-child(1) {
         margin-top: 0.5em;
@@ -624,7 +654,7 @@
       margin: 0;
     }
   }
-  .modify_comment_box {
+  .comment_form {
     div {
       button {
         width: unset;
