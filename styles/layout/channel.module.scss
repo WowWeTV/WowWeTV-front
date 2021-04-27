@@ -62,21 +62,18 @@
   }
 }
 .info_menu {
-  width: 80%;
-  ul {
-    margin-top: 1em;
-    display: inline-block;
-    left: 50%;
-    display: flex;
-  }
+  width: 100%;
+  padding-left: 30px;
+
   li {
     float: left;
     margin-right: 2em;
     padding: 0.55em 0;
-    width: auto;
+
     &.selected {
       border-bottom: 2px solid _color(point);
     }
+
     & .span_tab {
       display: inline-block;
       line-height: 2em;
@@ -85,6 +82,7 @@
     }
   }
 }
+
 .inf_content {
 }
 
@@ -161,6 +159,7 @@
   }
   .info_menu {
     width: 80%;
+    padding-left: 0;
     ul {
       margin-top: 1em;
       display: inline-block;
