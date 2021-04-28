@@ -10,8 +10,18 @@ const InfoWrap = () => {
   const router = useRouter();
   const { userId, type } = router.query;
   console.log(userId, type);
-  console.log(type === undefined);
-  console.log(type === 'videos');
+
+  const onClickShare = async () => {
+    try {
+      await window.navigator.share({
+        title: '공유한다잉',
+        text: '공유따리',
+        url: 'http://localhost:3000/user/2?type=videos',
+      });
+    } catch (error) {
+      console.log('공유 실패');
+    }
+  };
   return (
     <div className={styles.inf_wrap}>
       <div className={styles.info_banner}>
@@ -44,7 +54,7 @@ const InfoWrap = () => {
               <h2>{singlechannel.userName}</h2>
               <span>동영상 500</span>
             </div>
-            <button className={styles.share_btn}>
+            <button className={styles.share_btn} onClick={onClickShare}>
               <AiOutlineShareAlt size="1.2em" />
               공유
             </button>
