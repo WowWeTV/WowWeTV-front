@@ -6,6 +6,7 @@ const Channel = () => {
   return (
     <div className={styles.channel_container}>
       <InfoWrap />
+      <InfoContent />
     </div>
   );
 };

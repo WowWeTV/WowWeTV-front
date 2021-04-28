@@ -19,6 +19,7 @@
 }
 
 .list_content {
+  width: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -213,7 +214,7 @@
         border-bottom: 2px solid _color(point);
       }
 
-      &.span_tab {
+      & .span_tab {
         display: inline-block;
         line-height: 2em;
         color: #000;

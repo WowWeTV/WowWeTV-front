@@ -1,9 +1,26 @@
 @import './lib/vars.scss';
 @import './lib/functions.scss';
 @import './lib/breakpoints.scss';
+
+.h3_font {
+  display: inline-block;
+  font-size: 1.15rem;
+}
 .info_box_content {
   display: none;
 }
+.pc_btn {
+  display: none;
+}
+.mobile_btn {
+  float: right;
+  display: block;
+}
+.list_more_btn {
+  width: 30%;
+  border: none;
+}
+
 .share_btn {
   width: 6rem;
   color: #fff;
@@ -84,8 +101,97 @@
 }
 
 .inf_content {
+  .list_box {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+
+    &.margin_top {
+      margin-top: 2em;
+    }
+  }
+  .list_header {
+    margin: 1rem 0;
+    em {
+      font-size: 1.2em;
+      color: _color(point);
+    }
+  }
+  .list_content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .list_more {
+    width: 80%;
+
+    padding: 0.5em;
+  }
+
+  .search_videobox {
+    display: flex;
+    width: 90%;
+
+    margin: 0 auto 1em;
+
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #eee;
+
+    img {
+      width: 170px;
+      height: 95px;
+    }
+    .search_videodetail {
+      padding-left: 0.4em;
+
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      box-sizing: border-box;
+      .title {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 90%;
+        white-space: nowrap;
+
+        font-size: 0.5em;
+        color: _color(black);
+      }
+      .video_username {
+        color: _color(point);
+      }
+      a {
+        color: _color(point);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      span {
+        overflow: hidden;
+        color: _color(gray, 7);
+      }
+    }
+  }
 }
 
+.video_views {
+  .icon {
+    margin-left: 0.25rem;
+
+    vertical-align: text-top;
+  }
+  p {
+    line-height: 1.25em;
+    font-size: 0.75rem;
+    span {
+    }
+  }
+}
 .channel_info_mobile {
   width: 100%;
   position: absolute;
@@ -96,6 +202,9 @@
 }
 
 @include respond-to(large) {
+  .h3_font {
+    margin-left: 1em;
+  }
   .info_box_content_mobile {
     display: none;
     .channel_info_user_mobile {
@@ -182,6 +291,95 @@
       }
     }
   }
+
+  .pc_btn {
+    display: block;
+    margin-right: 1em;
+  }
+  .mobile_btn {
+    display: none;
+  }
+
   .inf_content {
+    .list_box {
+      align-items: center;
+      margin: 0 auto;
+      flex-direction: column;
+      display: flex;
+      background-color: #fff;
+
+      &.margin_top {
+        margin-top: 2em;
+      }
+    }
+    .list_header {
+      margin: 1rem 0;
+      em {
+        font-size: 1.2em;
+        color: _color(point);
+      }
+    }
+    .list_content {
+      flex-wrap: wrap;
+      width: 80%;
+      padding: 1em;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .list_more {
+      padding: 1em;
+    }
+    .list_more_btn {
+      // border: none;
+    }
+
+    .search_videobox {
+      display: flex;
+      width: 200px;
+      flex-direction: column;
+      align-items: center;
+      margin: none;
+
+      padding-bottom: none;
+      border-bottom: none;
+
+      img {
+        width: 170px;
+        height: 95px;
+      }
+      .search_videodetail {
+        display: flex;
+        width: 170px;
+
+        padding-left: 0;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        .title {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+
+          font-size: 0.9em;
+          color: _color(black);
+        }
+        .video_username {
+          color: _color(point);
+        }
+        a {
+          color: _color(point);
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          color: _color(gray, 7);
+        }
+      }
+    }
   }
 }
