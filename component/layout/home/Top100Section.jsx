@@ -37,29 +37,33 @@ const Top100Section = () => {
             likes,
           } = video;
           return (
-            <div key={id} className={styles.top100}>
-              <div className={styles.top100_ranking}>{index + 1}</div>
-              <div className={classnames(styles.top100_img, styles.video_img)}>
-                <img src={videoUrl} alt={videoTitle} />
-                <span>{(videoLength / 3600).toFixed(2)}</span>
+            <Link href={`/detail/${id}`}>
+              <div key={id} className={styles.top100}>
+                <div className={styles.top100_ranking}>{index + 1}</div>
+                <div
+                  className={classnames(styles.top100_img, styles.video_img)}
+                >
+                  <img src={videoUrl} alt={videoTitle} />
+                  <span>{(videoLength / 3600).toFixed(2)}</span>
+                </div>
+                <div
+                  className={classnames(styles.top100_info, styles.video_info)}
+                >
+                  <p>{videoTitle}</p>
+                  <Link href={`/search?query=${userName}&type=channels`}>
+                    <p>{userName}</p>
+                  </Link>
+                  <p>
+                    <AiOutlinePlayCircle className={styles.icon} />
+                    {views}
+                    <span>
+                      <AiOutlineHeart className={styles.icon} />
+                    </span>
+                    {likes}
+                  </p>
+                </div>
               </div>
-              <div
-                className={classnames(styles.top100_info, styles.video_info)}
-              >
-                <p>{videoTitle}</p>
-                <Link href={`/search?query=${userName}&type=channels`}>
-                  <p>{userName}</p>
-                </Link>
-                <p>
-                  <AiOutlinePlayCircle className={styles.icon} />
-                  {views}
-                  <span>
-                    <AiOutlineHeart className={styles.icon} />
-                  </span>
-                  {likes}
-                </p>
-              </div>
-            </div>
+            </Link>
           );
         })}
       </div>
@@ -75,29 +79,33 @@ const Top100Section = () => {
             likes,
           } = video;
           return (
-            <div key={id} className={styles.top100}>
-              <div className={styles.top100_ranking}>{index + 6}</div>
-              <div className={classnames(styles.top100_img, styles.video_img)}>
-                <img src={videoUrl} alt={`${videoTitle}`} />
-                <span>{(videoLength / 3600).toFixed(2)}</span>
+            <Link href={`/detail/${id}`}>
+              <div key={id} className={styles.top100}>
+                <div className={styles.top100_ranking}>{index + 6}</div>
+                <div
+                  className={classnames(styles.top100_img, styles.video_img)}
+                >
+                  <img src={videoUrl} alt={`${videoTitle}`} />
+                  <span>{(videoLength / 3600).toFixed(2)}</span>
+                </div>
+                <div
+                  className={classnames(styles.top100_info, styles.video_info)}
+                >
+                  <p>{videoTitle}</p>
+                  <Link href={`/search?query=${userName}&type=channels`}>
+                    <p>{userName}</p>
+                  </Link>
+                  <p>
+                    <AiOutlinePlayCircle className={styles.icon} />
+                    {views}
+                    <span>
+                      <AiOutlineHeart className={styles.icon} />
+                    </span>
+                    {likes}
+                  </p>
+                </div>
               </div>
-              <div
-                className={classnames(styles.top100_info, styles.video_info)}
-              >
-                <p>{videoTitle}</p>
-                <Link href={`/search?query=${userName}&type=channels`}>
-                  <p>{userName}</p>
-                </Link>
-                <p>
-                  <AiOutlinePlayCircle className={styles.icon} />
-                  {views}
-                  <span>
-                    <AiOutlineHeart className={styles.icon} />
-                  </span>
-                  {likes}
-                </p>
-              </div>
-            </div>
+            </Link>
           );
         })}
       </div>

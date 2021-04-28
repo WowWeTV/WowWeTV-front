@@ -4,18 +4,27 @@
 
 .detail_container {
   background-color: _color(gray, 2);
+  box-sizing: border-box;
 }
-// video player
+.title {
+  display: none;
+}
+// VideoInfo
 .player {
   width: 100%;
-  height: 180px;
+  height: 11em;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
-// video information
+.player_fixed {
+  position: fixed;
+  top: 2.65em;
+  left: 0;
+  z-index: 100;
+}
 .info_container {
   padding-top: 1em;
   background-color: _color(white);
@@ -55,8 +64,8 @@
       font-size: _fs(large);
       font-weight: bold;
     }
-    button {
-      padding: 10px;
+    .desc_btn {
+      padding: 0.625em 0.625rem;
       padding-right: 0;
       border: none;
       line-height: 0;
@@ -79,43 +88,55 @@
   }
   .likes_comments {
     overflow: hidden;
-    margin: 1.25em 0 1.5em;
+    margin: 1.25em 0;
     font-size: _fs(normal);
     span {
       color: _color(gray, 9);
     }
     .likes,
-    .comments {
+    .comments > a {
       display: flex;
       align-items: center;
       float: left;
       font-weight: bold;
+      cursor: pointer;
     }
     .likes {
-      margin-right: 0.5rem;
+      margin-right: 0.75rem;
+      transition: all 0.4s ease-in;
     }
     .link {
       float: right;
       font-size: _fs(xlarge);
       color: _color(gray, 9);
+      cursor: pointer;
     }
     .icon {
       margin-right: 0.125rem;
       font-size: _fs(xlarge);
       color: _color(gray, 9);
+      &.clicked_likes {
+        color: _color(point);
+      }
     }
   }
 }
 .video_desc {
   margin-bottom: 1.5em;
+  &.mobile_desc {
+    display: block;
+  }
+  &.desktop_desc {
+    display: none;
+  }
 }
 .user_info {
   display: flex;
   align-items: center;
   padding: 0.75em 5%;
   .user_img {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3em;
     img {
       width: 100%;
       height: 100%;
@@ -128,18 +149,19 @@
     font-weight: bold;
   }
 }
-// recommended video list
+// Recommend
 .recommend_container {
   margin-top: 1em;
   background-color: _color(white);
-  .title {
-    border-bottom: 1px solid _color(gray, 4);
-    h4 {
-      padding: 0.75em 5%;
-    }
+}
+.recommend_title {
+  border-bottom: 1px solid _color(gray, 4);
+  h4 {
+    padding: 0.75em 5%;
   }
 }
 .recommend_list {
+  overflow: hidden;
   padding: 1em 5%;
 }
 .recommend {
@@ -147,19 +169,21 @@
   width: 100%;
   margin-bottom: 1em;
   .more {
-    width: 5%;
     float: right;
+    padding: 0;
     font-size: _fs(xlarge);
     color: _color(gray, 6);
+    border: none;
   }
 }
 .recommend_img {
   position: relative;
   float: left;
+  margin: 0.1em 0;
   line-height: 0;
   img {
-    width: 145px;
-    height: 85px;
+    width: 8rem;
+    height: 4.5em;
     object-fit: cover;
   }
   span {
@@ -176,10 +200,10 @@
   }
 }
 .recommend_info {
-  width: 35%;
-  height: 80px;
+  width: calc(100% - 11rem);
+  height: 4.75em;
   float: left;
-  margin: 0 4%;
+  margin: 0 3%;
   padding: 0;
   border: none;
   p {
@@ -202,16 +226,499 @@
     }
     &:nth-child(3) {
       display: flex;
-      font-size: _fs(xsmall);
+      font-size: _fs(small);
       box-sizing: border-box;
       .icon {
-        padding-top: 0.4em;
+        padding-top: 0.3em;
         margin-right: 0.15rem;
         font-size: _fs(normal);
         opacity: 0.8;
       }
       span {
         margin-left: 0.5rem;
+      }
+    }
+  }
+}
+// VideoComment
+.comment_container {
+  margin-top: 1em;
+  background-color: _color(white);
+}
+.comment_title {
+  border-bottom: 1px solid _color(gray, 4);
+  display: flex;
+  padding: 0.75em 5%;
+  span {
+    margin-left: 0.25rem;
+    font-weight: bold;
+    color: _color(point);
+  }
+}
+.write_comment {
+  padding: 0.75em 5% 0;
+  input {
+    width: 76%;
+    padding: 0.75em 1rem;
+    box-sizing: border-box;
+  }
+  button {
+    width: 23%;
+    margin-left: 0.125rem;
+    padding: 0.75em 1rem;
+    box-sizing: border-box;
+  }
+}
+.comment_list {
+  li {
+    font-size: _fs(normal);
+  }
+  .comment_box {
+    position: relative;
+    margin: 0 5%;
+    padding: 1.25em 0;
+    border-bottom: 1px solid _color(gray, 3);
+    box-sizing: border-box;
+    &.open_nested {
+      border: none;
+    }
+    .nested_btn {
+      margin-top: 0.5em;
+      padding: 0.5em 0.75rem;
+      &.clicked {
+        color: _color(point);
+        border-color: _color(point);
+      }
+    }
+  }
+}
+.comment_info_box {
+  overflow: hidden;
+}
+.comment_info {
+  width: calc(100% - 3rem);
+  float: left;
+}
+.user_name {
+  font-weight: bold;
+}
+.comment_text {
+  line-height: 1.5em;
+}
+.comment_form {
+  input {
+    width: 100%;
+    padding: 0.75em;
+    border: none;
+    border-bottom: 1px solid _color(black);
+    border-radius: 0;
+  }
+  div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0.5em;
+    button {
+      width: 23%;
+      margin-left: 0.125rem;
+      padding: 0.75em 1rem;
+      box-sizing: border-box;
+    }
+  }
+}
+.date {
+  font-size: _fs(small);
+  color: _color(gray, 7);
+}
+.comment_update_btn {
+  float: right;
+  padding: 0 0 1em 1rem;
+  font-size: _fs(xlarge);
+  color: _color(gray, 6);
+  border: none;
+}
+.modify_remove {
+  position: absolute;
+  top: 3.25em;
+  right: 0;
+  width: 5rem;
+  background-color: _color(white);
+  border: 1px solid _color(gray, 4);
+  border-radius: 3px;
+  z-index: 1;
+  button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    line-height: 2.5em;
+    border: none;
+    &:hover {
+      background-color: _color(gray, 2);
+    }
+  }
+}
+.more_comments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em 5% 7em;
+  font-size: _fs(normal);
+  cursor: pointer;
+  .icon {
+    margin-left: 0.25rem;
+    color: _color(gray, 7);
+  }
+}
+// VideoNestedComment
+.nested_box {
+  padding: 0 5%;
+  border-top: 1px solid _color(gray, 4);
+  border-bottom: 1px solid _color(gray, 4);
+  background-color: _color(gray, 2);
+  form {
+    padding: 1em 0;
+    input {
+      width: 76%;
+      padding: 0.75em 1rem;
+      box-sizing: border-box;
+    }
+    .submit_nested {
+      width: 23%;
+      margin-left: 0.125rem;
+      padding: 0.75em 1rem;
+      color: _color(point);
+      box-sizing: border-box;
+    }
+  }
+  .close_nested {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 0;
+    cursor: pointer;
+    .icon {
+      margin-left: 0.25rem;
+      color: _color(gray, 7);
+    }
+  }
+}
+.nested_list {
+  li {
+    position: relative;
+    overflow: hidden;
+    padding: 0.75em 0;
+    border-bottom: 1px solid _color(gray, 4);
+  }
+  .comment_form {
+    input {
+      width: calc(93% - 0.75rem);
+      margin-top: -1em;
+      padding: 0.75em 0.5rem;
+      background-color: unset;
+    }
+  }
+  .icon {
+    width: 7%;
+    float: left;
+    margin-top: 0.25em;
+    margin-right: 0.75rem;
+    font-size: _fs(large);
+  }
+  .nested_info {
+    width: calc(91% - 3rem);
+    float: left;
+  }
+  .nested_update_btn {
+    float: right;
+    padding: 0 0 1em 1rem;
+    font-size: _fs(xlarge);
+    color: _color(gray, 6);
+    background-color: unset;
+    border: none;
+  }
+  .modify_remove {
+    top: 0.75em;
+    right: 1.75rem;
+  }
+}
+
+@include respond-to(medium) {
+  // VideoInfo
+  .player {
+    height: 25em;
+  }
+  // Recommend
+  .recommend_info {
+    width: 70%;
+    margin: 0 2%;
+  }
+  // VideoComment
+  .write_comment {
+    input {
+      width: 86%;
+    }
+    button {
+      width: 13.6%;
+    }
+  }
+  .comment_form {
+    div {
+      button {
+        width: 13.6%;
+      }
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      input {
+        width: 86.5%;
+      }
+      .submit_nested {
+        width: 13%;
+      }
+    }
+  }
+  .nested_list {
+    .comment_form {
+      input {
+        width: calc(97% - 0.75rem);
+      }
+      button {
+        width: 13%;
+        padding: 0.75em 1rem;
+      }
+    }
+    .icon {
+      width: 3%;
+    }
+  }
+}
+
+@include respond-to(large) {
+  .detail_container {
+    margin-top: 4.25em;
+    margin-left: 13.75rem;
+    overflow: hidden;
+  }
+  .user_info {
+    display: none;
+  }
+  .video_container,
+  .recommend_title,
+  .recommend_list,
+  .comment_title,
+  .write_comment,
+  .comment_list {
+    width: 45rem;
+    margin: 0 auto;
+  }
+  // VideoInfo
+  .video_top {
+    margin: 1em auto 0;
+  }
+  .title {
+    overflow: hidden;
+    display: block;
+    padding: 0.5em 0 1em;
+    box-sizing: border-box;
+    .user_img {
+      width: 2.5rem;
+      height: 2.75em;
+      float: left;
+      img {
+        width: 100%;
+        height: 100%;
+        float: left;
+        border-radius: 50%;
+      }
+    }
+    .user_name {
+      float: left;
+      margin-top: 0.3em;
+      margin-left: 0.5rem;
+      font-size: _fs(large);
+      font-weight: bold;
+    }
+  }
+  .player {
+    height: 25em;
+    border: 1px solid _color(gray, 5);
+    border-bottom: none;
+    box-sizing: border-box;
+  }
+  .player_fixed {
+    position: unset;
+    z-index: unset;
+    transition: unset;
+  }
+  .info_container {
+    border: 1px solid _color(gray, 4);
+    border-top: none;
+  }
+  .video_info {
+    padding: 0 1.5rem;
+    .tags_list {
+      margin-top: 0.75em;
+      height: 2.5em;
+    }
+  }
+  .video_summary {
+    margin-top: 0.625em;
+    .title {
+      padding: 0;
+    }
+    .desc_btn {
+      display: none;
+    }
+  }
+  .video_desc {
+    width: 90%;
+    &.mobile_desc {
+      display: none;
+    }
+    &.desktop_desc {
+      display: block;
+    }
+  }
+  // Recommend
+  .recommend_container {
+    margin-top: 2em;
+  }
+  .recommend_title {
+    border: none;
+    padding-top: 2em;
+    margin-bottom: 0.5em;
+    h4 {
+      padding: 0;
+      font-size: _fs(large);
+      font-weight: bold;
+    }
+  }
+  .recommend_list {
+    overflow: hidden;
+    padding: 0;
+  }
+  .recommend {
+    width: calc(41rem / 5);
+    float: left;
+    margin-top: 0.5em;
+    margin-right: 1rem;
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+    .more {
+      display: none;
+    }
+  }
+  .recommend_img {
+    float: unset;
+    img {
+      width: 100%;
+      height: 5.5em;
+    }
+  }
+  .recommend_info {
+    width: 100%;
+    height: 6em;
+    float: unset;
+    margin: 0;
+    padding: 0;
+    p {
+      &:nth-child(1) {
+        margin-top: 0.5em;
+      }
+    }
+  }
+  // VideoComment
+  .comment_container {
+    margin-top: 0;
+    padding-top: 3em;
+  }
+  .comment_title {
+    border: none;
+    h4,
+    span {
+      font-size: _fs(large);
+      font-weight: bold;
+    }
+  }
+  .write_comment {
+    button {
+      font-size: _fs(normal);
+    }
+  }
+  .comment_list {
+    .comment_box {
+      margin: 0;
+    }
+  }
+  .comment_form {
+    div {
+      button {
+        width: unset;
+        padding: 0.5em 1rem;
+      }
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      .submit_nested {
+        font-size: _fs(normal);
+      }
+    }
+  }
+}
+
+@include respond-to(xlarge) {
+  .detail_container {
+    overflow: hidden;
+  }
+  .video_container,
+  .recommend_title,
+  .recommend_list,
+  .comment_title,
+  .write_comment,
+  .comment_list {
+    width: 68.75rem;
+    margin: 0 auto;
+  }
+  // VideoInfo
+  .player {
+    height: 40em;
+  }
+  // Recommend
+  .recommend_title {
+    padding-top: 3em;
+  }
+  .recommend {
+    width: calc(64.75rem / 5);
+    margin-top: 1em;
+  }
+  .recommend_img {
+    img {
+      height: 8.5em;
+    }
+  }
+  // VideoComment
+  .write_comment {
+    input {
+      width: 89%;
+    }
+    button {
+      width: 10%;
+    }
+  }
+  // VideoNestedComment
+  .nested_box {
+    form {
+      input {
+        width: 89%;
+      }
+      .submit_nested {
+        width: 10.5%;
       }
     }
   }

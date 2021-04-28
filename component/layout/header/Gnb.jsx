@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -12,6 +12,9 @@ import AsideMenu from './AsideMenu';
 
 const Gnb = () => {
   const router = useRouter();
+  const { pathname } = router;
+  const [fixed, setFixed] = useState(false);
+  const [pageY, setPageY] = useState(0);
   const [sideMenu, setSideMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const [inputs, setInputs] = useState({
@@ -20,6 +23,21 @@ const Gnb = () => {
   });
   const { mobileSearchInput, searchInput } = inputs;
 
+  const handleScroll = useCallback(() => {
+    const { pageYOffset } = window;
+    if (pathname.includes('/detail')) {
+      if (pageYOffset >= 43) {
+        setFixed(true);
+      } else {
+        setFixed(false);
+      }
+      setPageY(pageYOffset);
+    }
+  }, [pathname, fixed, pageY]);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pageY]);
   const onToggle = useCallback(() => setSideMenu(!sideMenu), [sideMenu]);
   const onShow = useCallback(() => {
     setSearch(!search);
@@ -54,7 +72,13 @@ const Gnb = () => {
   return (
     <>
       {/* mobile, tablet */}
-      <div className={styles.mobile_gnb_container}>
+      <div
+        className={
+          fixed
+            ? classnames(styles.mobile_gnb_container, styles.header_fixed)
+            : styles.mobile_gnb_container
+        }
+      >
         <div className={styles.mobile_gnb}>
           <div onClick={onToggle} className="icon">
             <AiOutlineMenu />

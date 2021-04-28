@@ -71,60 +71,79 @@ const RecentSection = () => {
               likes,
             } = video;
             return (
-              <div key={id} className={styles.recent}>
-                <div
-                  className={classnames(styles.recent_img, styles.video_img)}
-                >
-                  <img src={videoUrl} alt={`${videoTitle}`} />
-                  <span>{(videoLength / 3600).toFixed(2)}</span>
+              <Link href={`/detail/${id}`}>
+                <div key={id} className={styles.recent}>
+                  <div
+                    className={classnames(styles.recent_img, styles.video_img)}
+                  >
+                    <img src={videoUrl} alt={`${videoTitle}`} />
+                    <span>{(videoLength / 3600).toFixed(2)}</span>
+                  </div>
+                  <div
+                    className={classnames(
+                      styles.recent_info,
+                      styles.video_info,
+                    )}
+                  >
+                    <p>{videoTitle}</p>
+                    <Link href={`/search?query=${userName}&type=channels`}>
+                      <p>{userName}</p>
+                    </Link>
+                    <p>
+                      <AiOutlinePlayCircle className={styles.icon} />
+                      {views}
+                      <span>
+                        <AiOutlineHeart className={styles.icon} />
+                      </span>
+                      {likes}
+                    </p>
+                  </div>
                 </div>
-                <div
-                  className={classnames(styles.recent_info, styles.video_info)}
-                >
-                  <p>{videoTitle}</p>
-                  <Link href={`/search?query=${userName}&type=channels`}>
-                    <p>{userName}</p>
-                  </Link>
-                  <p>
-                    <AiOutlinePlayCircle className={styles.icon} />
-                    {views}
-                    <span>
-                      <AiOutlineHeart className={styles.icon} />
-                    </span>
-                    {likes}
-                  </p>
-                </div>
-              </div>
+              </Link>
             );
           })}
         </div>
         <div className={styles.recent_list}>
           {recentVideoList.slice(2, 4).map((video) => {
+            const {
+              id,
+              videoUrl,
+              userName,
+              videoTitle,
+              videoLength,
+              views,
+              likes,
+            } = video;
             return (
-              <div key={video.id} className={styles.recent}>
-                <div
-                  className={classnames(styles.recent_img, styles.video_img)}
-                >
-                  <img src={video.videoUrl} alt={video.videoTitle} />
-                  <span>{(video.videoLength / 3600).toFixed(2)}</span>
+              <Link href={`/detail/${id}`}>
+                <div key={id} className={styles.recent}>
+                  <div
+                    className={classnames(styles.recent_img, styles.video_img)}
+                  >
+                    <img src={videoUrl} alt={videoTitle} />
+                    <span>{(videoLength / 3600).toFixed(2)}</span>
+                  </div>
+                  <div
+                    className={classnames(
+                      styles.recent_info,
+                      styles.video_info,
+                    )}
+                  >
+                    <p>{videoTitle}</p>
+                    <Link href={`/search?query=${userName}&type=channels`}>
+                      <p>{userName}</p>
+                    </Link>
+                    <p>
+                      <AiOutlinePlayCircle className={styles.icon} />
+                      {views}
+                      <span>
+                        <AiOutlineHeart className={styles.icon} />
+                      </span>
+                      {likes}
+                    </p>
+                  </div>
                 </div>
-                <div
-                  className={classnames(styles.recent_info, styles.video_info)}
-                >
-                  <p>{video.videoTitle}</p>
-                  <Link href={`/search?query=${video.userName}&type=channels`}>
-                    <p>{video.userName}</p>
-                  </Link>
-                  <p>
-                    <AiOutlinePlayCircle className={styles.icon} />
-                    {video.views}
-                    <span>
-                      <AiOutlineHeart className={styles.icon} />
-                    </span>
-                    {video.likes}
-                  </p>
-                </div>
-              </div>
+              </Link>
             );
           })}
         </div>

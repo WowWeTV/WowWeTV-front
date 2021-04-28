@@ -28,7 +28,7 @@ const Lnb = () => {
   return (
     <>
       {pathname === '/' ||
-      pathname.includes('/top100Video') ||
+      pathname.includes('/sub') ||
       pathname.includes('/streaming') ? (
         <nav
           className={
@@ -44,12 +44,10 @@ const Lnb = () => {
               </h2>
             </li>
             <li
-              className={
-                pathname.includes('/top100Video') ? styles.menu_active : null
-              }
+              className={pathname.includes('/sub') ? styles.menu_active : null}
             >
               <h2>
-                <Link href="/top100Video">인기</Link>
+                <Link href="/sub">인기</Link>
               </h2>
             </li>
             <li
