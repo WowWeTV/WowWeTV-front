@@ -29,7 +29,7 @@ const VideosList = () => {
             .map((element) => {
               return (
                 <div className={styles.search_videobox}>
-                  <img src={element.videoUrl} />
+                  <img src={element.videoImg} />
                   <div className={styles.search_videodetail}>
                     <span className={styles.title}>{element.videoTitle}</span>
 

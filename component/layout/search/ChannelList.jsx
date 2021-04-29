@@ -31,7 +31,11 @@ const ChannelsList = () => {
             .map((element) => {
               return (
                 <div className={styles.search_content}>
-                  <img src={element.userImg} alt="userImg" />
+                  <img
+                    src={element.userImg}
+                    alt="userImg"
+                    className={styles.user_img}
+                  />
                   <br />
                   <Link href="/">{element.userName}</Link>
                   <div>

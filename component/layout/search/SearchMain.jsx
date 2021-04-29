@@ -7,6 +7,8 @@ import classnames from 'classnames';
 import { loadSearchVideos } from '@/lib/action/video';
 import { loadSearchUser } from '@/lib/action/user';
 
+import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
+
 const ChannelsList = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const ChannelsList = () => {
   const { searchChannels } = useSelector((state) => state.user);
   const { searchVideoList } = useSelector((state) => state.video);
   const { query } = router.query;
+  console.log(searchVideoList[0].videoImg);
 
   useEffect(() => {
     // dispatch(loadSearchVideos());
@@ -39,8 +42,11 @@ const ChannelsList = () => {
             {searchChannels.slice(0, 6).map((element) => {
               return (
                 <div className={styles.search_content}>
-                  <img src={element.userImg} alt="userImg" />
-                  <br />
+                  <img
+                    src={element.userImg}
+                    alt="userImg"
+                    className={styles.user_img}
+                  />
                   <Link href="/">{element.userName}</Link>
                   <div>
                     <span>동영상 {element.videoCount}</span>
@@ -68,17 +74,23 @@ const ChannelsList = () => {
             {searchVideoList.slice(0, 20).map((element) => {
               return (
                 <div className={styles.search_videobox}>
-                  <img src={element.videoUrl} alt="userImg" />
+                  <img src={element.videoImg} alt="userImg" />
+
                   <div className={styles.search_videodetail}>
                     <span className={styles.title}>{element.videoTitle}</span>
-
                     <Link href="/" className={styles.video_username}>
                       {element.userName}
                     </Link>
-                    <div>
-                      <span>👁️ {element.views}</span>
-                      <span> 💙 {element.like}</span>
-                      {/* <span>{element.videoLength}</span> */}
+
+                    <div className={styles.video_views}>
+                      <p>
+                        <AiOutlinePlayCircle className={styles.icon} />
+                        {element.views}
+                        <span>
+                          <AiOutlineHeart className={styles.icon} />
+                        </span>
+                        {element.like}
+                      </p>
                     </div>
                   </div>
                 </div>

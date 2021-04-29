@@ -144,11 +144,6 @@
   }
   .list_content {
     width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
   .list_more {
     width: 80%;
@@ -157,6 +152,7 @@
   }
   .video_img_box {
     position: relative;
+    float: left;
     img {
       width: 170px;
       height: 95px;
@@ -360,14 +356,8 @@
       }
     }
     .list_content {
-      flex-wrap: wrap;
       width: 80%;
       padding: 1em;
-
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
     }
     .list_more {
       padding: 1em;
@@ -377,6 +367,7 @@
     }
     .video_img_box {
       position: relative;
+      float: left;
       img {
         width: 170px;
         height: 95px;
@@ -392,6 +383,7 @@
       flex-direction: column;
       align-items: center;
       margin: none;
+      float: left;
 
       padding-bottom: none;
       border-bottom: none;
