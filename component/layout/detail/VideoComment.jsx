@@ -1,14 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addComment, modifyComment, removeComment } from '@/lib/action/video';
 import classnames from 'classnames';
 import styles from '@/styles/layout/detail.module.scss';
 import VideoNestedComment from './VideoNestedComment';
 import { AiOutlineDown, AiOutlineMore } from 'react-icons/ai';
-import {
-  addComment,
-  modifyComment,
-  removeComment,
-} from 'lib/slices/videoSlice';
 
 const VideoComment = () => {
   const { singleVideo } = useSelector((state) => state.video);

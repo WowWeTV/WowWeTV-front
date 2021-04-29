@@ -39,7 +39,12 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
       if (!newNestedComment) {
         alert('댓글을 입력해 주세요');
       } else {
-        dispatch(addNestedComment({ id, nestedCommentText: newNestedComment }));
+        dispatch(
+          addNestedComment({
+            commentId: id,
+            nestedCommentText: newNestedComment,
+          }),
+        );
         alert(`${newNestedComment}\n댓글이 등록되었습니다.`);
         setNestedInputs('');
       }
@@ -53,7 +58,7 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
     },
     [updateButton],
   );
-  // 대댓글 수정 - 수정 필요
+  // 대댓글 수정
   const onClickModifyButton = useCallback(
     (index) => {
       setUpdateButton(initialStates);
@@ -107,7 +112,7 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
           return (
             <>
               {modification[index] ? (
-                <li key={id} className={styles.comment_form}>
+                <li key={userName + id} className={styles.comment_form}>
                   <div className={styles.icon}>└</div>
                   <form onSubmit={(e) => onModifyNested(e, id)}>
                     <input
