@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLike, addView, removeLike } from 'lib/slices/videoSlice';
+import { addView, addLike, removeLike } from '@/lib/action/video';
 import classnames from 'classnames';
 import numeral from 'numeral';
 import styles from '@/styles/layout/detail.module.scss';
@@ -40,7 +40,7 @@ const VideoInfo = () => {
 
   // 영상 조회 수 증가
   useEffect(() => {
-    dispatch(addView());
+    // dispatch(addView());
   }, []);
   // 스크롤 이벤트
   const handleScroll = useCallback(() => {
