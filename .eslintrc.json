@@ -49,6 +49,7 @@
     "no-alert": "off",
     "react/jsx-no-comment-textnodes":"off",
     "jsx-a11y/no-noninteractive-element-interactions":"off",
+    "react/prop-types":"off",
 
 
     "prettier/prettier": [

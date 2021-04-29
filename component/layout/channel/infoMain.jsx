@@ -3,14 +3,12 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import classnames from 'classnames';
+import React from 'react';
+import Moment from 'react-moment';
+import PropTypes from 'prop-types';
+import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
 
-import {
-  AiOutlineHeart,
-  AiOutlinePlayCircle,
-  AiOutlineRight,
-} from 'react-icons/ai';
-
-const InfoContent = () => {
+const InfoMain = ({ onClickVideo }) => {
   const router = useRouter();
   const { userId, type } = router.query;
   const { userVideoList } = useSelector((state) => state.video);
@@ -41,7 +39,10 @@ const InfoContent = () => {
         <div className={styles.list_content}>
           {userVideoList.slice(0, 20).map((element) => {
             return (
-              <div className={styles.search_videobox}>
+              <div
+                className={styles.search_videobox}
+                onClick={() => onClickVideo(element.id)}
+              >
                 <div className={styles.video_img_box}>
                   <img src={element.vidoeImg} alt="userImg" />
                   <span className={styles.img_len}>
@@ -61,7 +62,6 @@ const InfoContent = () => {
                       </span>
                       {element.like}
                     </p>
-                    {/* <span>{element.videoLength}</span> */}
                   </div>
                 </div>
               </div>
@@ -73,4 +73,8 @@ const InfoContent = () => {
   );
 };
 
-export default InfoContent;
+InfoMain.prototype = {
+  onClickVideo: PropTypes.func.isRequired,
+};
+
+export default InfoMain;

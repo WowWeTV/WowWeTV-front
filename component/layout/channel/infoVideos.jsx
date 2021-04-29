@@ -1,26 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/layout/channel.module.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import classNames from 'classnames';
-
+import { loadMoreUserVideo } from '@/lib/action/video';
 import {
   AiOutlineHeart,
   AiOutlinePlayCircle,
   AiOutlineCheck,
 } from 'react-icons/ai';
 
-const InfoContent = () => {
+import Moment from 'react-moment';
+import PropTypes from 'prop-types';
+
+const InfoVideos = ({ onClickVideo }) => {
   const router = useRouter();
   const { userId, type } = router.query;
   const { userVideoList } = useSelector((state) => state.video);
+
+  const dispatch = useDispatch();
 
   const [sortType, setsortType] = useState('recent');
 
   const onClickSort = (e) => {
     const selectedSort = e.target.getAttribute('data-sort');
     setsortType(selectedSort);
+
+    // dispatch(loadMoreUserVideo({ sort: selectedSort ,offset,limit}));
   };
   return (
     <>
@@ -59,7 +65,10 @@ const InfoContent = () => {
         <div className={styles.list_content}>
           {userVideoList.slice(0, 20).map((element) => {
             return (
-              <div className={styles.search_videobox}>
+              <div
+                className={styles.search_videobox}
+                onClick={() => onClickVideo(element.id)}
+              >
                 <div className={styles.video_img_box}>
                   <img src={element.vidoeImg} alt="userImg" />
                   <span className={styles.img_len}>
@@ -89,5 +98,8 @@ const InfoContent = () => {
     </>
   );
 };
+InfoVideos.prototype = {
+  onClickVideo: PropTypes.func.isRequired,
+};
 
-export default InfoContent;
+export default InfoVideos;

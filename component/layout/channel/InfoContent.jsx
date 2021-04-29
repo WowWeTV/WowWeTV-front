@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import styles from '@/styles/layout/channel.module.scss';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -6,12 +7,17 @@ import InfoVideos from './infoVideos';
 
 const InfoContent = () => {
   const router = useRouter();
-  const { userId, type } = router.query;
-  const { userVideoList } = useSelector((state) => state.video);
+  const { type } = router.query;
+
+  const onClickVideo = useCallback((videoId) => {
+    console.log(videoId);
+    router.replace(`/detail/${videoId}`);
+  }, []);
+
   return (
     <div className={styles.inf_content}>
-      {type === undefined && <InfoMain />}
-      {type === 'videos' && <InfoVideos />}
+      {type === undefined && <InfoMain onClickVideo={onClickVideo} />}
+      {type === 'videos' && <InfoVideos onClickVideo={onClickVideo} />}
     </div>
   );
 };
