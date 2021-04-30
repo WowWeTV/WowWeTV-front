@@ -15,6 +15,7 @@
   height: 70px;
   border: 3px solid #d8d8d8;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .link {
@@ -49,6 +50,7 @@
   width: 300px;
   margin: 0 auto 1em;
   img {
+    cursor: pointer;
     width: 170px;
     height: 95px;
     &:hover {
@@ -83,6 +85,7 @@
       white-space: nowrap;
       font-size: 1em;
       color: _color(black);
+      cursor: pointer;
     }
     .video_username {
       color: _color(point);

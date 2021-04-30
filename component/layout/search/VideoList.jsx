@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import classnames from 'classnames';
 import PageNation from '@/component/common/PageNation';
+import PropTypes from 'prop-types';
+import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
 
-const VideosList = () => {
+const VideosList = ({ onClickVideo }) => {
   const [curPage, setCurPage] = useState(1);
   const [startPage, setStartPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -29,17 +31,33 @@ const VideosList = () => {
             .map((element) => {
               return (
                 <div className={styles.search_videobox}>
-                  <img src={element.videoImg} />
+                  <img
+                    src={element.videoImg}
+                    onClick={() => onClickVideo(element.id)}
+                  />
                   <div className={styles.search_videodetail}>
-                    <span className={styles.title}>{element.videoTitle}</span>
+                    <span
+                      className={styles.title}
+                      onClick={() => onClickVideo(element.id)}
+                    >
+                      {element.videoTitle}
+                    </span>
 
-                    <Link href="/" className={styles.video_username}>
+                    <Link
+                      href={`/user/${element.userId}`}
+                      className={styles.video_username}
+                    >
                       {element.userName}
                     </Link>
-                    <div>
-                      <span>👁️ {element.views}</span>
-                      <span> 💙 {element.like}</span>
-                      {/* <span>{element.videoLength}</span> */}
+                    <div className={styles.video_views}>
+                      <p>
+                        <AiOutlinePlayCircle className={styles.icon} />
+                        {element.views}
+                        <span>
+                          <AiOutlineHeart className={styles.icon} />
+                        </span>
+                        {element.like}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -57,5 +75,7 @@ const VideosList = () => {
     </div>
   );
 };
-
+VideosList.prototype = {
+  onClickVideo: PropTypes.func.isRequired,
+};
 export default VideosList;

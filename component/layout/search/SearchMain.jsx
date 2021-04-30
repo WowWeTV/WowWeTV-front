@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import styles from '@/styles/layout/search.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
@@ -6,10 +6,10 @@ import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import { loadSearchVideos } from '@/lib/action/video';
 import { loadSearchUser } from '@/lib/action/user';
-
+import PropTypes from 'prop-types';
 import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
 
-const ChannelsList = () => {
+const ChannelsList = ({ onClickVideo, onClickChannel }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -41,7 +41,10 @@ const ChannelsList = () => {
           <div className={styles.list_content}>
             {searchChannels.slice(0, 6).map((element) => {
               return (
-                <div className={styles.search_content}>
+                <div
+                  className={styles.search_content}
+                  onClick={() => onClickChannel(element.id)}
+                >
                   <img
                     src={element.userImg}
                     alt="userImg"
@@ -74,11 +77,23 @@ const ChannelsList = () => {
             {searchVideoList.slice(0, 20).map((element) => {
               return (
                 <div className={styles.search_videobox}>
-                  <img src={element.videoImg} alt="userImg" />
+                  <img
+                    src={element.videoImg}
+                    alt="userImg"
+                    onClick={() => onClickVideo(element.id)}
+                  />
 
                   <div className={styles.search_videodetail}>
-                    <span className={styles.title}>{element.videoTitle}</span>
-                    <Link href="/" className={styles.video_username}>
+                    <span
+                      className={styles.title}
+                      onClick={() => onClickVideo(element.id)}
+                    >
+                      {element.videoTitle}
+                    </span>
+                    <Link
+                      href={`/user/${element.userId}`}
+                      className={styles.video_username}
+                    >
                       {element.userName}
                     </Link>
 
@@ -103,4 +118,8 @@ const ChannelsList = () => {
   );
 };
 
+ChannelsList.prototype = {
+  onClickVideo: PropTypes.func.isRequired,
+  onClickChannel: PropTypes.func.isRequired,
+};
 export default ChannelsList;
