@@ -46,8 +46,6 @@
     "no-plusplus": "off",
     "jsx-a11y/alt-text": "off",
     "react/require-default-props": "off",
-    "no-param-reassign": 0,
-    "no-alert": "off",
     "react/jsx-no-comment-textnodes":"off",
     "jsx-a11y/no-noninteractive-element-interactions":"off",
     "react/prop-types":"off",
