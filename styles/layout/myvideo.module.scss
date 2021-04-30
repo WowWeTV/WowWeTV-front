@@ -1,0 +1,57 @@
+@import './lib/vars.scss';
+@import './lib/functions.scss';
+@import './lib/breakpoints.scss';
+.modal_pc {
+  display: none;
+}
+
+@include respond-to(large) {
+  .modal_pc {
+    display: block;
+  }
+  .modal_container {
+    margin-top: 4.25em;
+    margin-left: 13.75rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000080;
+    z-index: 200;
+  }
+
+  .modal_box {
+    width: 900px;
+    position: relative;
+    top: 9.375rem;
+    margin: 0 auto;
+    z-index: 201;
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 15%);
+    display: flex;
+    flex-direction: column;
+
+    .modal_header {
+      position: relative;
+      margin: 0px 1.25rem;
+      padding: 1.25rem 0 0.625rem;
+      border-bottom: 1px solid _color(grey, 5);
+    }
+    .h3_font {
+      display: inline-block;
+    }
+    .cancel_btn {
+      float: right;
+      border: none;
+    }
+  }
+  .modal_content {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .modal_footer {
+    border-top: 1px solid _color(grey, 5);
+  }
+}
