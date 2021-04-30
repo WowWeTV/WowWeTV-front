@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import styles from '@/styles/layout/header.module.scss';
 import {
   AiOutlineMenu,
+  AiOutlineNotification,
+  AiOutlinePlaySquare,
   AiOutlineSearch,
   AiOutlineVideoCamera,
 } from 'react-icons/ai';
@@ -17,6 +19,7 @@ const Gnb = () => {
   const [pageY, setPageY] = useState(0);
   const [sideMenu, setSideMenu] = useState(false);
   const [search, setSearch] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const [inputs, setInputs] = useState({
     mobileSearchInput: '',
     searchInput: '',
@@ -68,6 +71,9 @@ const Gnb = () => {
     },
     [inputs, router],
   );
+  const onShowDropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   return (
     <>
@@ -149,9 +155,32 @@ const Gnb = () => {
           </form>
           <div className={styles.gnb_right}>
             <button className="circle">Creator Studio</button>
-            <div className={`icon ${styles.upload_icon}`}>
+            <div
+              className={`icon ${styles.upload_icon}`}
+              onClick={onShowDropdown}
+            >
               <AiOutlineVideoCamera />
             </div>
+            {dropdown && (
+              <div className={styles.upload_dropdown}>
+                <Link href="/uploadVideo">
+                  <div>
+                    <span>
+                      <AiOutlinePlaySquare />
+                    </span>
+                    <h3>동영상 업로드</h3>
+                  </div>
+                </Link>
+                <Link href="/startStreaming">
+                  <div>
+                    <span>
+                      <AiOutlineNotification />
+                    </span>
+                    <h3>실시간 스트리밍 시작</h3>
+                  </div>
+                </Link>
+              </div>
+            )}
             <Link href="/login">
               <button className="circle primary">로그인</button>
             </Link>
