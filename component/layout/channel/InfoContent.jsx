@@ -11,7 +11,7 @@ const InfoContent = () => {
 
   const onClickVideo = useCallback((videoId) => {
     console.log(videoId);
-    router.replace(`/detail/${videoId}`);
+    router.push(`/detail/${videoId}`);
   }, []);
 
   return (

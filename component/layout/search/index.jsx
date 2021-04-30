@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import SearchTab from './SearchTab';
 import ChannerlList from './ChannelList';
 import VideoList from './VideoList';
@@ -9,23 +10,35 @@ const SearchLayout = () => {
   const router = useRouter();
   const { type } = router.query;
 
+  const onClickVideo = useCallback((videoId) => {
+    console.log(videoId);
+    router.push(`/detail/${videoId}`);
+  }, []);
+  const onClickChannel = useCallback((userId) => {
+    console.log(userId);
+    router.push(`/user/${userId}`);
+  }, []);
+
   return (
     <>
       <div className={styles.search_page}>
         <SearchTab />
         {type === undefined && (
           <>
-            <SearchMain />
+            <SearchMain
+              onClickVideo={onClickVideo}
+              onClickChannel={onClickChannel}
+            />
           </>
         )}
         {type === 'videos' && (
           <>
-            <VideoList />
+            <VideoList onClickVideo={onClickVideo} />
           </>
         )}
         {type === 'channels' && (
           <>
-            <ChannerlList />
+            <ChannerlList onClickChannel={onClickChannel} />
           </>
         )}
       </div>

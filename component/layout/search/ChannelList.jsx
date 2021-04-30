@@ -1,12 +1,12 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import styles from '@/styles/layout/search.module.scss';
-
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import classnames from 'classnames';
 import PageNation from '@/component/common/PageNation';
 import { useSelector, useDispatch } from 'react-redux';
 
-const ChannelsList = () => {
+const ChannelsList = ({ onClickChannel }) => {
   const [curPage, setCurPage] = useState(1);
   const [startPage, setStartPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -30,14 +30,17 @@ const ChannelsList = () => {
             )
             .map((element) => {
               return (
-                <div className={styles.search_content}>
+                <div
+                  className={styles.search_content}
+                  onClick={() => onClickChannel(element.id)}
+                >
                   <img
                     src={element.userImg}
                     alt="userImg"
                     className={styles.user_img}
                   />
                   <br />
-                  <Link href="/">{element.userName}</Link>
+                  <Link href={`/user/${element.id}`}>{element.userName}</Link>
                   <div>
                     <span>동영상 {element.videoCount}</span>
                   </div>
@@ -55,6 +58,10 @@ const ChannelsList = () => {
       </div>
     </div>
   );
+};
+
+ChannelsList.prototype = {
+  onClickChannel: PropTypes.func.isRequired,
 };
 
 export default ChannelsList;
