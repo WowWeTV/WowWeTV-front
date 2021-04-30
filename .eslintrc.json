@@ -41,6 +41,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "no-useless-escape": "off",
     "no-console": "off",
+    "no-alert": "off",
     "react/button-has-type": "off",
     "no-plusplus": "off",
     "jsx-a11y/alt-text": "off",
