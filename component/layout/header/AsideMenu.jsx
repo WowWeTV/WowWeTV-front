@@ -18,6 +18,8 @@ import { useRouter } from 'next/router';
 const AsideMenu = ({ sideMenu, onToggle }) => {
   const router = useRouter();
   const { pathname } = router;
+  const { type } = router.query;
+  console.log(type);
   const [submenu, setSubmenu] = useState(true);
   const onToggleSub = useCallback(() => {
     setSubmenu(!submenu);
@@ -45,19 +47,24 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
             </span>
           </div>
           <ul className={styles.aside_menu}>
-            <Link href="/my/recentPlaylist">
+            <Link href="/my?type=recent">
               <li>
                 <h2>최근 본 영상</h2>
               </li>
             </Link>
-            <Link href="/my/likedPlaylist">
+            <Link href="/my?type=liked">
               <li>
                 <h2>좋아요한 영상</h2>
               </li>
             </Link>
-            <Link href="/my/patron">
+            <Link href="/my?type=patron">
               <li>
                 <h2>후원하기</h2>
+              </li>
+            </Link>
+            <Link href="/my?type=userInfo">
+              <li>
+                <h2>회원정보</h2>
               </li>
             </Link>
           </ul>
@@ -109,12 +116,12 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
             }
           >
             <div className={styles.aside_sub_title}>
-              <Link href="/my/recentPlaylist">
+              <Link href="/my">
                 <div className={`icon ${styles.icon}`}>
                   <AiOutlineUser />
                 </div>
               </Link>
-              <Link href="/my/recentPlaylist">
+              <Link href="/my">
                 <h2 className={styles.aside_my}>MY</h2>
               </Link>
               <div className={styles.aside_btn} onClick={onToggleSub}>
@@ -124,34 +131,29 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
             {submenu ? (
               <ul className={styles.aside_sub}>
                 <li
-                  className={
-                    pathname === '/my/recentPlaylist'
-                      ? styles.submenu_active
-                      : null
-                  }
+                  className={type === 'recent' ? styles.submenu_active : null}
                 >
-                  <Link href="/my/recentPlaylist">
+                  <Link href="/my?type=recent">
                     <h3>최근 본 영상</h3>
                   </Link>
                 </li>
-                <li
-                  className={
-                    pathname === '/my/likedPlaylist'
-                      ? styles.submenu_active
-                      : null
-                  }
-                >
-                  <Link href="/my/likedPlaylist">
+                <li className={type === 'liked' ? styles.submenu_active : null}>
+                  <Link href="/my?type=liked">
                     <h3>좋아요한 영상</h3>
                   </Link>
                 </li>
                 <li
-                  className={
-                    pathname === '/my/patron' ? styles.submenu_active : null
-                  }
+                  className={type === 'patron' ? styles.submenu_active : null}
                 >
-                  <Link href="/my/patron">
+                  <Link href="/my?type=patron">
                     <h3>후원하기</h3>
+                  </Link>
+                </li>
+                <li
+                  className={type === 'userInfo' ? styles.submenu_active : null}
+                >
+                  <Link href="/my?type=userInfo">
+                    <h3>회원정보</h3>
                   </Link>
                 </li>
               </ul>
