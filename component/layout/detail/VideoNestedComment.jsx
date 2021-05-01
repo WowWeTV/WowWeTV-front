@@ -5,7 +5,7 @@ import {
   addNestedComment,
   modifyNestedComment,
   removeNestedComment,
-} from 'lib/slices/videoSlice';
+} from '@/lib/action/video';
 import styles from '@/styles/layout/detail.module.scss';
 import { AiOutlineMore, AiOutlineUp } from 'react-icons/ai';
 
@@ -69,7 +69,7 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
         postedNestedComment: nestedCommentList[index].nestedCommentText,
       });
     },
-    [updateButton, modification, nestedCommentList],
+    [updateButton, modification, postedNestedComment, comments],
   );
   const onModifyNested = useCallback(
     (e, id) => {
@@ -90,13 +90,13 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
     },
     [postedNestedComment, comments],
   );
-  // 대댓글 삭제 - 수정 필요
+  // 대댓글 삭제
   const onRemoveNested = useCallback(
-    (id) => {
+    (nestedId) => {
       dispatch(
         removeNestedComment({
           commentId: comments[commentIndex].id,
-          nestedId: id,
+          nestedId,
         }),
       );
       alert('댓글이 삭제되었습니다.');
@@ -107,12 +107,12 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
   return (
     <div className={styles.nested_box}>
       <ul className={styles.nested_list}>
-        {nestedCommentList.map((comment, index) => {
-          const { id, userName, nestedCommentText, createDate } = comment;
+        {nestedCommentList.map((nested, index) => {
+          const { id, userName, nestedCommentText, createDate } = nested;
           return (
-            <>
+            <li key={id} className={modification[index] && styles.comment_form}>
               {modification[index] ? (
-                <li key={userName + id} className={styles.comment_form}>
+                <>
                   <div className={styles.icon}>└</div>
                   <form onSubmit={(e) => onModifyNested(e, id)}>
                     <input
@@ -134,9 +134,9 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
                       </button>
                     </div>
                   </form>
-                </li>
+                </>
               ) : (
-                <li key={id}>
+                <>
                   <div className={styles.icon}>└</div>
                   <div className={styles.nested_info}>
                     <p className={styles.user_name}>{userName}</p>
@@ -159,9 +159,9 @@ const VideoNestedComment = ({ postedDate, onShowNested, commentIndex }) => {
                       <button onClick={() => onRemoveNested(id)}>삭제</button>
                     </div>
                   )}
-                </li>
+                </>
               )}
-            </>
+            </li>
           );
         })}
       </ul>

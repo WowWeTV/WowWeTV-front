@@ -24,7 +24,7 @@
   position: fixed;
   top: 2.65em;
   left: 0;
-  z-index: 100;
+  z-index: 99;
 }
 .info_container {
   padding-top: 1em;
@@ -460,13 +460,13 @@
       width: 86%;
     }
     button {
-      width: 13.6%;
+      width: 13%;
     }
   }
   .comment_form {
     div {
       button {
-        width: 13.6%;
+        width: 13%;
       }
     }
   }
@@ -485,10 +485,6 @@
     .comment_form {
       input {
         width: calc(97% - 0.75rem);
-      }
-      button {
-        width: 13%;
-        padding: 0.75em 1rem;
       }
     }
     .icon {
@@ -659,7 +655,15 @@
     div {
       button {
         width: unset;
-        padding: 0.5em 1rem;
+        padding: 0.25em 0.25rem;
+        font-size: _fs(normal);
+        color: _color(gray, 7);
+        border: none;
+        background-color: unset;
+        &:hover {
+          color: _color(black);
+          background-color: unset;
+        }
       }
     }
   }
