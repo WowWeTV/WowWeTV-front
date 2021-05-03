@@ -55,7 +55,7 @@
   }
 }
 
-.user_info_container {
+.my_container {
   width: 100%;
   display: flex;
   background-color: _color(white);
@@ -63,23 +63,126 @@
   align-items: center;
 }
 
+.list_box {
+  width: 100%;
+  padding: 0.8rem 0.4rem;
+  border-bottom: 1.5px solid _color(gray, 3);
+  .check_box {
+    display: block;
+    margin: -0.5rem 0 0.3rem 0.2rem;
+    input {
+      &:checked::after {
+        border: 2px solid _color(red);
+        border-top: 0;
+        border-left: 0;
+      }
+    }
+  }
+  .video_info {
+    display: flex;
+    img {
+      cursor: pointer;
+      width: 170px;
+      height: 95px;
+    }
+    .video_detail {
+      display: flex;
+      justify-content: start;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 1em 0.5em;
+      width: 45%;
+      .video_title {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 90%;
+        white-space: nowrap;
+        font-size: 1em;
+        color: #212529;
+        cursor: pointer;
+      }
+      a {
+        color: #4c6ef5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+.video_views {
+  .icon {
+    margin-left: 0.25rem;
+    vertical-align: text-top;
+  }
+  p {
+    line-height: 1.25em;
+    font-size: 0.75rem;
+  }
+}
+
 .wrap {
   width: 90%;
-  margin: 0 auto;
+  margin: 0.5em auto 0;
   flex-direction: column;
-
   display: flex;
   background-color: #fff;
-
-  margin-top: 1.5em;
 }
 
 .header {
-  margin: 0 0 1rem;
-  em {
-    font-size: 1.2em;
-    color: _color(point);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid _color(gray, 4);
+  .text_area {
+    display: flex;
+    strong {
+      font-size: _fs(large);
+    }
+    .edit_btn_area {
+      padding-left: 0.4rem;
+      a {
+        margin: 0 0.2rem;
+        cursor: pointer;
+        overflow: hidden;
+        float: left;
+        height: _fs(xlarge);
+        padding: 0 11px 0 10px;
+        font-size: _fs(normal);
+        text-align: left;
+        line-height: _fs(xlarge);
+        border-radius: 2px;
+        border: 1px solid _color(gray, 4);
+      }
+      .checked_number {
+        margin: 0 0.2rem 0 0.8rem;
+        float: left;
+        font-size: _fs(medium);
+        color: _color(red);
+        font-weight: bold;
+      }
+      .checked_text {
+        float: left;
+        font-size: _fs(medium);
+      }
+    }
   }
+}
+
+.more_list {
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  .loading_icon {
+    font-size: 1.5rem;
+    animation: rotate_image 1s linear infinite;
+    transform-origin: 50% 50%;
+  }
+}
+@keyframes rotate_image{
+	100% {
+    	transform: rotate(360deg);
+    }
 }
 
 .user_img_name {
@@ -285,9 +388,13 @@
       margin-right: 0;
     }
   }
-  .list_box {
-    width: 600px;
-  }
+  // .list_box {
+  //   width: 50%;
+  //   float: left;
+  //   margin-bottom: 1em;
+  //   padding-right: 1.5rem;
+  //   box-sizing: border-box;
+  // }
 }
 
 @include respond-to(large) {
@@ -329,16 +436,10 @@
     padding: 1rem;
     margin: 1.5rem 0;
   }
-  .user_info_container {
+  .my_container {
     background-color: _color(gray, 2);
   }
   .img_remove {
     font-size: _fs(normal);
-  }
-  .list_box {
-    width: 80%;
-    border-top: 1px solid _color(gray, 3);
-    border-left: 1px solid _color(gray, 3);
-    border-right: 1px solid _color(gray, 3);
   }
 }

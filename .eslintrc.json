@@ -49,6 +49,7 @@
     "react/jsx-no-comment-textnodes":"off",
     "jsx-a11y/no-noninteractive-element-interactions":"off",
     "react/prop-types":"off",
+    "prefer-destructuring":"off",
 
 
     "prettier/prettier": [
