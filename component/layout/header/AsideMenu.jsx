@@ -19,7 +19,6 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
   const router = useRouter();
   const { pathname } = router;
   const { type } = router.query;
-  console.log(type);
   const [submenu, setSubmenu] = useState(true);
   const onToggleSub = useCallback(() => {
     setSubmenu(!submenu);

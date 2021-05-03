@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from '@/styles/layout/my.module.scss';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 const UserInfo = () => {
@@ -150,12 +149,10 @@ const UserInfo = () => {
 
   return (
     <>
-      <div className={styles.user_info_container}>
+      <div className={styles.my_container}>
         <div className={styles.wrap}>
           <div className={styles.header}>
-            <h2>
-              <strong>유저 정보</strong>
-            </h2>
+            <strong>유저 정보</strong>
           </div>
           <div>
             <div className={styles.user_img_name}>
