@@ -3,21 +3,25 @@
 @import './lib/breakpoints.scss';
 
 .detail_container {
+  overflow: hidden;
   background-color: _color(gray, 2);
-  box-sizing: border-box;
 }
 .title {
   display: none;
 }
 // VideoInfo
 .player {
+  overflow: hidden;
   width: 100%;
-  height: 11em;
-  box-sizing: border-box;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .video {
+    width: 100%;
+    height: 100%;
+    background-color: _color(black);
   }
 }
 .player_fixed {
@@ -445,10 +449,6 @@
 }
 
 @include respond-to(medium) {
-  // VideoInfo
-  .player {
-    height: 25em;
-  }
   // Recommend
   .recommend_info {
     width: 70%;
@@ -540,7 +540,6 @@
     }
   }
   .player {
-    height: 25em;
     border: 1px solid _color(gray, 5);
     border-bottom: none;
     box-sizing: border-box;
@@ -655,14 +654,19 @@
     div {
       button {
         width: unset;
-        padding: 0.25em 0.25rem;
+        margin: 0.25em 0.25rem;
+        padding: 0;
         font-size: _fs(normal);
         color: _color(gray, 7);
         border: none;
+        border-radius: 0;
         background-color: unset;
         &:hover {
-          color: _color(black);
           background-color: unset;
+        }
+        &:last-child {
+          color: _color(point);
+          border-color: _color(point);
         }
       }
     }
@@ -689,10 +693,6 @@
   .comment_list {
     width: 68.75rem;
     margin: 0 auto;
-  }
-  // VideoInfo
-  .player {
-    height: 40em;
   }
   // Recommend
   .recommend_title {

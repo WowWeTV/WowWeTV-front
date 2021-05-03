@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addView, addLike, removeLike } from '@/lib/action/video';
 import classnames from 'classnames';
 import numeral from 'numeral';
+import { ReactVideo } from 'reactjs-media';
 import styles from '@/styles/layout/detail.module.scss';
-import Modal from '../../common/Modal';
+import Modal from '@/component/common/Modal';
 import {
   AiFillHeart,
   AiOutlineDown,
@@ -45,7 +46,7 @@ const VideoInfo = () => {
   // 스크롤 이벤트
   const handleScroll = useCallback(() => {
     const { pageYOffset } = window;
-    if (pageYOffset >= 43) {
+    if (pageYOffset >= 42) {
       setFixed(true);
     } else {
       setFixed(false);
@@ -92,7 +93,13 @@ const VideoInfo = () => {
               : styles.player
           }
         >
-          <img src={videoUrl} alt="video" />
+          <ReactVideo
+            className={styles.video}
+            src="/videos/sample.mp4"
+            poster="/images/sample.jpg"
+            primaryColor="#4c6ef5"
+            autoPlay
+          />
         </div>
       </div>
       <div className={styles.info_container}>
