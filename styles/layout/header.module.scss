@@ -168,10 +168,12 @@
         }
       }
       .gnb_search_bar {
+        width: 20rem;
         position: relative;
         input {
+          width: calc(100% - 3rem);
           padding-left: 1rem;
-          padding-right: 15.625rem;
+          padding-right: 3rem;
         }
         button {
           border: none;
@@ -179,7 +181,7 @@
           padding: 0;
           position: absolute;
           top: 0.25em;
-          right: 1rem;
+          right: 0rem;
         }
       }
       .gnb_right {
