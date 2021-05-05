@@ -22,7 +22,8 @@
   }
 
   .modal_box {
-    width: 900px;
+    width: 1000px;
+
     position: relative;
     top: 9.375rem;
     margin: 0 auto;
@@ -50,8 +51,110 @@
   .modal_content {
     width: 90%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
   }
   .modal_footer {
     border-top: 1px solid _color(grey, 5);
+  }
+  .input_container {
+    position: relative;
+    margin-top: 20px;
+
+    .video_label {
+      padding-top: 10px;
+      font-size: 12px;
+      line-height: 16px;
+      position: absolute;
+      left: 10px;
+    }
+    .video_input {
+      width: 80%;
+      border: 1px solid _color(gray, 4);
+      border-radius: 4px;
+      resize: none;
+
+      padding-top: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      ::placeholder + label {
+        color: _color(point);
+      }
+      &:focus {
+        outline: none;
+        border-color: _color(point);
+        ~ label {
+          color: _color(point);
+        }
+      }
+    }
+  }
+  .perview_img_upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .perview_img_upload + label {
+    cursor: pointer;
+    border: 0.8px dotted _color(gray, 6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 50px;
+    width: 130px;
+    padding: 5px;
+    font-size: 10px;
+    color: _color(gray, 7);
+  }
+  .content_info_span {
+    font-size: 13px;
+    color: _color(gray, 6);
+  }
+  .upload_box {
+    display: inline-block;
+    padding: 0.5em 0.75em;
+    color: #e2e2e2;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: _color(point);
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: 0.25em;
+  }
+  .video_upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .video_upload + label {
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .modal_video_detail {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  .modal_video_content {
+    display: flex;
+    flex-direction: column;
+  }
+  .video_preview {
+    margin-top: 20px;
+  }
+  .video_tags {
+    margin-top: 20px;
   }
 }

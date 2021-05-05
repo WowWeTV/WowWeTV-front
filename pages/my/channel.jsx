@@ -1,4 +1,4 @@
-import MyVideoLayout from '@/component/layout/my/video';
+import MyVideoLayout from '@/component/layout/my/channel';
 import HeaderLayout from '@/component/layout/header';
 
 import FooterLayout from '@/component/layout/footer';
