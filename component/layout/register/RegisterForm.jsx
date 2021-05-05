@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import styles from '@/styles/layout/register.module.scss';
 import cn from 'classnames';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../lib/action/user';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     name: '',
     password: '',
@@ -90,7 +93,19 @@ const RegisterForm = () => {
       verifyNum.toString() === inputs.verify
     ) {
       console.log('Start function'); // 나중에 삭제
-      // Add function
+      const dataToSubmit = {
+        userName: inputs.name,
+        userEmail: inputs.email,
+        password: inputs.password,
+      };
+      dispatch(registerUser(dataToSubmit)).then((response) => {
+        console.log(response);
+        if (response.result) {
+          console.log(response.result);
+        } else {
+          console.log('dispatch fail');
+        }
+      });
     } else {
       console.log('Fail'); // 나중에 삭제
     }
