@@ -1,0 +1,445 @@
+@import '../lib/vars.scss';
+@import '../lib/functions.scss';
+@import '../lib/breakpoints.scss';
+
+.my_wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab_container {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid #e9ecef;
+  box-sizing: border-box;
+}
+
+.my_textarea {
+  width: 100%;
+
+  .my_text {
+    padding: 1.05em 1.05em 0;
+    margin-bottom: -0.5em;
+
+    .my_span {
+      font-size: 1.25em;
+
+      &.point {
+        color: _color(point);
+      }
+    }
+  }
+
+  ul {
+    margin-top: 1em;
+    display: inline-block;
+    left: 50%;
+    display: flex;
+  }
+  li {
+    margin: 0 auto;
+    width: 33.3%;
+    float: left;
+    padding: 0.55em 0;
+    text-align: center;
+    &.selected {
+      border-bottom: 2px solid _color(point);
+    }
+
+    & .span_tab {
+      display: inline-block;
+      line-height: 2em;
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
+
+.my_container {
+  width: 100%;
+  display: flex;
+  background-color: _color(white);
+  flex-direction: column;
+  align-items: center;
+}
+
+.list_box {
+  width: 100%;
+  padding: 0.8rem 0.4rem;
+  border-bottom: 1.5px solid _color(gray, 3);
+  .check_box {
+    display: block;
+    margin: -0.5rem 0 0.3rem 0.2rem;
+    input {
+      &:checked::after {
+        border: 2px solid _color(red);
+        border-top: 0;
+        border-left: 0;
+      }
+    }
+  }
+  .video_info {
+    display: flex;
+    img {
+      cursor: pointer;
+      width: 170px;
+      height: 95px;
+    }
+    .video_detail {
+      display: flex;
+      justify-content: start;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 1em 0.5em;
+      width: 45%;
+      .video_title {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 90%;
+        white-space: nowrap;
+        font-size: 1em;
+        color: #212529;
+        cursor: pointer;
+      }
+      a {
+        color: #4c6ef5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+.video_views {
+  .icon {
+    margin-left: 0.25rem;
+    vertical-align: text-top;
+  }
+  p {
+    line-height: 1.25em;
+    font-size: 0.75rem;
+  }
+}
+
+.wrap {
+  width: 90%;
+  margin: 0.5em auto 0;
+  flex-direction: column;
+  display: flex;
+  background-color: #fff;
+}
+
+.header {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid _color(gray, 4);
+  .text_area {
+    display: flex;
+    strong {
+      font-size: _fs(large);
+    }
+    .edit_btn_area {
+      padding-left: 0.4rem;
+      a {
+        margin: 0 0.2rem;
+        cursor: pointer;
+        overflow: hidden;
+        float: left;
+        height: _fs(xlarge);
+        padding: 0 11px 0 10px;
+        font-size: _fs(normal);
+        text-align: left;
+        line-height: _fs(xlarge);
+        border-radius: 2px;
+        border: 1px solid _color(gray, 4);
+      }
+      .checked_number {
+        margin: 0 0.2rem 0 0.8rem;
+        float: left;
+        font-size: _fs(medium);
+        color: _color(red);
+        font-weight: bold;
+      }
+      .checked_text {
+        float: left;
+        font-size: _fs(medium);
+      }
+    }
+  }
+}
+
+.more_list {
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  .loading_icon {
+    font-size: 1.5rem;
+    animation: rotate_image 1s linear infinite;
+    transform-origin: 50% 50%;
+  }
+}
+@keyframes rotate_image{
+	100% {
+    	transform: rotate(360deg);
+    }
+}
+
+.user_img_name {
+  height: auto;
+  flex-direction: column;
+  display: flex;
+
+  .thumnail_area {
+    align-items: center;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      height: 6rem;
+      width: 6rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .img_upload_input {
+      display: none;
+    }
+    .img_upload_btn {
+      width: 10rem;
+      background-color: _color(point);
+      color: _color(white);
+      font-weight: bold;
+      border: none;
+      padding: 0.75em 0.875rem;
+      text-indent: 0px;
+      outline: none;
+      font-size: _fs(normal);
+      border-radius: 3px;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: pointer;
+      line-height: normal;
+    }
+    .img_remove {
+      width: 10rem;
+      background-color: _color(white);
+      color: _color(point);
+      font-weight: bold;
+      border: none;
+      margin-top: 0.5rem;
+    }
+  }
+}
+.info_area {
+  padding: 1.5rem 0;
+  border-top: 1px solid _color(gray, 4);
+  border-bottom: 1px solid _color(gray, 4);
+  h2 {
+    font-size: _fs(medium);
+  }
+  .info_content {
+    flex: 1 1 0%;
+    display: flex;
+    margin: 0.75rem 0 0.5rem;
+    p {
+      flex: 1 1 0%;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: _color(gray, 9);
+    }
+  }
+}
+.form_area {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1 1 0%;
+  input {
+    flex: 1 1 0%;
+    margin-right: 1rem;
+  }
+}
+.errorMsg {
+  color: #ff0000bf;
+  font-size: _fs(normal);
+  font-weight: 700;
+  margin: -0.2rem 0 -0.8rem;
+}
+.password_input_margin {
+  margin: 0;
+}
+.name_input_btn {
+  width: 4rem;
+  background-color: _color(point);
+  color: _color(white);
+  font-weight: bold;
+  border: none;
+  &:hover {
+    color: _color(white);
+  }
+}
+.email_input_btn {
+  width: 7rem;
+  background-color: _color(point);
+  color: _color(white);
+  font-weight: bold;
+  border: none;
+  &:hover {
+    color: _color(white);
+  }
+}
+.edit_button {
+  outline: none;
+  border: none;
+  display: inline;
+  font-size: 1rem;
+  color: _color(point);
+  border-bottom: 1px solid _color(point);
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+.other_info {
+  padding: 1rem 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.title_header {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: _color(gray, 9);
+  font-size: _fs(medium);
+}
+.info_wrapper {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0 0.5rem;
+  span {
+    display: block;
+    flex: 1 1 0%;
+    font-size: 1rem;
+    color: _color(gray, 9);
+    line-height: 1.5;
+  }
+  .edit_wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+.password_header_area {
+  flex: 1 1 0%;
+  display: flex;
+  span {
+    line-height: 1.5;
+    display: block;
+    flex: 1 1 0%;
+    color: _color(gray, 9);
+    font-size: _fs(medium);
+  }
+}
+.border_top {
+  border-top: 1px solid _color(gray, 4);
+}
+.password_form_area {
+  align-self: center;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  input {
+    width: 90%;
+    margin: 3px 0;
+  }
+  button {
+    width: 10rem;
+    margin-top: 4px;
+    background-color: _color(point);
+    color: _color(white);
+    font-weight: bold;
+    border: none;
+  }
+}
+.delete_account_area {
+  align-items: center;
+  margin: 1rem 0 0 1rem;
+}
+.delete_account_btn {
+  width: 8rem;
+  background-color: _color(red);
+  color: _color(white);
+  font-weight: bold;
+  border: none;
+  &:hover {
+    color: _color(white);
+  }
+}
+
+@include respond-to(medium) {
+  .my_content {
+    width: 130px;
+    float: left;
+    margin-right: 26.5px;
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+  // .list_box {
+  //   width: 50%;
+  //   float: left;
+  //   margin-bottom: 1em;
+  //   padding-right: 1.5rem;
+  //   box-sizing: border-box;
+  // }
+}
+
+@include respond-to(large) {
+  .my_wrap {
+    margin-top: 4.25em;
+    margin-left: 13.75rem;
+  }
+  .my_text {
+    .my_span {
+      font-size: 1.7em;
+    }
+  }
+
+  .my_textarea {
+    width: auto;
+    padding: 3em 0 0 10em;
+    .my_text {
+      padding: 0;
+    }
+
+    li {
+      float: left;
+      margin-right: 2em;
+      padding: 0.55em 0;
+      width: auto;
+      &.selected {
+        border-bottom: 2px solid _color(point);
+      }
+
+      & .span_tab {
+        display: inline-block;
+        line-height: 2em;
+        color: #000;
+        cursor: pointer;
+      }
+    }
+  }
+  .wrap {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  .my_container {
+    background-color: _color(gray, 2);
+  }
+  .img_remove {
+    font-size: _fs(normal);
+  }
+}

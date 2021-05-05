@@ -27,6 +27,22 @@ const Recommend = () => {
     },
     [urlModal, urlText],
   );
+  // const onShareUrl = (id) => {
+  //   if (navigator.share && id) {
+  //     const url = recommendedVideoList.filter((video) => video.id === id)[0]
+  //       .videoUrl;
+
+  //     navigator
+  //       .share({
+  //         title: '영상 링크를 복사하시겠습니까?',
+  //         url: url,
+  //       })
+  //       .then(() => {
+  //         console.log('Success sharing');
+  //       })
+  //       .catch((error) => console.log('Error sharing', error));
+  //   }
+  // };
 
   return (
     <div className={styles.recommend_container}>

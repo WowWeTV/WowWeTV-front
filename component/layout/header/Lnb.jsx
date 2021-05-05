@@ -38,22 +38,18 @@ const Lnb = () => {
           }
         >
           <ul>
-            <li className={pathname === '/' ? styles.menu_active : null}>
+            <li className={pathname === '/' && styles.menu_active}>
               <h2>
                 <Link href="/">홈</Link>
               </h2>
             </li>
-            <li
-              className={pathname.includes('/sub') ? styles.menu_active : null}
-            >
+            <li className={pathname.includes('/sub') && styles.menu_active}>
               <h2>
                 <Link href="/sub">인기</Link>
               </h2>
             </li>
             <li
-              className={
-                pathname.includes('/streaming') ? styles.menu_active : null
-              }
+              className={pathname.includes('/streaming') && styles.menu_active}
             >
               <h2>
                 <Link href="/streaming">라이브</Link>

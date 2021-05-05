@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { addView, addLike, removeLike } from '@/lib/action/video';
 import classnames from 'classnames';
+import moment from 'moment';
 import numeral from 'numeral';
+import { ReactVideo } from 'reactjs-media';
 import styles from '@/styles/layout/detail.module.scss';
-import Modal from '../../common/Modal';
+// import Modal from '@/component/common/Modal';
 import {
   AiFillHeart,
   AiOutlineDown,
@@ -35,7 +37,7 @@ const VideoInfo = () => {
   const [fixed, setFixed] = useState(false);
   const [pageY, setPageY] = useState(0);
   const [descText, setDescText] = useState(false);
-  const [urlModal, setUrlModal] = useState(false);
+  // const [urlModal, setUrlModal] = useState(false);
   const [videoLike, setVideoLike] = useState(false);
 
   // 영상 조회 수 증가
@@ -45,7 +47,7 @@ const VideoInfo = () => {
   // 스크롤 이벤트
   const handleScroll = useCallback(() => {
     const { pageYOffset } = window;
-    if (pageYOffset >= 43) {
+    if (pageYOffset >= 42) {
       setFixed(true);
     } else {
       setFixed(false);
@@ -70,10 +72,22 @@ const VideoInfo = () => {
     setDescText(!descText);
   }, [descText]);
   // 영상 링크 모달
-  const onHandleModal = useCallback(() => {
-    setUrlModal(!urlModal);
-  }, [urlModal]);
-
+  // const onHandleModal = useCallback(() => {
+  //   setUrlModal(!urlModal);
+  // }, [urlModal]);
+  const onShareUrl = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: '영상 링크를 복사하시겠습니까?',
+          url: videoUrl,
+        })
+        .then(() => {
+          console.log('Success sharing');
+        })
+        .catch((error) => console.log('Error sharing', error));
+    }
+  };
   return (
     <div className={styles.video_container}>
       <div className={styles.video_top}>
@@ -92,7 +106,13 @@ const VideoInfo = () => {
               : styles.player
           }
         >
-          <img src={videoUrl} alt="video" />
+          <ReactVideo
+            className={styles.video}
+            src="/videos/sample.mp4"
+            poster="/images/sample.jpg"
+            primaryColor="#4c6ef5"
+            autoPlay
+          />
         </div>
       </div>
       <div className={styles.info_container}>
@@ -117,9 +137,9 @@ const VideoInfo = () => {
               <span className={styles.views}>
                 재생 수 {numeral(views).format(0, 0)}
               </span>
-              <span
-                className={styles.date}
-              >{`${createDate.toLocaleString().substr(0, 12)}`}</span>
+              <span className={styles.date}>
+                {moment(createDate).format('YYYY. M. D.')}
+              </span>
             </div>
             <div className={styles.likes_comments}>
               <span className={styles.likes} onClick={onAddLike}>
@@ -138,10 +158,10 @@ const VideoInfo = () => {
                   {comments.length}
                 </a>
               </span>
-              <span className={styles.link} onClick={onHandleModal}>
+              <span className={styles.link} onClick={onShareUrl}>
                 <AiOutlineLink />
               </span>
-              {urlModal && (
+              {/* {urlModal && (
                 <Modal
                   onHandleModal={onHandleModal}
                   header="공유"
@@ -149,7 +169,7 @@ const VideoInfo = () => {
                   contentText={videoUrl}
                   copyBtn="복 사"
                 />
-              )}
+              )} */}
             </div>
           </div>
           {descText && (

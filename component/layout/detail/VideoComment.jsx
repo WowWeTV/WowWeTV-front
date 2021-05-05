@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment, modifyComment, removeComment } from '@/lib/action/video';
 import classnames from 'classnames';
+import moment from 'moment';
 import styles from '@/styles/layout/detail.module.scss';
 import VideoNestedComment from './VideoNestedComment';
 import { AiOutlineDown, AiOutlineMore } from 'react-icons/ai';
@@ -28,18 +29,16 @@ const VideoComment = () => {
   // 댓글 게시 날짜
   const postedDate = useCallback(
     (date) => {
-      const today = new Date();
-      const upload = new Date(date);
-      const calcMin = Math.floor(
-        (today.getTime() - upload.getTime()) / 1000 / 60,
-      );
+      const today = moment();
+      const uploadDate = moment(date);
+      const calcMin = Math.floor(today.diff(uploadDate) / 1000 / 60);
       const calcHour = Math.floor(calcMin / 60);
       const calcDay = Math.floor(calcMin / 60 / 24);
       if (calcMin < 1) return '방금 전';
       if (calcMin < 60) return `${calcMin}분 전`;
       if (calcHour < 24) return `${calcHour}시간 전`;
       if (calcDay < 7) return `${calcDay}일 전`;
-      return upload.toLocaleString().substr(0, 12);
+      return uploadDate.format('YYYY. M. D.');
     },
     [comments],
   );
