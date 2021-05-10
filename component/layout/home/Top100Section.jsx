@@ -15,10 +15,10 @@ const Top100Section = () => {
   return (
     <section className={styles.top100_container}>
       <div className={styles.section_title}>
-        <Link href="/top100Video">
+        <Link href="/sub?type=top100">
           <h3>TOP100</h3>
         </Link>
-        <Link href="/top100Video">
+        <Link href="/sub?type=top100">
           <button>
             더보기
             <AiOutlineRight className={styles.icon} />

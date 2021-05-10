@@ -49,10 +49,10 @@ const RecentSection = () => {
       {/* tablet, desktop */}
       <div className={styles.recent_container}>
         <div className={styles.section_title}>
-          <Link href="/recentVideo">
+          <Link href="/sub?type=recent">
             <h3>지금 뜨는</h3>
           </Link>
-          <Link href="/recentVideo">
+          <Link href="/sub?type=recent">
             <button>
               더보기
               <AiOutlineRight className={styles.icon} />

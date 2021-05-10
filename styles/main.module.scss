@@ -86,7 +86,7 @@
     }
     &:nth-child(2) {
       margin-top: 0.15em;
-      color: _color(gray, 7);
+      color: _color(point);
     }
     &:nth-child(3) {
       display: flex;
@@ -198,15 +198,22 @@
     }
   }
   .recent_info {
-    padding: 0.5em 0.5rem;
+    padding: 1em 1rem;
     background-color: _color(white);
     border: 1px solid _color(gray, 4);
     p {
       &:nth-child(1) {
         font-size: _fs(medium);
       }
+      &:nth-child(2) {
+        font-size: _fs(normal);
+      }
       &:nth-child(3) {
         display: flex;
+        font-size: _fs(small);
+        .icon {
+          font-size: _fs(normal);
+        }
       }
     }
   }
@@ -290,9 +297,9 @@
         white-space: unset;
       }
       &:nth-child(3) {
-        margin-top: 1.5em;
+        margin-top: 1.25em;
         line-height: 1em;
-        font-size: _fs(xsmall);
+        font-size: _fs(small);
         .icon {
           margin-top: -0.15em;
         }
