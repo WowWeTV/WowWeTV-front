@@ -1,10 +1,8 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import styles from '@/styles/layout/my.module.scss';
 import { useSelector } from 'react-redux';
-import PageNation from '@/component/common/PageNation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import classNames from 'classnames';
 import {
   AiOutlineHeart,
   AiOutlinePlayCircle,
