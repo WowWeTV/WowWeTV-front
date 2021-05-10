@@ -1,9 +1,44 @@
+import { useEffect, useState } from 'react';
 import styles from '@/styles/layout/myvideo.module.scss';
-import { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+
+import { AiOutlineClose, AiFillMinusCircle } from 'react-icons/ai';
 import { BiImageAdd } from 'react-icons/bi';
 
 const UploadModal = ({ onClickCancel }) => {
+  const [preView, setPreView] = useState({ file: null, imageUrl: null });
+  const [uploadVideo, setUploadVideo] = useState(null);
+
+  useEffect(() => {
+    console.log(uploadVideo);
+  }, [uploadVideo]);
+
+  const onChangePreView = (e) => {
+    console.log(e.target.files[0]);
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onloadend = () => {
+      setPreView({ file, imageUrl: reader.result });
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const onUploadVideo = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    if (file) {
+      // document.getElementsByClassName('video').re
+      reader.onloadend = () => {
+        setUploadVideo({ file, fileUrl: reader.result });
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  const onRemovePreView = (e) => {
+    setPreView(null);
+  };
   return (
     <div className={styles.modal_container}>
       <div className={styles.modal_pc}>
@@ -40,17 +75,43 @@ const UploadModal = ({ onClickCancel }) => {
                   동영상의 내용을 알려주는 사진을 선택하거나 업로드하세요.
                   시청자의 시선을 사로잡을만한 이미지를 사용해 보세요
                 </span>
-                <input
-                  id="preview_file"
-                  type="file"
-                  className={styles.perview_img_upload}
-                />
-                <label htmlFor="preview_file">
-                  <BiImageAdd size="25" color="#847c7c" />
-                  미리보기 이미지 업로드
-                </label>
-              </div>
 
+                <div className={styles.video_preview_content}>
+                  {preView?.imageUrl ? (
+                    <div className={styles.video_preview_control}>
+                      <div className={styles.remove_btn}>
+                        <AiFillMinusCircle
+                          onClick={onRemovePreView}
+                          size={22}
+                        />
+                      </div>
+
+                      <img
+                        src={preView?.imageUrl}
+                        width="142px"
+                        height="87px"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <input
+                        id="preview_file"
+                        type="file"
+                        className={styles.perview_img_upload}
+                        onChange={onChangePreView}
+                      />
+                      <label htmlFor="preview_file">
+                        <BiImageAdd size="25" color="#847c7c" />
+                        미리보기 이미지 업로드
+                      </label>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.modal_video_content}>
+              {' '}
               <div className={styles.video_tags}>
                 <h3>태그</h3>
 
@@ -68,18 +129,27 @@ const UploadModal = ({ onClickCancel }) => {
                 </select>
               </div>
               <div className={styles.add_tags} />
-            </div>
-
-            <div className={styles.modal_video_content}>
-              {' '}
+              {uploadVideo && (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
+                <video width="270" height="150" controls>
+                  <source src={uploadVideo?.fileUrl} type="video/*" />
+                  <source src={uploadVideo?.fileUrl} type="video/mp4" />
+                  <source src={uploadVideo?.fileUrl} type="video/mov" />
+                  Your browser does not support HTML5 video.
+                </video>
+              )}
               <div className={styles.preview_img}>
-                <div className={styles.file_name}>파일이름</div>
+                <div className={styles.file_name}>
+                  파일이름 :{uploadVideo?.file?.name}
+                </div>
               </div>
               <div className={styles.upload_box}>
                 <input
                   id="video_file"
                   type="file"
+                  accept="video/*"
                   className={styles.video_upload}
+                  onChange={onUploadVideo}
                 />
                 <label htmlFor="video_file">영상 파일</label>
               </div>

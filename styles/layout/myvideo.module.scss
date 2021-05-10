@@ -116,19 +116,21 @@
     font-size: 13px;
     color: _color(gray, 6);
   }
-  .upload_box {
-    display: inline-block;
-    padding: 0.5em 0.75em;
-    color: #e2e2e2;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: _color(point);
-    cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: 0.25em;
+  .file_name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    background: _color(gray, 4);
+    color: #8a8484;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 4px;
   }
+  .upload_box {
+  }
+
   .video_upload {
     width: 0.1px;
     height: 0.1px;
@@ -139,6 +141,14 @@
   }
   .video_upload + label {
     cursor: pointer;
+
+    border-radius: 4px;
+
+    width: 50px;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #4c6ef5;
+    height: 30px;
     color: #fff;
   }
 
@@ -150,11 +160,31 @@
   .modal_video_content {
     display: flex;
     flex-direction: column;
+    width: 30%;
   }
   .video_preview {
     margin-top: 20px;
   }
   .video_tags {
     margin-top: 20px;
+  }
+  .video_preview_content {
+    .video_preview_control {
+      width: 170px;
+      background: #0000009c;
+      text-align: center;
+      position: relative;
+      height: 87px;
+      .remove_btn {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #000000bf;
+        &:hover {
+          color: #f8f9fa87;
+        }
+      }
+    }
   }
 }
