@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/header.module.scss';
-import PropTypes from 'prop-types';
 import {
   AiFillHome,
   AiOutlineClose,
@@ -14,14 +16,15 @@ import {
   AiOutlineUp,
   AiOutlineUser,
 } from 'react-icons/ai';
-import { useRouter } from 'next/router';
 
 const AsideMenu = ({ sideMenu, onToggle }) => {
   const router = useRouter();
   const { pathname } = router;
   const { type } = router.query;
-  const [submenu, setSubmenu] = useState(true);
+  const { userInfo } = useSelector((state) => state.user);
+  const { userName, userImg } = userInfo;
 
+  const [submenu, setSubmenu] = useState(true);
   const onToggleSub = useCallback(() => {
     setSubmenu(!submenu);
   }, [submenu]);
@@ -43,6 +46,14 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
         >
           <div className={styles.mobile_aside_top}>
             <Link href="/login">로그인하세요</Link>
+            {/* <Link href="/my?type=userInfo">
+              <div className={styles.mobile_aside_userinfo}>
+                <div>
+                  <img src={userImg} alt={`${userName} 프로필 사진`} />
+                </div>
+                <p>{userName}</p>
+              </div>
+            </Link> */}
             <span onClick={onToggle} className="icon">
               <AiOutlineClose />
             </span>

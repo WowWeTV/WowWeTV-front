@@ -80,14 +80,34 @@
   }
   .mobile_aside_top {
     overflow: hidden;
-    padding: 1.25em 1.563rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1.563rem;
+    box-sizing: border-box;
     a {
-      float: left;
+      width: 80%;
       cursor: pointer;
     }
     span {
-      float: right;
+      display: flex;
+      justify-content: right;
       cursor: pointer;
+    }
+  }
+  .mobile_aside_userinfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      width: 3rem;
+      height: 3em;
+      margin-right: 0.5rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
   ul {
@@ -198,12 +218,11 @@
         }
         .upload_dropdown {
           position: absolute;
-          top: 4.25em;
-          right: 0;
+          top: 4em;
+          right: 5.75rem;
           padding: 0.5em 0;
           background-color: _color(white);
-          border: 1px solid _color(gray, 3);
-          border-top: none;
+          box-shadow: $shadow;
           div {
             display: flex;
             justify-content: flex-start;
@@ -220,9 +239,41 @@
             &:hover {
               color: _color(point);
               cursor: pointer;
-              span {
+              span,
+              h3 {
                 color: _color(point);
               }
+            }
+          }
+        }
+        .gnb_userinfo {
+          div {
+            width: 3rem;
+            height: 3em;
+            cursor: pointer;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+        }
+        .userinfo_dropdown {
+          position: absolute;
+          top: 4em;
+          right: 0.25rem;
+          padding: 0.5em 0;
+          background-color: _color(white);
+          box-shadow: $shadow;
+          ul {
+            width: 8.5rem;
+          }
+          li {
+            padding: 0.5em 2rem;
+            font-size: _fs(normal);
+            &:hover {
+              color: _color(point);
+              cursor: pointer;
             }
           }
         }
