@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import styles from '@/styles/layout/register.module.scss';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../lib/action/user';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [inputs, setInputs] = useState({
     name: '',
     password: '',
@@ -64,7 +66,6 @@ const RegisterForm = () => {
     if (!inputs.verify) {
       setVerifyErrorMsg('인증번호는 필수 정보입니다.');
     } else if (!verifyRe.test(inputs.verify)) {
-      console.log(verifyRe.test(inputs.verify));
       setVerifyErrorMsg('인증번호를 다시 확인해주세요.');
     } else {
       setVerifyErrorMsg('');
@@ -92,22 +93,24 @@ const RegisterForm = () => {
       emailRe.test(inputs.email) &&
       verifyNum.toString() === inputs.verify
     ) {
-      console.log('Start function'); // 나중에 삭제
       const dataToSubmit = {
         userName: inputs.name,
         userEmail: inputs.email,
         password: inputs.password,
       };
       dispatch(registerUser(dataToSubmit)).then((response) => {
-        console.log(response);
-        if (response.result) {
-          console.log(response.result);
+        if (response.payload) {
+          if (response.payload.Success) {
+            alert('계정이 생성되었습니다.\n로그인 페이지로 이동합니다.');
+            router.push(`/login`);
+          } else {
+            console.log(response.payload);
+            alert(response.payload.message);
+          }
         } else {
-          console.log('dispatch fail');
+          alert('연결 오류');
         }
       });
-    } else {
-      console.log('Fail'); // 나중에 삭제
     }
   };
   const onEmailSubmit = async () => {
