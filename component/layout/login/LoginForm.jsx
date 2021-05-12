@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie';
+import { loginUser } from '../../../lib/action/user';
 import styles from '@/styles/layout/login.module.scss';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
-    name: '',
+    email: '',
     password: '',
   });
-  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
   const [pwErrorMsg, setPwErrorMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const { name, password } = inputs;
+  const { email, password } = inputs;
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
   const onChange = (e) => {
     const { value, id } = e.target;
@@ -21,18 +28,37 @@ const LoginForm = () => {
 
   const onSubmit = () => {
     if (inputs.id === '') {
-      setNameErrorMsg('아이디를 입력해주세요.');
+      setEmailErrorMsg('아이디를 입력해주세요.');
       setPwErrorMsg('');
       setErrorMsg('');
     } else if (inputs.password === '') {
       setPwErrorMsg('비밀번호를 입력해주세요.');
-      setNameErrorMsg('');
+      setEmailErrorMsg('');
       setErrorMsg('');
     } else {
-      // Add function
-      setErrorMsg('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
-      setNameErrorMsg('');
       setPwErrorMsg('');
+      setEmailErrorMsg('');
+      setErrorMsg('');
+      const dataToSubmit = {
+        userEmail: inputs.email,
+        password: inputs.password,
+      };
+      dispatch(loginUser(dataToSubmit)).then((response) => {
+        if (response.payload) {
+          if (response.payload.Success) {
+            setCookie('token', response.payload.data.jwt);
+            router.push(`/`);
+          } else {
+            console.log(response.payload);
+            setErrorMsg(response.payload.message);
+          }
+        } else {
+          alert('연결 오류');
+        }
+      });
+      setEmailErrorMsg('');
+      setPwErrorMsg('');
+      // setErrorMsg('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
     }
   };
   return (
@@ -40,16 +66,16 @@ const LoginForm = () => {
       <div className={styles.input_row}>
         <span>
           <input
-            id="name"
-            placeholder="아이디"
+            id="email"
+            placeholder="이메일"
             type="text"
-            value={name}
+            value={email}
             onChange={onChange}
             className="text-input"
           />
         </span>
       </div>
-      {nameErrorMsg && <p>{nameErrorMsg}</p>}
+      {emailErrorMsg && <p>{emailErrorMsg}</p>}
       <div className={styles.input_row}>
         <span>
           <input
