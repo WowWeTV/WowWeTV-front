@@ -106,7 +106,7 @@
 .top100_container {
   padding: 2.5em 1.5rem;
   .section_title {
-    margin-bottom: 0.75em;
+    margin-bottom: 1.25em;
   }
 }
 .top100 {
@@ -184,9 +184,10 @@
   .recent {
     width: 49%;
     float: left;
+    margin: 0.5em 0;
     margin-right: 2%;
     cursor: pointer;
-    &:last-child {
+    &:nth-child(2n) {
       margin-right: 0;
     }
   }
@@ -260,20 +261,19 @@
   .recent_section {
     padding: 2.5em 0;
   }
-  .recent_container {
-    overflow: hidden;
-  }
   .recent_list {
     display: flex;
     justify-content: space-between;
-    width: 49%;
-    float: left;
-    &:last-child {
-      margin-left: 1.5%;
-    }
   }
   .recent {
-    width: 48.5%;
+    width: 23.875%;
+    margin-right: 1.5%;
+    &:nth-child(2n) {
+      margin-right: 1.5%;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
   .recent_img {
     height: 6.75em;
@@ -343,10 +343,10 @@
     height: 15.25em;
     margin: 0 0.5% 1.25em;
     padding-right: 0;
-    &:nth-child(1) {
+    &:nth-child(5n-4) {
       margin-left: 0;
     }
-    &:nth-child(5) {
+    &:nth-child(5n) {
       margin-right: 0;
     }
   }
