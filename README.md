@@ -14,6 +14,7 @@
 #### 권장 버전
 
 <img src="https://img.shields.io/badge/npm-6.14.7-green?style=flat-square" />
+<img src="https://img.shields.io/badge/react-17.0.2-blue?style=flat-square" />
 
 #### 설치
 
@@ -30,7 +31,7 @@ npm run dev
 | 분류            | 스택                                                         |
 | :-------------- | ------------------------------------------------------------ |
 | BackEnd         | [BackEnd_Github](https://github.com/wowweServer/wowweServer) |
-| FrontEnd        | Javascript(ES6+) Next.js React Redux-Toolkit SaSS            |
+| FrontEnd        | Javascript(ES6+), Next.js, React, Redux-Toolkit, SaSS        |
 | Version Control | Git                                                          |
 | Repository      | Github                                                       |
 
