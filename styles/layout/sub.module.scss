@@ -128,6 +128,25 @@
     }
   }
 }
+@keyframes loading {
+  100% {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading_icon {
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    font-size: 1.5rem;
+    color: _color(gray, 7);
+    animation: loading 1s linear infinite;
+  }
+}
 
 @include respond-to(medium) {
   .video {
@@ -140,7 +159,6 @@
   .video_img {
     width: 8.5em;
     height: 5em;
-    margin: 0 0.5rem;
   }
   .video_info {
     width: calc(100% - 11rem);
@@ -218,7 +236,6 @@
   .video_img {
     width: 100%;
     height: 6.5em;
-    margin: 0;
   }
   .video_ranking {
     display: block;

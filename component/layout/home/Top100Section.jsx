@@ -14,9 +14,9 @@ const Top100Section = () => {
   // 영상 데이터 추가 후 top100VideoList 삭제
   const { top100VideoList, top100Videos } = useSelector((state) => state.video);
   const dispatch = useDispatch();
-  const dataToload = { limit: 9, offset: 0 };
+  const dataToLoad = { limit: 9, offset: 0 };
   useEffect(() => {
-    dispatch(loadTop100Video(dataToload))
+    dispatch(loadTop100Video(dataToLoad))
       .then((response) => {
         if (response.payload.success) {
           // console.log(response.payload.data.content);

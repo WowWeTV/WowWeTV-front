@@ -17,9 +17,9 @@ const RecentSection = () => {
   // 영상 데이터 추가 후 recentVideoList 삭제
   const { recentVideoList, recentVideos } = useSelector((state) => state.video);
   const dispatch = useDispatch();
-  const dataToload = { limit: 3, offset: 0 };
+  const dataToLoad = { limit: 3, offset: 0 };
   useEffect(() => {
-    dispatch(loadRecentVideo(dataToload))
+    dispatch(loadRecentVideo(dataToLoad))
       .then((response) => {
         if (response.payload.success) {
           // console.log(response.payload.data.content);

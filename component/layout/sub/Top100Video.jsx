@@ -1,12 +1,61 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadTop100Video } from '@/lib/action/video';
 import classnames from 'classnames';
 import styles from '@/styles/layout/sub.module.scss';
-import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
+import {
+  AiOutlineHeart,
+  AiOutlineLoading3Quarters,
+  AiOutlinePlayCircle,
+} from 'react-icons/ai';
 
 const Top100Video = () => {
-  const { top100VideoList } = useSelector((state) => state.video);
+  // 영상 데이터 추가 후 top100VideoList 삭제
+  const { top100VideoList, top100Videos } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+  const [curVideos, setCurVideos] = useState([]);
+  const [curPage, setCurPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const videosPerPage = 20;
+  const ref = useRef();
+
+  const loadVideos = useCallback(
+    (pageNumber) => {
+      // dispatch(
+      //   loadTop100Video({
+      //     limit: videosPerPage,
+      //     offset: 3 + (page - 1) * videosPerPage,
+      //   }),
+      // );
+      setCurVideos(
+        curVideos.concat(
+          top100VideoList.slice(
+            3 + (pageNumber - 1) * videosPerPage,
+            3 + pageNumber * videosPerPage,
+          ),
+        ),
+      );
+      if (curVideos.length < 96) setIsLoading(true);
+      else setIsLoading(false);
+    },
+    [curPage],
+  );
+  const loadMoreVideos = () => {
+    if (curPage < 5) setCurPage((page) => page + 1);
+  };
+  useEffect(() => loadVideos(curPage), [curPage]);
+  useEffect(() => {
+    if (isLoading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) loadMoreVideos();
+        },
+        { threshold: 1 },
+      );
+      observer.observe(ref.current);
+    }
+  }, [isLoading]);
 
   return (
     <div className={styles.video_list_container}>
@@ -52,7 +101,7 @@ const Top100Video = () => {
         </div>
       </div>
       <div className={styles.video_list}>
-        {top100VideoList.slice(3, 100).map((video, index) => {
+        {curVideos.map((video, index) => {
           const {
             id,
             videoUrl,
@@ -90,6 +139,13 @@ const Top100Video = () => {
           );
         })}
       </div>
+      {isLoading && (
+        <div ref={ref} className={styles.loading_icon}>
+          <span>
+            <AiOutlineLoading3Quarters />
+          </span>
+        </div>
+      )}
     </div>
   );
 };

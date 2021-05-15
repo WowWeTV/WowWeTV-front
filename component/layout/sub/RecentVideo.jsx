@@ -1,12 +1,61 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadRecentVideo } from '@/lib/action/video';
 import classnames from 'classnames';
 import styles from '@/styles/layout/sub.module.scss';
-import { AiOutlineHeart, AiOutlinePlayCircle } from 'react-icons/ai';
+import {
+  AiOutlineHeart,
+  AiOutlineLoading3Quarters,
+  AiOutlinePlayCircle,
+} from 'react-icons/ai';
 
 const RecentVideo = () => {
-  const { recentVideoList } = useSelector((state) => state.video);
+  // 영상 데이터 추가 후 recentVideoList 삭제
+  const { recentVideoList, recentVideos } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+  const [curVideos, setCurVideos] = useState([]);
+  const [curPage, setCurPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const videosPerPage = 20;
+  const ref = useRef();
+
+  const loadVideos = useCallback(
+    (pageNumber) => {
+      // dispatch(
+      //   loadRecentVideo({
+      //     limit: videosPerPage,
+      //     offset: 3 + (page - 1) * videosPerPage,
+      //   }),
+      // );
+      setCurVideos(
+        curVideos.concat(
+          recentVideoList.slice(
+            3 + (pageNumber - 1) * videosPerPage,
+            3 + pageNumber * videosPerPage,
+          ),
+        ),
+      );
+      if (curVideos.length < 46) setIsLoading(true);
+      else setIsLoading(false);
+    },
+    [curPage],
+  );
+  const loadMoreVideos = () => {
+    if (curPage < 5) setCurPage((page) => page + 1);
+  };
+  useEffect(() => loadVideos(curPage), [curPage]);
+  useEffect(() => {
+    if (isLoading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) loadMoreVideos();
+        },
+        { threshold: 1 },
+      );
+      observer.observe(ref.current);
+    }
+  }, [isLoading]);
 
   return (
     <div className={styles.video_list_container}>
@@ -55,7 +104,7 @@ const RecentVideo = () => {
         </div>
       </div>
       <div className={styles.video_list}>
-        {recentVideoList.slice(3, 50).map((video) => {
+        {curVideos.map((video) => {
           const {
             id,
             videoUrl,
@@ -93,6 +142,13 @@ const RecentVideo = () => {
           );
         })}
       </div>
+      {isLoading && (
+        <div ref={ref} className={styles.loading_icon}>
+          <span>
+            <AiOutlineLoading3Quarters />
+          </span>
+        </div>
+      )}
     </div>
   );
 };
