@@ -15,18 +15,18 @@ const Top100Section = () => {
   const { top100VideoList, top100Videos } = useSelector((state) => state.video);
   const dispatch = useDispatch();
   const dataToLoad = { limit: 9, offset: 0 };
-  useEffect(() => {
-    dispatch(loadTop100Video(dataToLoad))
-      .then((response) => {
-        if (response.payload.success) {
-          // console.log(response.payload.data.content);
-          // console.log(top100Videos);
-        } else {
-          console.log(response.payload.message);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadTop100Video(dataToLoad))
+  //     .then((response) => {
+  //       if (response.payload.success) {
+  //         console.log(response.payload.data.content);
+  //         console.log(top100Videos);
+  //       } else {
+  //         console.log(response.payload.message);
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <section className={styles.top100_container}>

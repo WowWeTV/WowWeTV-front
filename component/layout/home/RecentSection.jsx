@@ -18,18 +18,18 @@ const RecentSection = () => {
   const { recentVideoList, recentVideos } = useSelector((state) => state.video);
   const dispatch = useDispatch();
   const dataToLoad = { limit: 3, offset: 0 };
-  useEffect(() => {
-    dispatch(loadRecentVideo(dataToLoad))
-      .then((response) => {
-        if (response.payload.success) {
-          // console.log(response.payload.data.content);
-          // console.log(recentVideos);
-        } else {
-          console.error(response.payload.message);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadRecentVideo(dataToLoad))
+  //     .then((response) => {
+  //       if (response.payload.success) {
+  //         console.log(response.payload.data.content);
+  //         console.log(recentVideos);
+  //       } else {
+  //         console.error(response.payload.message);
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
   const settings = {
     autoplay: true,
     autoplaySpeed: 3000,

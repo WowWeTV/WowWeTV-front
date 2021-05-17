@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/header.module.scss';
@@ -13,7 +14,7 @@ import {
 } from 'react-icons/ai';
 import AsideMenu from './AsideMenu';
 
-const Gnb = () => {
+const Gnb = ({ cookie }) => {
   const router = useRouter();
   const { pathname } = router;
   const { userInfo } = useSelector((state) => state.user);
@@ -134,7 +135,7 @@ const Gnb = () => {
             />
           </div>
         </div>
-        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
+        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} cookie={cookie} />
       </div>
 
       {/* desktop */}
@@ -190,36 +191,45 @@ const Gnb = () => {
                 </Link>
               </div>
             )}
-            <Link href="/login">
-              <button className="circle primary">로그인</button>
-            </Link>
-            {/* <div className={styles.gnb_userinfo} onClick={onShowUserinfo}>
-              <div>
-                <img src={userImg} alt={`${userName} 프로필 사진`} />
-              </div>
-            </div>
-            {userinfoDropdown && (
-              <div className={styles.userinfo_dropdown}>
-                <ul>
-                  <Link href="/my?type=channel">
-                    <li>내 채널</li>
-                  </Link>
-                  <Link href="/my?type=patron">
-                    <li>후원하기</li>
-                  </Link>
-                  <Link href="/my?type=userInfo">
-                    <li>회원정보</li>
-                  </Link>
-                  <li>로그아웃</li>
-                </ul>
-              </div>
-            )} */}
+            {cookie ? (
+              <>
+                <div className={styles.gnb_userinfo} onClick={onShowUserinfo}>
+                  <div>
+                    <img src={userImg} alt={`${userName} 프로필 사진`} />
+                  </div>
+                </div>
+                {userinfoDropdown && (
+                  <div className={styles.userinfo_dropdown}>
+                    <ul>
+                      <Link href="/my?type=channel">
+                        <li>내 채널</li>
+                      </Link>
+                      <Link href="/my?type=patron">
+                        <li>후원하기</li>
+                      </Link>
+                      <Link href="/my?type=userInfo">
+                        <li>회원정보</li>
+                      </Link>
+                      <li>로그아웃</li>
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              <Link href="/login">
+                <button className="circle primary">로그인</button>
+              </Link>
+            )}
           </div>
         </div>
         <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
       </div>
     </>
   );
+};
+
+Gnb.propTypes = {
+  cookie: PropTypes.string.isRequired,
 };
 
 export default Gnb;

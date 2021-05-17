@@ -17,7 +17,7 @@ import {
   AiOutlineUser,
 } from 'react-icons/ai';
 
-const AsideMenu = ({ sideMenu, onToggle }) => {
+const AsideMenu = ({ sideMenu, onToggle, cookie }) => {
   const router = useRouter();
   const { pathname } = router;
   const { type } = router.query;
@@ -45,15 +45,18 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
           }
         >
           <div className={styles.mobile_aside_top}>
-            <Link href="/login">로그인하세요</Link>
-            {/* <Link href="/my?type=userInfo">
-              <div className={styles.mobile_aside_userinfo}>
-                <div>
-                  <img src={userImg} alt={`${userName} 프로필 사진`} />
+            {cookie ? (
+              <Link href="/my?type=userInfo">
+                <div className={styles.mobile_aside_userinfo}>
+                  <div>
+                    <img src={userImg} alt={`${userName} 프로필 사진`} />
+                  </div>
+                  <p>{userName}</p>
                 </div>
-                <p>{userName}</p>
-              </div>
-            </Link> */}
+              </Link>
+            ) : (
+              <Link href="/login">로그인하세요</Link>
+            )}
             <span onClick={onToggle} className="icon">
               <AiOutlineClose />
             </span>
@@ -198,5 +201,6 @@ const AsideMenu = ({ sideMenu, onToggle }) => {
 AsideMenu.propTypes = {
   sideMenu: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
+  cookie: PropTypes.string.isRequired,
 };
 export default AsideMenu;
