@@ -45,7 +45,7 @@ const LoginForm = () => {
       };
       dispatch(loginUser(dataToSubmit)).then((response) => {
         if (response.payload) {
-          if (response.payload.Success) {
+          if (response.payload.success) {
             setCookie('token', response.payload.data.jwt);
             router.push(`/`);
           } else {
