@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { addView, addLike, removeLike } from '@/lib/action/video';
+import { addView, addLike, removeLike, loadVideo } from '@/lib/action/video';
 import classnames from 'classnames';
 import moment from 'moment';
 import numeral from 'numeral';
@@ -18,33 +18,37 @@ import {
 } from 'react-icons/ai';
 
 const VideoInfo = () => {
-  const { singleVideo } = useSelector((state) => state.video);
+  const { singleVideo, aVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
+  const { userImg, userName, views, tags, comments } = singleVideo; // 추후 삭제
   const {
-    id,
-    videoTitle,
-    userImg,
-    userName,
-    videoUrl,
-    videoLength,
-    videoDesc,
-    views,
+    // 추후 151에서 videoId로 수정 필요
+    videoId,
+    fileUrl,
+    title,
+    description,
+    thumnailImg,
+    createdDate,
     likes,
-    tags,
-    createDate,
-    comments,
-  } = singleVideo;
+  } = aVideo;
   const [fixed, setFixed] = useState(false);
   const [pageY, setPageY] = useState(0);
-  const [descText, setDescText] = useState(false);
+  const [showDesc, setShowDesc] = useState(false);
   const [urlModal, setUrlModal] = useState(false);
   const [videoLike, setVideoLike] = useState(false);
 
-  // 영상 조회 수 증가
   useEffect(() => {
-    // dispatch(addView());
+    dispatch(loadVideo(151))
+      .then((response) => {
+        if (response.payload.success) {
+          console.log(response.payload);
+        } else {
+          console.error(response.payload.message);
+        }
+      })
+      .catch((err) => console.error(err));
+    // dispatch(addView(151));
   }, []);
-  // 스크롤 이벤트
   const handleScroll = useCallback(() => {
     const { pageYOffset } = window;
     if (pageYOffset >= 42) {
@@ -58,20 +62,22 @@ const VideoInfo = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pageY]);
-  // 좋아요 클릭
+  // 에러 수정 후 재확인
   const onAddLike = () => {
     setVideoLike(!videoLike);
     if (videoLike) {
-      dispatch(removeLike());
+      dispatch(removeLike(151))
+        .then((response) => console.log(response.payload))
+        .catch((err) => console.error(err));
     } else {
-      dispatch(addLike());
+      dispatch(addLike(151))
+        .then((response) => console.log(response.payload))
+        .catch((err) => console.error(err));
     }
   };
-  // 영상 설명
   const onToggleDesc = useCallback(() => {
-    setDescText(!descText);
-  }, [descText]);
-  // 영상 링크 모달
+    setShowDesc(!showDesc);
+  }, [showDesc]);
   const onHandleModal = useCallback(() => {
     setUrlModal(!urlModal);
   }, [urlModal]);
@@ -80,7 +86,7 @@ const VideoInfo = () => {
   //     navigator
   //       .share({
   //         title: '영상 링크를 복사하시겠습니까?',
-  //         url: videoUrl,
+  //         url: fileUrl,
   //       })
   //       .then(() => {
   //         console.log('Success sharing');
@@ -88,6 +94,7 @@ const VideoInfo = () => {
   //       .catch((error) => console.log('Error sharing', error));
   //   }
   // };
+
   return (
     <div className={styles.video_container}>
       <div className={styles.video_top}>
@@ -108,8 +115,8 @@ const VideoInfo = () => {
         >
           <ReactVideo
             className={styles.video}
-            src="/videos/sample.mp4"
-            poster="/images/sample.jpg"
+            src={fileUrl}
+            poster={thumnailImg}
             primaryColor="#4c6ef5"
             autoPlay
           />
@@ -128,9 +135,9 @@ const VideoInfo = () => {
           </div>
           <div className={styles.video_summary}>
             <div className={styles.title}>
-              <h4>{videoTitle}</h4>
+              <h4>{title || '저장된 제목이 없습니다'}</h4>
               <button className={styles.desc_btn} onClick={onToggleDesc}>
-                {descText ? <AiOutlineUp /> : <AiOutlineDown />}
+                {showDesc ? <AiOutlineUp /> : <AiOutlineDown />}
               </button>
             </div>
             <div className={styles.views_date}>
@@ -138,7 +145,7 @@ const VideoInfo = () => {
                 재생 수 {numeral(views).format(0, 0)}
               </span>
               <span className={styles.date}>
-                {moment(createDate).format('YYYY. M. D.')}
+                {moment(createdDate).format('YYYY. M. D.')}
               </span>
             </div>
             <div className={styles.likes_comments}>
@@ -166,19 +173,19 @@ const VideoInfo = () => {
                   onHandleModal={onHandleModal}
                   header="공유"
                   contentHeader="영상 링크를 복사하시겠습니까?"
-                  contentText={videoUrl}
+                  contentText={fileUrl}
                   copyBtn="복 사"
                 />
               )}
             </div>
           </div>
-          {descText && (
+          {showDesc && (
             <div className={classnames(styles.mobile_desc, styles.video_desc)}>
-              {videoDesc}
+              {description || '저장된 설명이 없습니다.'}
             </div>
           )}
           <div className={classnames(styles.desktop_desc, styles.video_desc)}>
-            {videoDesc}
+            {description || '저장된 설명이 없습니다.'}
           </div>
         </div>
         <Link href={`/search?query=${userName}&type=channels`}>
