@@ -21,16 +21,6 @@ const VideoInfo = () => {
   const { singleVideo, aVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
   const { userImg, userName, views, tags, comments } = singleVideo; // 추후 삭제
-  const {
-    // 추후 151에서 videoId로 수정 필요
-    videoId,
-    fileUrl,
-    title,
-    description,
-    thumnailImg,
-    createdDate,
-    likes,
-  } = aVideo;
   const [fixed, setFixed] = useState(false);
   const [pageY, setPageY] = useState(0);
   const [showDesc, setShowDesc] = useState(false);
@@ -38,7 +28,7 @@ const VideoInfo = () => {
   const [videoLike, setVideoLike] = useState(false);
 
   useEffect(() => {
-    dispatch(loadVideo(151))
+    dispatch(loadVideo(151)) // 추후 151에서 videoId로 수정 필요
       .then((response) => {
         if (response.payload.success) {
           console.log(response.payload);
@@ -94,6 +84,17 @@ const VideoInfo = () => {
   //       .catch((error) => console.log('Error sharing', error));
   //   }
   // };
+
+  const {
+    videoId,
+    fileUrl,
+    title,
+    description,
+    thumnailImg,
+    createdDate,
+    likes,
+    userDto,
+  } = aVideo;
 
   return (
     <div className={styles.video_container}>
@@ -188,14 +189,16 @@ const VideoInfo = () => {
             {description || '저장된 설명이 없습니다.'}
           </div>
         </div>
-        <Link href={`/search?query=${userName}&type=channels`}>
-          <div className={styles.user_info}>
-            <div className={styles.user_img}>
-              <img src={userImg} alt={userName} />
-            </div>
-            <p className={styles.user_name}>{userName}</p>
-          </div>
-        </Link>
+        <div className={styles.user_info}>
+          <Link href={`/search?query=${userName}&type=channels`}>
+            <>
+              <div className={styles.user_img}>
+                <img src={userImg} alt={userName} />
+              </div>
+              <p className={styles.user_name}>{userName}</p>
+            </>
+          </Link>
+        </div>
       </div>
     </div>
   );
