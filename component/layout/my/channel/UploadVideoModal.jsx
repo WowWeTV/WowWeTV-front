@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/layout/myvideo.module.scss';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose, AiFillMinusCircle } from 'react-icons/ai';
 import { BiImageAdd } from 'react-icons/bi';
 
+import { uploadVideo } from '@/lib/action/user';
+
+import useInput from './useInput';
+
 const UploadModal = ({ onClickCancel }) => {
+  const [title, onChangeTitle] = useInput('');
+  const [description, onChangeDescription] = useInput('');
+
+  const { loading } = useSelector((state) => state.user);
   const [preView, setPreView] = useState({ file: null, imageUrl: null });
-  const [uploadVideo, setUploadVideo] = useState(null);
+  const [video, setUploadVideo] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(uploadVideo);
-  }, [uploadVideo]);
+    if (loading === 'pending') {
+      alert('로딩중...');
+    }
+  }, [loading]);
 
   const onChangePreView = (e) => {
     console.log(e.target.files[0]);
@@ -23,12 +34,20 @@ const UploadModal = ({ onClickCancel }) => {
     reader.readAsDataURL(file);
   };
 
+  const onClickUpLoad = (e) => {
+    console.log(title, description, preView, video);
+    if (!title || !description || !preView.file || !video) {
+      alert('입력되지 않은 값이 있습니다.');
+    }
+
+    dispatch(uploadVideo({ file: video, title, description }));
+  };
+
   const onUploadVideo = (e) => {
     const reader = new FileReader();
     const file = e.target.files[0];
 
     if (file) {
-      // document.getElementsByClassName('video').re
       reader.onloadend = () => {
         setUploadVideo({ file, fileUrl: reader.result });
       };
@@ -57,6 +76,8 @@ const UploadModal = ({ onClickCancel }) => {
 
               <div className={styles.input_container}>
                 <textarea
+                  onChange={onChangeTitle}
+                  value={title}
                   className={styles.video_input}
                   placeholder="동영상을 설명하는 제목을 추가하세요"
                 />
@@ -64,6 +85,8 @@ const UploadModal = ({ onClickCancel }) => {
               </div>
               <div className={styles.input_container}>
                 <textarea
+                  onChange={onChangeDescription}
+                  value={description}
                   className={styles.video_input}
                   placeholder="시청자에게 동영상을 설명하세요"
                 />
@@ -129,18 +152,18 @@ const UploadModal = ({ onClickCancel }) => {
                 </select>
               </div>
               <div className={styles.add_tags} />
-              {uploadVideo && (
+              {video && (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
                 <video width="270" height="150" controls>
-                  <source src={uploadVideo?.fileUrl} type="video/*" />
-                  <source src={uploadVideo?.fileUrl} type="video/mp4" />
-                  <source src={uploadVideo?.fileUrl} type="video/mov" />
+                  <source src={video?.fileUrl} type="video/*" />
+                  <source src={video?.fileUrl} type="video/mp4" />
+                  <source src={video?.fileUrl} type="video/mov" />
                   Your browser does not support HTML5 video.
                 </video>
               )}
               <div className={styles.preview_img}>
                 <div className={styles.file_name}>
-                  파일이름 :{uploadVideo?.file?.name}
+                  파일이름 :{video?.file?.name}
                 </div>
               </div>
               <div className={styles.upload_box}>
@@ -158,7 +181,7 @@ const UploadModal = ({ onClickCancel }) => {
 
           <div className={styles.modal_footer} />
 
-          <button>다음</button>
+          <button onClick={onClickUpLoad}>업로드</button>
         </div>
       </div>
     </div>
