@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from '@/styles/layout/header.module.scss';
 import {
@@ -12,14 +14,17 @@ import {
 } from 'react-icons/ai';
 import AsideMenu from './AsideMenu';
 
-const Gnb = () => {
+const Gnb = ({ cookie }) => {
   const router = useRouter();
   const { pathname } = router;
+  const { userInfo } = useSelector((state) => state.user);
+  const { userName, userImg } = userInfo;
   const [fixed, setFixed] = useState(false);
   const [pageY, setPageY] = useState(0);
   const [sideMenu, setSideMenu] = useState(false);
   const [search, setSearch] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+  const [uploadDropdown, setUploadDropdown] = useState(false);
+  const [userinfoDropdown, setUserinfoDropdown] = useState(false);
   const [inputs, setInputs] = useState({
     mobileSearchInput: '',
     searchInput: '',
@@ -71,8 +76,13 @@ const Gnb = () => {
     },
     [inputs, router],
   );
-  const onShowDropdown = () => {
-    setDropdown(!dropdown);
+  const onShowUpload = () => {
+    if (userinfoDropdown) setUserinfoDropdown(false);
+    setUploadDropdown(!uploadDropdown);
+  };
+  const onShowUserinfo = () => {
+    if (uploadDropdown) setUploadDropdown(false);
+    setUserinfoDropdown(!userinfoDropdown);
   };
 
   return (
@@ -125,7 +135,7 @@ const Gnb = () => {
             />
           </div>
         </div>
-        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
+        <AsideMenu sideMenu={sideMenu} onToggle={onToggle} cookie={cookie} />
       </div>
 
       {/* desktop */}
@@ -157,11 +167,11 @@ const Gnb = () => {
             <button className="circle">Creator Studio</button>
             <div
               className={`icon ${styles.upload_icon}`}
-              onClick={onShowDropdown}
+              onClick={onShowUpload}
             >
               <AiOutlineVideoCamera />
             </div>
-            {dropdown && (
+            {uploadDropdown && (
               <div className={styles.upload_dropdown}>
                 <Link href="/uploadVideo">
                   <div>
@@ -181,15 +191,45 @@ const Gnb = () => {
                 </Link>
               </div>
             )}
-            <Link href="/login">
-              <button className="circle primary">로그인</button>
-            </Link>
+            {cookie ? (
+              <>
+                <div className={styles.gnb_userinfo} onClick={onShowUserinfo}>
+                  <div>
+                    <img src={userImg} alt={`${userName} 프로필 사진`} />
+                  </div>
+                </div>
+                {userinfoDropdown && (
+                  <div className={styles.userinfo_dropdown}>
+                    <ul>
+                      <Link href="/my?type=channel">
+                        <li>내 채널</li>
+                      </Link>
+                      <Link href="/my?type=patron">
+                        <li>후원하기</li>
+                      </Link>
+                      <Link href="/my?type=userInfo">
+                        <li>회원정보</li>
+                      </Link>
+                      <li>로그아웃</li>
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              <Link href="/login">
+                <button className="circle primary">로그인</button>
+              </Link>
+            )}
           </div>
         </div>
         <AsideMenu sideMenu={sideMenu} onToggle={onToggle} />
       </div>
     </>
   );
+};
+
+Gnb.propTypes = {
+  cookie: PropTypes.string.isRequired,
 };
 
 export default Gnb;

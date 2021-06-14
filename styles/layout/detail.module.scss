@@ -142,6 +142,7 @@
   .user_img {
     width: 3.125rem;
     height: 3em;
+    cursor: pointer;
     img {
       width: 100%;
       height: 100%;
@@ -152,6 +153,7 @@
     margin-left: 0.5rem;
     font-size: _fs(normal);
     font-weight: bold;
+    cursor: pointer;
   }
 }
 // Recommend

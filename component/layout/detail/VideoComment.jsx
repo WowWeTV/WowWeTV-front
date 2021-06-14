@@ -1,6 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, modifyComment, removeComment } from '@/lib/action/video';
+import {
+  loadComment,
+  addComment,
+  modifyComment,
+  removeComment,
+} from '@/lib/action/video';
 import classnames from 'classnames';
 import moment from 'moment';
 import styles from '@/styles/layout/detail.module.scss';
@@ -8,14 +13,15 @@ import VideoNestedComment from './VideoNestedComment';
 import { AiOutlineDown, AiOutlineMore } from 'react-icons/ai';
 
 const VideoComment = () => {
-  const { singleVideo } = useSelector((state) => state.video);
+  const { singleVideo, videoComments } = useSelector((state) => state.video);
   const dispatch = useDispatch();
+  const dataToLoad = { videoId: 1, limit: 3, offset: 0 };
   const { comments } = singleVideo;
 
   const [startIndex, setStartIndex] = useState(0);
   const [lastIndex, setLastPage] = useState(10);
   const [moreComments, setMoreComments] = useState(1);
-  const commentList = comments.slice(startIndex, lastIndex * moreComments);
+  const [commentList, setCommentList] = useState([]);
   const [commentInput, setCommentInput] = useState({
     newComment: '',
     postedComment: '',
@@ -25,6 +31,21 @@ const VideoComment = () => {
   const [updateButton, setUpdateButton] = useState(initialStates);
   const [modification, setModification] = useState(initialStates);
   const [nestedList, setNestedList] = useState(initialStates);
+
+  useEffect(() => {
+    dispatch(loadComment(dataToLoad))
+      .then((response) => {
+        if (response.payload.success) {
+          console.log(response.payload);
+        } else {
+          console.error(response.payload.message);
+        }
+      })
+      .catch((err) => console.error(err));
+    setCommentList(
+      videoComments[0].slice(startIndex, lastIndex * moreComments),
+    );
+  }, []);
 
   // 댓글 게시 날짜
   const postedDate = useCallback(
@@ -143,10 +164,10 @@ const VideoComment = () => {
           {commentList.map((comment, index) => {
             const {
               id,
-              user,
               commentText,
-              createDate,
-              nestedComment,
+              createdAt,
+              userDto,
+              // nestedComment,
             } = comment;
             return (
               <li key={id}>
@@ -187,15 +208,11 @@ const VideoComment = () => {
                           className={styles.comment_info}
                           onClick={() => setUpdateButton(initialStates)}
                         >
-                          <p className={styles.user_name}>
-                            {index} {user.userName}
-                          </p>
+                          <p className={styles.user_name}>{userDto.userName}</p>
                           <div className={styles.comment_text}>
                             <p>{commentText}</p>
                           </div>
-                          <p className={styles.date}>
-                            {postedDate(createDate)}
-                          </p>
+                          <p className={styles.date}>{postedDate(createdAt)}</p>
                         </div>
                         <button
                           className={styles.comment_update_btn}
@@ -224,7 +241,8 @@ const VideoComment = () => {
                     }
                     onClick={() => onShowNested(index)}
                   >
-                    댓글 {nestedComment.length > 0 && nestedComment.length}
+                    {/* 댓글 {nestedComment.length > 0 && nestedComment.length} */}
+                    댓글 0
                   </button>
                 </div>
                 {nestedList[index] && (
