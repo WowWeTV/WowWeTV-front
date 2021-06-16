@@ -13,10 +13,9 @@ import VideoNestedComment from './VideoNestedComment';
 import { AiOutlineDown, AiOutlineMore } from 'react-icons/ai';
 
 const VideoComment = () => {
-  const { singleVideo, videoComments } = useSelector((state) => state.video);
+  const { videoComments } = useSelector((state) => state.video);
   const dispatch = useDispatch();
   const dataToLoad = { videoId: 1, limit: 3, offset: 0 };
-  const { comments } = singleVideo;
 
   const [startIndex, setStartIndex] = useState(0);
   const [lastIndex, setLastPage] = useState(10);
@@ -27,27 +26,25 @@ const VideoComment = () => {
     postedComment: '',
   });
   const { newComment, postedComment } = commentInput;
-  const initialStates = new Array(comments.length).fill(false);
-  const [updateButton, setUpdateButton] = useState(initialStates);
-  const [modification, setModification] = useState(initialStates);
-  const [nestedList, setNestedList] = useState(initialStates);
+  const [initialState, setInitialState] = useState([]);
+  const [updateButton, setUpdateButton] = useState(initialState);
+  const [modification, setModification] = useState(initialState);
+  const [nestedList, setNestedList] = useState(initialState);
 
   useEffect(() => {
-    dispatch(loadComment(dataToLoad))
-      .then((response) => {
-        if (response.payload.success) {
-          console.log(response.payload);
-        } else {
-          console.error(response.payload.message);
-        }
-      })
-      .catch((err) => console.error(err));
-    setCommentList(
-      videoComments[0].slice(startIndex, lastIndex * moreComments),
-    );
+    if (videoComments.length === 0) {
+      dispatch(loadComment(dataToLoad))
+        .then((response) => {
+          if (response.payload) {
+            const data = response.payload.content;
+            setCommentList(commentList.concat(data));
+            setInitialState(new Array(data.length).fill(false));
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
 
-  // 댓글 게시 날짜
   const postedDate = useCallback(
     (date) => {
       const today = moment();
@@ -61,9 +58,8 @@ const VideoComment = () => {
       if (calcDay < 7) return `${calcDay}일 전`;
       return uploadDate.format('YYYY. M. D.');
     },
-    [comments],
+    [commentList],
   );
-  // 댓글 입력
   const onChangeComment = useCallback(
     (e) => {
       const { name, value } = e.target;
@@ -71,7 +67,6 @@ const VideoComment = () => {
     },
     [commentInput],
   );
-  // 댓글 등록
   const onAddComment = useCallback(
     (e) => {
       e.preventDefault();
@@ -85,17 +80,15 @@ const VideoComment = () => {
     },
     [newComment],
   );
-  // 댓글 수정, 삭제 보기 버튼
   const onClickUpdateButton = useCallback(
     (index) => {
       setUpdateButton(updateButton.map((_, i) => i === index));
     },
     [updateButton],
   );
-  // 댓글 수정
   const onClickModifyButton = useCallback(
     (index) => {
-      setUpdateButton(initialStates);
+      setUpdateButton(initialState);
       setModification(
         modification.map((state, i) => (i === index ? !state : false)),
       );
@@ -111,28 +104,25 @@ const VideoComment = () => {
       } else {
         dispatch(modifyComment({ id, commentText: postedComment }));
         alert(`${postedComment}\n댓글이 수정되었습니다.`);
-        setModification(initialStates);
+        setModification(initialState);
       }
     },
-    [postedComment, modification, comments],
+    [postedComment, modification, commentList],
   );
-  // 댓글 삭제
   const onRemoveComment = useCallback(
     (id) => {
       dispatch(removeComment({ id }));
       alert('댓글이 삭제되었습니다.');
     },
-    [comments],
+    [commentList],
   );
-  // 댓글 더보기
   const onShowMoreComments = useCallback(() => {
-    setUpdateButton(initialStates);
+    setUpdateButton(initialState);
     setMoreComments(moreComments + 1);
   }, [updateButton, moreComments]);
-  // 대댓글 열기
   const onShowNested = useCallback(
     (index) => {
-      setUpdateButton(initialStates);
+      setUpdateButton(initialState);
       setNestedList(
         nestedList.map((state, i) => (i === index ? !state : state)),
       );
@@ -144,7 +134,7 @@ const VideoComment = () => {
     <div className={styles.comment_container} id="comment">
       <div className={styles.comment_title}>
         <h4>댓글</h4>
-        <span>{comments.length}</span>
+        <span>{commentList.length}</span>
       </div>
       <form className={styles.write_comment} onSubmit={onAddComment}>
         <input
@@ -153,7 +143,7 @@ const VideoComment = () => {
           value={newComment}
           name="newComment"
           onChange={onChangeComment}
-          onClick={() => setUpdateButton(initialStates)}
+          onClick={() => setUpdateButton(initialState)}
         />
         <button type="submit" className="primary" onClick={onAddComment}>
           등록
@@ -161,107 +151,117 @@ const VideoComment = () => {
       </form>
       <div className={styles.comment_list}>
         <ul>
-          {commentList.map((comment, index) => {
-            const {
-              id,
-              commentText,
-              createdAt,
-              userDto,
-              // nestedComment,
-            } = comment;
-            return (
-              <li key={id}>
-                <div
-                  className={
-                    nestedList[index]
-                      ? classnames(styles.open_nested, styles.comment_box)
-                      : styles.comment_box
-                  }
-                >
-                  <div className={styles.comment_info_box}>
-                    {modification[index] ? (
-                      <div className={styles.comment_form}>
-                        <form onSubmit={(e) => onModifyComment(e, id)}>
-                          <input
-                            type="textarea"
-                            value={postedComment}
-                            name="postedComment"
-                            onChange={onChangeComment}
-                          />
-                          <div>
-                            <button onClick={() => onClickModifyButton(index)}>
-                              취소
-                            </button>
-                            <button
-                              type="submit"
-                              className="primary"
-                              onClick={(e) => onModifyComment(e, id)}
-                            >
-                              수정
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    ) : (
-                      <>
-                        <div
-                          className={styles.comment_info}
-                          onClick={() => setUpdateButton(initialStates)}
-                        >
-                          <p className={styles.user_name}>{userDto.userName}</p>
-                          <div className={styles.comment_text}>
-                            <p>{commentText}</p>
-                          </div>
-                          <p className={styles.date}>{postedDate(createdAt)}</p>
-                        </div>
-                        <button
-                          className={styles.comment_update_btn}
-                          onClick={() => onClickUpdateButton(index)}
-                        >
-                          <AiOutlineMore />
-                        </button>
-                        {updateButton[index] && (
-                          <div className={styles.modify_remove}>
-                            <button onClick={() => onClickModifyButton(index)}>
-                              수정
-                            </button>
-                            <button onClick={() => onRemoveComment(id)}>
-                              삭제
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div>
-                  <button
+          {commentList &&
+            commentList.map((comment, index) => {
+              const {
+                id,
+                commentText,
+                createdAt,
+                userDto,
+                // nestedComment,
+              } = comment;
+              return (
+                <li key={id}>
+                  <div
                     className={
                       nestedList[index]
-                        ? classnames(styles.nested_btn, styles.clicked)
-                        : styles.nested_btn
+                        ? classnames(styles.open_nested, styles.comment_box)
+                        : styles.comment_box
                     }
-                    onClick={() => onShowNested(index)}
                   >
-                    {/* 댓글 {nestedComment.length > 0 && nestedComment.length} */}
-                    댓글 0
-                  </button>
-                </div>
-                {nestedList[index] && (
-                  <VideoNestedComment
-                    postedDate={postedDate}
-                    onShowNested={onShowNested}
-                    commentIndex={index}
-                  />
-                )}
-              </li>
-            );
-          })}
+                    <div className={styles.comment_info_box}>
+                      {modification[index] ? (
+                        <div className={styles.comment_form}>
+                          <form onSubmit={(e) => onModifyComment(e, id)}>
+                            <input
+                              type="textarea"
+                              value={postedComment}
+                              name="postedComment"
+                              onChange={onChangeComment}
+                            />
+                            <div>
+                              <button
+                                onClick={() => onClickModifyButton(index)}
+                              >
+                                취소
+                              </button>
+                              <button
+                                type="submit"
+                                className="primary"
+                                onClick={(e) => onModifyComment(e, id)}
+                              >
+                                수정
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      ) : (
+                        <>
+                          <div
+                            className={styles.comment_info}
+                            onClick={() => setUpdateButton(initialState)}
+                          >
+                            <p className={styles.user_name}>
+                              {userDto.userName}
+                            </p>
+                            <div className={styles.comment_text}>
+                              <p>{commentText}</p>
+                            </div>
+                            <p className={styles.date}>
+                              {postedDate(createdAt)}
+                            </p>
+                          </div>
+                          <button
+                            className={styles.comment_update_btn}
+                            onClick={() => onClickUpdateButton(index)}
+                          >
+                            <AiOutlineMore />
+                          </button>
+                          {updateButton[index] && (
+                            <div className={styles.modify_remove}>
+                              <button
+                                onClick={() => onClickModifyButton(index)}
+                              >
+                                수정
+                              </button>
+                              <button onClick={() => onRemoveComment(id)}>
+                                삭제
+                              </button>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                    <button
+                      className={
+                        nestedList[index]
+                          ? classnames(styles.nested_btn, styles.clicked)
+                          : styles.nested_btn
+                      }
+                      onClick={() => onShowNested(index)}
+                    >
+                      {/* 댓글 {nestedComment.length > 0 && nestedComment.length} */}
+                      댓글 0
+                    </button>
+                  </div>
+                  {nestedList && nestedList[index] && (
+                    <VideoNestedComment
+                      postedDate={postedDate}
+                      onShowNested={onShowNested}
+                      commentIndex={index}
+                    />
+                  )}
+                </li>
+              );
+            })}
         </ul>
       </div>
-      {comments.length > 10 && comments.length - 1 > lastIndex * moreComments && (
-        <div className={styles.more_comments} onClick={onShowMoreComments}>
-          더보기 <AiOutlineDown className={styles.icon} />
-        </div>
-      )}
+      {commentList.length > 10 &&
+        commentList.length - 1 > lastIndex * moreComments && (
+          <div className={styles.more_comments} onClick={onShowMoreComments}>
+            더보기 <AiOutlineDown className={styles.icon} />
+          </div>
+        )}
     </div>
   );
 };

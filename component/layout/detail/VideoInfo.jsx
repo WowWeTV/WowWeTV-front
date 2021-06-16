@@ -31,7 +31,7 @@ const VideoInfo = () => {
     dispatch(loadVideo(151)) // 추후 151에서 videoId로 수정 필요
       .then((response) => {
         if (response.payload.success) {
-          console.log(response.payload);
+          // console.log(response.payload);
         } else {
           console.error(response.payload.message);
         }
